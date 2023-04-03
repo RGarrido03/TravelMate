@@ -1,4 +1,3 @@
-name: Build & deploy to GitHub Pages
 on:
   push:
     branches:
@@ -6,8 +5,8 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
   
 jobs:
   build:
