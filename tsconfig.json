@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "outDir": "build",
+    "outDir": "dist",
     "rootDir": "src"
   },
   "exclude": ["App.js"],
