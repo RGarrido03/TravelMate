@@ -1,15 +1,20 @@
-name: deploy
+name: Build & deploy to GitHub Pages
 on:
   push:
     branches:
       - main
   workflow_dispatch:
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
   
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: ⬇️ Setup repo
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -27,18 +32,35 @@ jobs:
 
       - name: 🏗️ Install dependencies
         run: npm install
-
-      - name: 🚀 Update app in EAS
-        run: eas update --auto --non-interactive
       
-      - name: 🚀 Deploy app to GitHub Pages
+      - name: ⛓️ Build static web page
+        run: expo export:web
+
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:      
+      - name: 🏗️ Setup GitHub Actions user
         run: |
           git config --global user.name $user_name
           git config --global user.email $user_email
           git remote set-url origin https://${github_token}@github.com/${repository}
-          npm run deploy
         env:
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
           github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
           repository: ${{ github.repository }}
+
+      - name: 🏗️ Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: ⬆️ Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: './web-build'
+      
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
