@@ -11,8 +11,14 @@ concurrency:
   
 jobs:
   build:
-    name: ⛓️ Build
+    name: ⛓️ Build & 🚀 Deploy
     runs-on: ubuntu-latest
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: ⬇️ Setup repo
         uses: actions/checkout@v3
@@ -32,40 +38,12 @@ jobs:
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
 
-      - name: 🏗️ Install dependencies
+      - name: ⬇️ Install dependencies
         run: npm install
-      
-      - name: ⛓️ Build static web page
-        run: npx expo export:web
-      
-      - name: ⬆️ Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: page
-          path: |
-            web-build
-            .git
-          if-no-files-found: error
 
-  deploy:
-    name: 🚀 Deploy
-    runs-on: ubuntu-latest
-    needs: build
-    permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: ⬇️Download artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: page
-          path: .
-      
-      - name: Deploy to GitHub Pages
+      - name: ⛓️ Build & 🚀 Deploy to Pages
         id: build-publish
         uses: bitovi/github-actions-react-to-ghp@v1.2.0
         with:
           path: .
+          build_command: npx expo export:web
