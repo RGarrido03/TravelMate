@@ -11,6 +11,7 @@ concurrency:
   
 jobs:
   build:
+    name: ⛓️ Build
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Setup repo
@@ -37,7 +38,9 @@ jobs:
         run: expo export:web
 
   deploy:
+    name: 🚀 Deploy
     runs-on: ubuntu-latest
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
