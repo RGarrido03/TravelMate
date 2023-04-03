@@ -1,4 +1,8 @@
 {
-  "compilerOptions": {},
+  "compilerOptions": {
+    "outDir": "build",
+    "rootDir": "src"
+  },
+  "exclude": ["App.js"],
   "extends": "expo/tsconfig.base"
 }
