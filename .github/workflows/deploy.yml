@@ -42,7 +42,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: page
-          path: .
+          path: web-build
           if-no-files-found: error
 
   deploy:
@@ -76,7 +76,7 @@ jobs:
       - name: ⬆️ Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: './web-build'
+          path: '.'
       
       - name: 🚀 Deploy to GitHub Pages
         id: deployment
