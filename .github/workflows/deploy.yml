@@ -37,6 +37,13 @@ jobs:
       
       - name: ⛓️ Build static web page
         run: expo export:web
+      
+      - name: ⬆️ Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: page
+          path: .
+          if-no-files-found: error
 
   deploy:
     name: 🚀 Deploy
@@ -45,7 +52,13 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    steps:      
+    steps:
+      - name: ⬇️Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: page
+          path: .
+
       - name: 🏗️ Setup GitHub Actions user
         run: |
           git config --global user.name $user_name
