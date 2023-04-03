@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "TravelMate",
-    "slug": "TravelMate",
+    "slug": "travelmate",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ed8ac1ae-e594-4880-aa5a-bede51f14e2c"
+      }
+    },
+    "owner": "rgarrido03"
   }
 }
