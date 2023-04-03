@@ -45,5 +45,5 @@ jobs:
         id: build-publish
         uses: bitovi/github-actions-react-to-ghp@v1.2.0
         with:
-          path: .
+          path: web-build
           build_command: npx expo export:web
