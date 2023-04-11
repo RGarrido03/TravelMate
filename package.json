@@ -1,8 +1,7 @@
 {
   "name": "travelmate",
   "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
-  "homepage": "http://RGarrido03.github.io/TravelMate",
+  "homepage": "https://rgarrido03.github.io/TravelMate/",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
