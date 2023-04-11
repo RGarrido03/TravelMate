@@ -1,4 +1,4 @@
-# TravelMate app
+# <img src="https://user-images.githubusercontent.com/57329376/231313179-8d375176-1077-4c1b-9bd6-cf323e9d9475.png" width="28"> TravelMate app
 
 Project for "Interação Humano-Computador", 2022-2023.\
 Check the web app at https://rgarrido03.github.io/TravelMate.
