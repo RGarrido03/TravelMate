@@ -35,11 +35,11 @@ By default, `npm run start` opens an interactive Expo server, where you can open
 
 Command | Description
 ------- | -----------
-npm run start | Start the Expo server, interactively, and run the app on Expo Go
-npm run android | Run the app on an Android phone or Android Studio emulator
-npm run ios | Run the app on an iPhone or Xcode emulator
-npm run web | Run the app on a browser (usually http://localhost:19006)
-npm run buildweb | Build the app for web
+`npm run start` | Start the Expo server, interactively, and run the app on Expo Go
+`npm run android` | Run the app on an Android phone or Android Studio emulator
+`npm run ios` | Run the app on an iPhone or Xcode emulator
+`npm run web` | Run the app on a browser (usually http://localhost:19006)
+`npm run buildweb` | Build the app for web
 
 All logs will be displayed in the terminal window where you're running the server.
 
