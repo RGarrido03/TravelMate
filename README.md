@@ -10,17 +10,17 @@ It is inspired in both [Material Design 3](https://m3.material.io/) and [Fluent 
 
 The color palette is used as follows:
 
-Color   | Name | Description
-------- | ---- | -----------
-#E8F3F4 | Lighter green | Used in menu headers
-#BDF4F1 | Light green | No use for now
-#70ECE4 | Accent green | Used in things that need to be noticed
-#70D9D3 | Accent green #2 | No use for now
-#60BBB6 | Dark green | Used in strokes, icons, buttons and more
-#EB8C6F | Orange | Used for negative actions, such as deleting
-#3B4949 | Dark gray | Used in some not-so-important text.
-#000000 | Black | Used in headers and important text that needs to be noticed.
-#FFFFFF | White | Every design needs white, periodt
+Color   | Name            | Usage
+------- | --------------- | --------------------------------------------
+#E8F3F4 | Lighter green   | Menu headers and action bars
+#BDF4F1 | Light green     | N/D
+#70ECE4 | Accent green    | Things that need to be noticed
+#70D9D3 | Accent green #2 | N/D
+#60BBB6 | Dark green      | Strokes, icons, buttons & more
+#EB8C6F | Orange          | Negative actions, such as deleting something
+#3B4949 | Dark gray       | Some not-so-important text
+#000000 | Black           | Important text, headers' text
+#FFFFFF | White           | Misc
 
 A dark mode may or may not be in the backlog. 🙃
 
@@ -33,12 +33,12 @@ To test the app on a mobile phone, first install the Expo Go app on your [Androi
 
 By default, `npm run start` opens an interactive Expo server, where you can open the project in Expo Go (Android & iOS) or in a web browser. However, more options are available, and can be synthesized like this:
 
-Command | Description
-------- | -----------
-`npm run start` | Start the Expo server, interactively, and run the app on Expo Go
-`npm run android` | Run the app on an Android phone or Android Studio emulator
-`npm run ios` | Run the app on an iPhone or Xcode emulator
-`npm run web` | Run the app on a browser (usually http://localhost:19006)
+Command            | Description
+------------------ | -----------------------------------------------------------------
+`npm run start`    | Start the Expo server, to run the app on Expo Go or a web browser
+`npm run android`  | Run the app on an Android phone or Android Studio emulator
+`npm run ios`      | Run the app on an iPhone or Xcode emulator
+`npm run web`      | Run the app on a web browser (usually at http://localhost:19006)
 `npm run buildweb` | Build the app for web
 
 All logs will be displayed in the terminal window where you're running the server.
