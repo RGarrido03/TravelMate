@@ -4,10 +4,9 @@ import { StyleSheet, Text, View, ImageBackground} from 'react-native';
 export default function App() {
     return (
         <View style={styles.container}>
-            <ImageBackground source={image} resizeMode="cover">
-                <Text>TravelMate</Text>
-                <StatusBar style="auto" />
-            </ImageBackground>
+            <ImageBackground source={image} resizeMode="cover" />
+            <Text>TravelMate</Text>
+            <StatusBar style="auto" />
         </View>
     );
 }
