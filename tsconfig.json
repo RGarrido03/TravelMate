@@ -1,8 +1,7 @@
 {
-  "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src"
-  },
-  "extends": "expo/tsconfig.base",
-  "exclude": ["dist", "web-build"]
+    "compilerOptions": {
+        "outDir": "dist"
+    },
+    "extends": "expo/tsconfig.base",
+    "exclude": ["dist", "web-build"]
 }
