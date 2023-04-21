@@ -74,3 +74,8 @@ App metadata.
 
 `tsconfig.json`\
 Configurations for TypeScript's official compiler, used for type checking. Extends `node_modules/expo/tsconfig.base`.
+
+## 📗 Useful documentation 
+- [Expo](https://docs.expo.dev/)
+- [Expo Router](https://expo.github.io/router/docs/)
+- [React Native](https://reactnative.dev/docs/getting-started)
