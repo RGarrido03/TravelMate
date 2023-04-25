@@ -24,6 +24,7 @@
     "expo-linking": "~4.0.1",
     "expo-router": "^1.5.3",
     "expo-status-bar": "~1.4.4",
+    "expo-system-ui": "^2.2.1",
     "expo-updates": "~0.16.4",
     "gh-pages": "^5.0.0",
     "react": "18.2.0",
