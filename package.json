@@ -32,5 +32,11 @@
   "overrides": {
     "metro": "0.76.0",
     "metro-resolver": "0.76.0"
+  },
+  "devDependencies": {
+    "prettier": "2.8.8"
+  },
+  "prettier": {
+    "tabWidth": 4
   }
 }
