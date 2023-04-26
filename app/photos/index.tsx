@@ -4,10 +4,10 @@ import { useState } from "react";
 import { getCurrentImages, deleteImage } from "../../data/images";
 
 export default function () {
-    const colorScheme = useColorScheme();
-    const insets = useSafeAreaInsets();
-    const [containerWidth, setContainerWidth] = useState(0);
-    const [imagesArray, setImagesArray] = useState(getCurrentImages());
+    const colorScheme = useColorScheme(); // Color mode (light/dark)
+    const insets = useSafeAreaInsets(); // SafeAreaView dimensions
+    const [containerWidth, setContainerWidth] = useState(0); // Grid container dimensions hook
+    const [imagesArray, setImagesArray] = useState(getCurrentImages()); // Images array
 
     const styles = StyleSheet.create({
         scrollView: {
@@ -33,6 +33,7 @@ export default function () {
         },
     });
 
+    // Get container width during component creation
     const onLayout = (event) => {
         const { width } = event.nativeEvent.layout;
         setContainerWidth(width);
@@ -42,7 +43,7 @@ export default function () {
     return (
         <SafeAreaProvider>
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-                {imagesArray.length > 0 ? (
+                {imagesArray.length > 0 ? ( // If there are photos, show them
                     <View onLayout={onLayout} style={styles.view} key={"imgGrid"}>
                         {imagesArray.map((path: any, index: number) => {
                             return (
@@ -60,14 +61,17 @@ export default function () {
                         })}
                     </View>
                 ) : (
+                    // Message shown when there are no photos in the array.
                     <View style={{ alignItems: "center", justifyContent: "center" }}>
                         <Text style={{ fontWeight: "bold", fontSize: 20, marginBottom: 8 }}>
-                            No images.
+                            No photos.
                         </Text>
                         <Text style={{ fontWeight: "300" }}>Add one by pressing the + icon.</Text>
                     </View>
                 )}
 
+                {/* Test button for deleting photos. It's not planned to stay here.
+                    We need luck to implement the selected photo goddamn thing :') */}
                 <Button
                     title={"TEST: Delete the first photo"}
                     onPress={() => {

@@ -6,10 +6,10 @@ export default function Layout() {
 
     return (
         <Stack
+            /* Light/dark mode support, slay bitches */
             screenOptions={{
                 headerStyle: {
-                    backgroundColor:
-                        colorScheme === "light" ? "#E8F3F4" : "#33625F",
+                    backgroundColor: colorScheme === "light" ? "#E8F3F4" : "#33625F",
                 },
                 headerTitleStyle: {
                     color: colorScheme === "light" ? "#000" : "#fff",
