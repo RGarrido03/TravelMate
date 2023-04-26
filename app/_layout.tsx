@@ -31,6 +31,12 @@ export default function Layout() {
                     title: "Photos",
                 }}
             />
+            <Stack.Screen
+                name="expenses/index"
+                options={{
+                    title: "Expenses",
+                }}
+            />
         </Stack>
     );
 }
