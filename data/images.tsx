@@ -1,4 +1,4 @@
-export const images: string[] = [];
+const images: string[] = [];
 
 // Load images from the "assets/images" folder
 export const loadInitialImages = async () => {
