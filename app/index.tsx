@@ -1,23 +1,49 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ImageBackground} from 'react-native';
+import { View, StyleSheet } from "react-native";
+import { StatusBar } from "expo-status-bar";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { LinkButton } from "../components/LinkButton";
+import {
+    faCamera,
+    faLocationPin,
+    faMoneyBill,
+    faNoteSticky,
+} from "@fortawesome/free-solid-svg-icons";
 
 export default function App() {
     return (
-        <View style={styles.container}>
-            <ImageBackground source={image} resizeMode="cover" />
-            <Text>TravelMate</Text>
+        <SafeAreaProvider>
             <StatusBar style="auto" />
-        </View>
+            <SafeAreaView style={{ marginHorizontal: 16, marginTop: 16 }}>
+                <View style={styles.photo}>
+                    <LinkButton
+                        title={"Photos"}
+                        newNavigation={"/photos"}
+                        icon={faCamera}
+                    />
+                    <LinkButton
+                        title={"Notes"}
+                        newNavigation={"/notes"}
+                        icon={faNoteSticky}
+                    />
+                    <LinkButton
+                        title={"POIs"}
+                        newNavigation={"/pois"}
+                        icon={faLocationPin}
+                    />
+                    <LinkButton
+                        title={"Expenses"}
+                        newNavigation={"/expenses"}
+                        icon={faMoneyBill}
+                    />
+                </View>
+            </SafeAreaView>
+        </SafeAreaProvider>
     );
 }
 
-const image = {uri: 'https://reactjs.org/logo-og.png'};
-
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+    photo: {
+        flexDirection: "column",
+        rowGap: 8,
     },
 });
