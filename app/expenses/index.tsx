@@ -61,9 +61,24 @@ export default function () {
                 {/* Latest expenses */}
                 <View style={[styles.rowContainer, styles.marginBottom]}>
                     <Text style={styles.subtitle}>Latest expenses</Text>
-                    <ExpensesButton title={"Sunscreen"} icon={faSun} cost={15.5} />
-                    <ExpensesButton title={"Hotel"} icon={faBed} cost={2500} />
-                    <ExpensesButton title={"Flight"} icon={faPlaneUp} cost={500} />
+                    <ExpensesButton
+                        title={"Sunscreen"}
+                        icon={faSun}
+                        cost={15.5}
+                        date={new Date("2022-08-09")}
+                    />
+                    <ExpensesButton
+                        title={"Hotel"}
+                        icon={faBed}
+                        cost={2500}
+                        date={new Date("2022-08-09")}
+                    />
+                    <ExpensesButton
+                        title={"Flight"}
+                        icon={faPlaneUp}
+                        cost={500}
+                        date={new Date("2022-08-09")}
+                    />
                 </View>
 
                 {/* Other */}

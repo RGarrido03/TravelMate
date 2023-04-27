@@ -4,18 +4,25 @@ import { styles } from "./styles";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
-export const ExpensesButton = ({ title, icon, cost }: Props) => {
+export const ExpensesButton = ({ title, icon, cost, date }: Props) => {
     const navigation = useRouter();
     const colorScheme = useColorScheme();
-    const textStyle = colorScheme === "light" ? styles.textLight : styles.textDark;
-    const containerStyle = colorScheme === "light" ? styles.containerLight : styles.containerDark;
+    const textColor = colorScheme === "light" ? styles.textLight : styles.textDark;
+    const containerColor = colorScheme === "light" ? styles.containerLight : styles.containerDark;
 
     return (
-        <TouchableOpacity activeOpacity={0.5} style={[styles.appButtonContainer, containerStyle]}>
-            <View style={styles.appButtonView}>
-                <FontAwesomeIcon icon={icon} size={22} style={textStyle} />
-                <Text style={[styles.appButtonText, textStyle]}>{title}</Text>
-                <View style={styles.textBox}>
+        <TouchableOpacity activeOpacity={0.5} style={[styles.container, containerColor]}>
+            <View style={styles.view}>
+                <FontAwesomeIcon icon={icon} size={22} style={textColor} />
+
+                {/* Text */}
+                <View style={styles.textView}>
+                    <Text style={[styles.title, textColor]}>{title}</Text>
+                    <Text style={textColor}>{date.toDateString()}</Text>
+                </View>
+
+                {/* Cost */}
+                <View style={[styles.textBox, cost < 500 ? styles.textBoxLow : styles.textBoxHigh]}>
                     <Text style={styles.cost}>
                         {cost.toLocaleString("pt-PT", {
                             minimumFractionDigits: 2,
@@ -30,6 +37,7 @@ export const ExpensesButton = ({ title, icon, cost }: Props) => {
 };
 
 interface Props {
+    date: Date;
     icon: IconDefinition;
     title: string;
     cost: number;
