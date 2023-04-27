@@ -9,15 +9,17 @@ import {
     faNoteSticky,
 } from "@fortawesome/free-solid-svg-icons";
 import { loadInitialImages } from "../data/images";
+import { loadInitialNotes } from "../data/notes";
 
 export default function App() {
     loadInitialImages();
+    loadInitialNotes();
 
     return (
         <SafeAreaProvider>
             <StatusBar style="auto" />
             <SafeAreaView style={{ marginHorizontal: 16, marginTop: 16 }}>
-                <View style={styles.photo}>
+                <View style={styles.view}>
                     {/* Placeholders for other parts of the app.
                         We will be dead by the time we finish implementing the map. */}
                     <LinkButton title={"Photos"} newNavigation={"/photos"} icon={faCamera} />
@@ -31,7 +33,7 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-    photo: {
+    view: {
         flexDirection: "column",
         rowGap: 8,
     },

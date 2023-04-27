@@ -31,6 +31,12 @@ export default function Layout() {
                     title: "Photos",
                 }}
             />
+            <Stack.Screen
+                name="notes/index"
+                options={{
+                    title: "Notes",
+                }}
+            />
         </Stack>
     );
 }
