@@ -32,13 +32,13 @@ export const styles = StyleSheet.create({
     },
 
     textBox: {
-        backgroundColor: '#60BBB6',
+        backgroundColor: "#60BBB6",
         padding: 5,
-        borderRadius: 3,
-      },
+        borderRadius: 4,
+    },
     cost: {
-        color: '#FFFFFF',
+        color: "#FFFFFF",
         fontSize: 16,
-        fontWeight: 'bold',
+        fontWeight: "bold",
     },
 });
