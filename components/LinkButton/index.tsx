@@ -8,25 +8,19 @@ import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 export const LinkButton = ({ newNavigation, title, icon }: Props) => {
     const navigation = useRouter();
     const colorScheme = useColorScheme();
-    const textStyle =
-        colorScheme === "light" ? styles.textLight : styles.textDark;
-    const containerStyle =
-        colorScheme === "light" ? styles.containerLight : styles.containerDark;
+    const textColor = colorScheme === "light" ? styles.textLight : styles.textDark;
+    const containerColor = colorScheme === "light" ? styles.containerLight : styles.containerDark;
 
     return (
         <TouchableOpacity
             activeOpacity={0.5}
             onPress={() => navigation.push(newNavigation)}
-            style={[styles.appButtonContainer, containerStyle]}
+            style={[styles.container, containerColor]}
         >
-            <View style={styles.appButtonView}>
-                <FontAwesomeIcon icon={icon} size={22} style={textStyle} />
-                <Text style={[styles.appButtonText, textStyle]}>{title}</Text>
-                <FontAwesomeIcon
-                    icon={faChevronRight}
-                    size={16}
-                    style={textStyle}
-                />
+            <View style={styles.view}>
+                <FontAwesomeIcon icon={icon} size={22} style={textColor} />
+                <Text style={[styles.text, textColor]}>{title}</Text>
+                <FontAwesomeIcon icon={faChevronRight} size={16} style={textColor} />
             </View>
         </TouchableOpacity>
     );

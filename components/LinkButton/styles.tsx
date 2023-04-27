@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    appButtonContainer: {
+    container: {
         borderRadius: 12,
         borderWidth: 1,
         padding: 16,
@@ -14,11 +14,11 @@ export const styles = StyleSheet.create({
         backgroundColor: "#3B4949cc",
         borderColor: "#BDF4F1",
     },
-    appButtonView: {
+    view: {
         flexDirection: "row",
         alignItems: "center",
     },
-    appButtonText: {
+    text: {
         fontSize: 16,
         fontWeight: "400",
         flex: 1,
