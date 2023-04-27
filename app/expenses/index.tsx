@@ -20,8 +20,19 @@ export default function () {
             flexDirection: "column",
             rowGap: 8,
         },
+        summaryTitle: {
+            color: colorScheme === "light" ? "#3B4949" : "#fff",
+            fontWeight: "600",
+            fontSize: 20,
+            lineHeight: 27,
+        },
+        summarySubtitle: {
+            color: colorScheme === "light" ? "#3B4949" : "#fff",
+            fontSize: 16,
+            lineHeight: 22,
+        },
         subtitle: {
-            color: "#3B4949",
+            color: colorScheme === "light" ? "#3B4949" : "#fff",
             fontWeight: "600",
             fontSize: 16,
             lineHeight: 22,
@@ -36,26 +47,8 @@ export default function () {
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 {/* Summary */}
                 <View style={styles.marginBottom}>
-                    <Text
-                        style={{
-                            color: "#3B4949",
-                            fontWeight: "600",
-                            fontSize: 20,
-                            lineHeight: 27,
-                        }}
-                    >
-                        1484,50€ remaining
-                    </Text>
-                    <Text
-                        style={{
-                            color: "#3B4949",
-                            fontWeight: "400",
-                            fontSize: 16,
-                            lineHeight: 22,
-                        }}
-                    >
-                        3015,50€ spent out of 4500,00€
-                    </Text>
+                    <Text style={styles.summaryTitle}>1484,50€ remaining</Text>
+                    <Text style={styles.summarySubtitle}>3015,50€ spent out of 4500,00€</Text>
                 </View>
 
                 {/* Latest expenses */}
