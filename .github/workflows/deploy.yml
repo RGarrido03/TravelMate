@@ -40,9 +40,12 @@ jobs:
       - name: ⬇️ Install dependencies
         run: npm install
 
+      - name: 🚀 Update app in EAS
+        run: eas update --auto
+
       - name: ⛓️ Build & 🚀 Deploy to Pages
         id: build-publish
         uses: bitovi/github-actions-react-to-ghp@v1.2.0
         with:
-          path: dist
+          checkout: false
           build_command: npm run buildweb
