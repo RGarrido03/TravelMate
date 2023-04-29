@@ -3,6 +3,7 @@ import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-cont
 import { useState } from "react";
 import { getCurrentNotes, deleteNote } from "../../data/notes";
 import { ListItem } from "../../components/NotesButton";
+import { LinkButton } from "../../components/LinkButton";
 
 export default function () {
     const colorScheme = useColorScheme();
@@ -40,7 +41,7 @@ export default function () {
                                 <ListItem
                                     title={item.title}
                                     subtitle={item.content}
-                                    newNavigation={"note?id=" + index}
+                                    newNavigation={"note"}
                                     image={item.image}
                                     key={"note" + index}
                                 />

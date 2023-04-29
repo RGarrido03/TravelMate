@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
-import { useColorScheme } from "react-native";
+import { Text, TouchableOpacity, useColorScheme } from "react-native";
 
 export default function Layout() {
     const colorScheme = useColorScheme();
@@ -47,6 +47,21 @@ export default function Layout() {
                 name="pois/index"
                 options={{
                     title: "POIs",
+                }}
+            />
+            <Stack.Screen
+                name="note/index"
+                options={{
+                    title: "Note",
+                    headerTitleStyle: {
+                        fontWeight: "800",
+                    },
+                    headerRight: () => (
+                        <TouchableOpacity
+                          style={{marginRight: 10}}>
+                          <Text>Date</Text>
+                        </TouchableOpacity>
+                      ),
                 }}
             />
         </Stack>
