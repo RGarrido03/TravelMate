@@ -1,8 +1,9 @@
 import { Stack } from "expo-router";
-import { Text, TouchableOpacity, useColorScheme } from "react-native";
+import { ColorSchemeName, Text, TouchableOpacity, useColorScheme } from "react-native";
 
 export default function Layout() {
-    const colorScheme = useColorScheme();
+    const colorScheme: ColorSchemeName = useColorScheme();
+    const textColor: string = colorScheme === "light" ? "#000" : "#fff";
 
     return (
         <Stack
@@ -12,7 +13,7 @@ export default function Layout() {
                     backgroundColor: colorScheme === "light" ? "#E8F3F4" : "#33625F",
                 },
                 headerTitleStyle: {
-                    color: colorScheme === "light" ? "#000" : "#fff",
+                    color: textColor,
                 },
                 contentStyle: {
                     backgroundColor: colorScheme === "light" ? "#fff" : "#000",
@@ -57,11 +58,10 @@ export default function Layout() {
                         fontWeight: "800",
                     },
                     headerRight: () => (
-                        <TouchableOpacity
-                          style={{marginRight: 10}}>
-                          <Text>Date</Text>
+                        <TouchableOpacity style={{ marginRight: 10 }}>
+                            <Text>Date</Text>
                         </TouchableOpacity>
-                      ),
+                    ),
                 }}
             />
         </Stack>
