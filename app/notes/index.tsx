@@ -2,7 +2,7 @@ import { StyleSheet, View, useColorScheme, ScrollView, Button, Text } from "reac
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
 import { getCurrentNotes, deleteNote } from "../../data/notes";
-import { ListItem } from "../../components/ListItem";
+import { ListItem } from "../../components/NotesButton";
 
 export default function () {
     const colorScheme = useColorScheme();
