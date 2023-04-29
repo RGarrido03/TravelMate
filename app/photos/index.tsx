@@ -1,13 +1,31 @@
-import { Image, StyleSheet, View, useColorScheme, ScrollView, Button, Text } from "react-native";
+import {
+    Image,
+    StyleSheet,
+    View,
+    useColorScheme,
+    ScrollView,
+    Button,
+    Text,
+    Pressable,
+} from "react-native";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
 import { getCurrentImages, deleteImage } from "../../data/images";
+import { useRouter } from "expo-router";
 
 export default function () {
     const colorScheme = useColorScheme(); // Color mode (light/dark)
     const insets = useSafeAreaInsets(); // SafeAreaView dimensions
     const [containerWidth, setContainerWidth] = useState(0); // Grid container dimensions hook
     const [imagesArray, setImagesArray] = useState(getCurrentImages()); // Images array
+    const navigation = useRouter();
+
+    // Get container width during component creation
+    const onLayout = (event) => {
+        const { width } = event.nativeEvent.layout;
+        setContainerWidth(width);
+    };
+    const itemSize = (containerWidth - 24) / 3;
 
     const styles = StyleSheet.create({
         scrollView: {
@@ -24,21 +42,21 @@ export default function () {
             justifyContent: "flex-start",
             margin: -4,
         },
-        photo: {
+        photoPressable: {
             margin: 4,
             aspectRatio: 1,
             borderRadius: 8,
             borderWidth: 1,
             borderColor: colorScheme === "light" ? "#60BBB6" : "#BDF4F1",
+            width: itemSize,
+            height: itemSize,
+        },
+        photoImage: {
+            width: "100%",
+            height: "100%",
+            borderRadius: 7,
         },
     });
-
-    // Get container width during component creation
-    const onLayout = (event) => {
-        const { width } = event.nativeEvent.layout;
-        setContainerWidth(width);
-    };
-    const itemWidth = (containerWidth - 24) / 3;
 
     return (
         <SafeAreaProvider>
@@ -47,16 +65,13 @@ export default function () {
                     <View onLayout={onLayout} style={styles.view} key={"imgGrid"}>
                         {imagesArray.map((path: any, index: number) => {
                             return (
-                                <Image
-                                    source={path}
-                                    style={[
-                                        styles.photo,
-                                        {
-                                            width: itemWidth,
-                                        },
-                                    ]}
+                                <Pressable
                                     key={"img" + index}
-                                />
+                                    onPress={() => navigation.push("photos/photo?id=" + index)}
+                                    style={styles.photoPressable}
+                                >
+                                    <Image source={path} style={styles.photoImage} />
+                                </Pressable>
                             );
                         })}
                     </View>
