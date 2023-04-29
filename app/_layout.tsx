@@ -43,6 +43,12 @@ export default function Layout() {
                     title: "Expenses",
                 }}
             />
+            <Stack.Screen
+                name="pois/index"
+                options={{
+                    title: "POIs",
+                }}
+            />
         </Stack>
     );
 }
