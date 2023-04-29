@@ -2,8 +2,6 @@
 [![.github/workflows/deploy.yml](https://github.com/RGarrido03/TravelMate/actions/workflows/deploy.yml/badge.svg)](https://github.com/RGarrido03/TravelMate/actions/workflows/deploy.yml)
 
 Project for "Interação Humano-Computador", 2022-2023.\
-Check the web app at https://rgarrido03.github.io/TravelMate.
-
 
 ## ✍ Design
 This app tightly follows the app prototype we made in Figma, which you can check [here](https://www.figma.com/proto/G9qqNCCqaahFK07umeDm0B/Low-level-prototype?node-id=64-2&starting-point-node-id=64%3A2).
