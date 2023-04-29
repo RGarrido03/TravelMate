@@ -90,7 +90,7 @@ export default function () {
                             {ExpensesArray.map((item: any, index: number) => {
                                 return (
                                     <ExpensesButton
-                                        date={item.date}
+                                        date={item.date.toDateString()}
                                         icon={item.icon}
                                         title={item.title}
                                         cost={item.cost}
