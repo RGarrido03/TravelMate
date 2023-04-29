@@ -2,8 +2,7 @@ import { StyleSheet, View, useColorScheme, ScrollView, Button, Text } from "reac
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
 import { getCurrentNotes, deleteNote } from "../../data/notes";
-import { ListItem } from "../../components/NotesButton";
-import { LinkButton } from "../../components/LinkButton";
+import { NotesButton } from "../../components/NotesButton";
 
 export default function () {
     const colorScheme = useColorScheme();
@@ -38,10 +37,10 @@ export default function () {
                     <View style={styles.view}>
                         {notesArray.map((item: any, index: number) => {
                             return (
-                                <ListItem
+                                <NotesButton
                                     title={item.title}
                                     subtitle={item.content}
-                                    newNavigation={"note"}
+                                    newNavigation={"note?id=" + index}
                                     image={item.image}
                                     key={"note" + index}
                                 />

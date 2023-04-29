@@ -2,7 +2,7 @@ import { TouchableOpacity, View, Text, useColorScheme, Image } from "react-nativ
 import { useRouter } from "expo-router";
 import { styles } from "./styles";
 
-export const ListItem = ({ newNavigation, subtitle, title, image }: Props) => {
+export const NotesButton = ({ newNavigation, subtitle, title, image }: Props) => {
     const navigation = useRouter();
     const colorScheme = useColorScheme();
     const textColor = colorScheme === "light" ? styles.textLight : styles.textDark;
