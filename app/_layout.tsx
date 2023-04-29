@@ -55,11 +55,12 @@ export default function Layout() {
                 options={{
                     title: "Note",
                     headerTitleStyle: {
-                        fontWeight: "800",
+                        fontWeight: "800", // Isn't this inconsistent?
+                        color: textColor,
                     },
                     headerRight: () => (
-                        <TouchableOpacity style={{ marginRight: 10 }}>
-                            <Text>Date</Text>
+                        <TouchableOpacity>
+                            <Text style={{ color: textColor }}>Date</Text>
                         </TouchableOpacity>
                     ),
                 }}
