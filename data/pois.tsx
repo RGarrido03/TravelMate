@@ -14,19 +14,19 @@ export const loadInitialPOIs = async () => {
     POIs.push({
         date: "A day ago",
         icon: faSun,
-        title:"Playa de Las Ensinas",
+        title: "Playa de Las Ensinas",
         image: null,
     });
     POIs.push({
         date: "3 days ago",
         icon: faMuseum,
-        title:"Museum Puget",
+        title: "Museum Puget",
         image: null,
     });
     POIs.push({
         date: "4 days ago",
         icon: faSun,
-        title:"Playa de Cala Bassa",
+        title: "Playa de Cala Bassa",
         image: require("../assets/images/three.png"),
     });
 };

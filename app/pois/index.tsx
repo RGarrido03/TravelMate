@@ -1,10 +1,10 @@
 import { StyleSheet, View, Text, ScrollView, useColorScheme, Button } from "react-native";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
-import { getCurrentPOIs, deletePOIs} from "../../data/pois";
+import { getCurrentPOIs, deletePOIs } from "../../data/pois";
 import { POIsButton } from "../../components/POIsButton";
 
-export default function() {
+export default function () {
     const colorScheme = useColorScheme(); // Color mode (light/dark)
     const insets = useSafeAreaInsets(); // SafeAreaView dimensions
     const [POIsArray, setPOIsArray] = useState(getCurrentPOIs());
@@ -44,42 +44,20 @@ export default function() {
     });
 
     return (
-        // <SafeAreaProvider>
-        //     <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        //         {/* POIs */}
-        //        <View style={[styles.rowContainer, styles.marginBottom]}>
-        //             <ExpensesButton
-        //                 title={"Playa de Las Ensinas"}
-        //                 icon={faSun}
-        //                 date={"A day ago"}
-        //                 image={null}
-        //             />
-        //             <ExpensesButton
-        //                 title={"Museum Puget"}
-        //                 icon={faMuseum}
-        //                 date={"3 days ago"}
-        //                 image={null}
-        //             />
-        //             <ExpensesButton
-        //                 title={"Playa de Cala Bassa"}
-        //                 icon={faSun}
-        //                 date={"4 days ago"}
-        //                 image={"https://upload.wikimedia.org/wikipedia/commons/e/ee/Chain_link_icon.png"}
-        //             />
-        //         </View>
-        //     </ScrollView>
-        // </SafeAreaProvider>
         <SafeAreaProvider>
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 {POIsArray.length > 0 ? (
                     <View style={styles.view}>
                         {POIsArray.map((item: any, index: number) => {
                             return (
-                                <POIsButton 
-                                date={item.date} 
-                                icon={item.icon} 
-                                title={item.title} 
-                                image={item.image}                               />
+                                <POIsButton
+                                    date={item.date}
+                                    icon={item.icon}
+                                    title={item.title}
+                                    image={item.image}
+                                    newNavigation={"poi?id=" + index}
+                                    key={"poi" + index}
+                                />
                             );
                         })}
                     </View>

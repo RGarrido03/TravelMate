@@ -51,5 +51,5 @@ export const styles = StyleSheet.create({
     },
     imageDark: {
         borderColor: "#BDF4F1",
-    }
+    },
 });

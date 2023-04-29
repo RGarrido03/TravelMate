@@ -10,10 +10,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { loadInitialImages } from "../data/images";
 import { loadInitialNotes } from "../data/notes";
+import { loadInitialPOIs } from "../data/pois";
 
 export default function App() {
     loadInitialImages();
     loadInitialNotes();
+    loadInitialPOIs();
 
     return (
         <SafeAreaProvider>
