@@ -16,7 +16,10 @@ export default function () {
     const percentage = 67;
     const circumference = 2 * Math.PI * 36;
 
-    const sumExpenses = ExpensesArray.reduce((accumulator, currentValue) => accumulator + currentValue.cost, 0);
+    const sumExpenses = ExpensesArray.reduce(
+        (accumulator, currentValue) => accumulator + currentValue.cost,
+        0
+    );
 
     const styles = StyleSheet.create({
         scrollView: {
@@ -69,7 +72,10 @@ export default function () {
                 <View style={styles.container}>
                     <View style={{ alignSelf: "flex-start" }}>
                         <Text style={styles.summaryTitle}>1484,50€ remaining</Text>
-                        <Text style={styles.summarySubtitle}> {sumExpenses}€ spent out of 4500,00€</Text>
+                        <Text style={styles.summarySubtitle}>
+                            {" "}
+                            {sumExpenses}€ spent out of 4500,00€
+                        </Text>
                     </View>
                     <View style={{ alignItems: "flex-end" }}>
                         <CircularProgress percentage={percentage} circumference={circumference} />
@@ -89,6 +95,7 @@ export default function () {
                                         title={item.title}
                                         cost={item.cost}
                                         key={"poi" + index}
+                                        newNavigation={"expenses/expense?id=" + index}
                                     />
                                 );
                             })}
