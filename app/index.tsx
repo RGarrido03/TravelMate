@@ -11,11 +11,13 @@ import {
 import { loadInitialImages } from "../data/images";
 import { loadInitialNotes } from "../data/notes";
 import { loadInitialPOIs } from "../data/pois";
+import { loadInitialExpenses } from "../data/expenses";
 
 export default function App() {
     loadInitialImages();
     loadInitialNotes();
     loadInitialPOIs();
+    loadInitialExpenses();
 
     return (
         <SafeAreaProvider>

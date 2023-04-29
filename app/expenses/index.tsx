@@ -1,13 +1,22 @@
-import { StyleSheet, View, Text, ScrollView, useColorScheme } from "react-native";
+import { StyleSheet, View, Text, ScrollView, useColorScheme, Button } from "react-native";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { ExpensesButton } from "../../components/ExpensesButton";
 import { LinkButton } from "../../components/LinkButton";
-import { faBed, faPlaneUp, faSun } from "@fortawesome/free-solid-svg-icons";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import { deleteExpenses, getCurrentExpenses } from "../../data/expenses";
+import { CircularProgress } from "../../components/CircularProgess";
 
 export default function () {
     const colorScheme = useColorScheme(); // Color mode (light/dark)
     const insets = useSafeAreaInsets(); // SafeAreaView dimensions
+
+    const [ExpensesArray, setExpensesArray] = useState(getCurrentExpenses());
+
+    const percentage = 67;
+    const circumference = 2 * Math.PI * 36;
+
+    const sumExpenses = ExpensesArray.reduce((accumulator, currentValue) => accumulator + currentValue.cost, 0);
 
     const styles = StyleSheet.create({
         scrollView: {
@@ -40,37 +49,67 @@ export default function () {
         marginBottom: {
             marginBottom: 32,
         },
+        container: {
+            flexDirection: "row",
+            justifyContent: "space-between",
+            paddingHorizontal: 16,
+            paddingVertical: 8,
+        },
+        view: {
+            flexDirection: "column",
+            rowGap: 8,
+            marginBottom: insets.bottom,
+        },
     });
 
     return (
         <SafeAreaProvider>
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 {/* Summary */}
-                <View style={styles.marginBottom}>
-                    <Text style={styles.summaryTitle}>1484,50€ remaining</Text>
-                    <Text style={styles.summarySubtitle}>3015,50€ spent out of 4500,00€</Text>
+                <View style={styles.container}>
+                    <View style={{ alignSelf: "flex-start" }}>
+                        <Text style={styles.summaryTitle}>1484,50€ remaining</Text>
+                        <Text style={styles.summarySubtitle}> {sumExpenses}€ spent out of 4500,00€</Text>
+                    </View>
+                    <View style={{ alignItems: "flex-end" }}>
+                        <CircularProgress percentage={percentage} circumference={circumference} />
+                    </View>
                 </View>
-
                 {/* Latest expenses */}
+
                 <View style={[styles.rowContainer, styles.marginBottom]}>
                     <Text style={styles.subtitle}>Latest expenses</Text>
-                    <ExpensesButton
-                        title={"Sunscreen"}
-                        icon={faSun}
-                        cost={15.5}
-                        date={new Date("2022-08-09")}
-                    />
-                    <ExpensesButton
-                        title={"Hotel"}
-                        icon={faBed}
-                        cost={2500}
-                        date={new Date("2022-08-09")}
-                    />
-                    <ExpensesButton
-                        title={"Flight"}
-                        icon={faPlaneUp}
-                        cost={500}
-                        date={new Date("2022-08-09")}
+                    {ExpensesArray.length > 0 ? (
+                        <View style={styles.view}>
+                            {ExpensesArray.map((item: any, index: number) => {
+                                return (
+                                    <ExpensesButton
+                                        date={item.date}
+                                        icon={item.icon}
+                                        title={item.title}
+                                        cost={item.cost}
+                                        key={"poi" + index}
+                                    />
+                                );
+                            })}
+                        </View>
+                    ) : (
+                        <View style={{ alignItems: "center", justifyContent: "center" }}>
+                            <Text style={{ fontWeight: "bold", fontSize: 20, marginBottom: 8 }}>
+                                No Expenses.
+                            </Text>
+                            <Text style={{ fontWeight: "300" }}>
+                                Add one by pressing the + icon.
+                            </Text>
+                        </View>
+                    )}
+
+                    <Button
+                        title={"TEST: Delete the first POI"}
+                        onPress={() => {
+                            setExpensesArray(getCurrentExpenses().slice(1));
+                            deleteExpenses(0);
+                        }}
                     />
                 </View>
 
