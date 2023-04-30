@@ -65,6 +65,17 @@ export default function Layout() {
                     ),
                 }}
             />
+            <Stack.Screen
+                name="photos/photo/index"
+                options={{
+                    title: "Photo",
+                    headerRight: () => (
+                        <Text style={{ color: textColor }}>
+                            <Text style={{ fontWeight: "500" }}>Date</Text> Hour
+                        </Text>
+                    ),
+                }}
+            />
         </Stack>
     );
 }
