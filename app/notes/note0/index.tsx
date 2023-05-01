@@ -1,4 +1,4 @@
-import { StyleSheet, View, useColorScheme, ScrollView, Image, Text } from "react-native";
+import { StyleSheet, View, useColorScheme, ScrollView, Image, Text, TextInput } from "react-native";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
 import { getCurrentNotes } from "../../../data/notes";
@@ -72,9 +72,11 @@ export default function () {
         <SafeAreaProvider>
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
 
+                {/*
                 <View style={styles.container}>
                     <Image style={styles.photo} source={require("/home/diogofalcao/Desktop/IHC/TravelMate/assets/images/one.png")} />
                 </View>
+                */}
 
                 <View style={styles.marginBottom}>
                     <Text style={{ marginBottom: 195 }} />
@@ -84,7 +86,7 @@ export default function () {
                     <Text>{'     '}</Text>
                     <Text style={styles.Subtitle}>Arcu non odio euismod lacinia at quis risus. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. </Text>
                     <Text>{'     '}</Text>
-                    <Text style={styles.Subtitle}>Orci ac auctor augue mauris augue neque gravida in. Nisl tincidunt eget nullam non nisi est sit amet facilisis. Et molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit. </Text>
+                    <TextInput style={styles.Subtitle}>Acabar os meus toughts...</TextInput>
                 </View>
 
                 <LinkButton title={"Add related photos"} newNavigation={"/photos"} icon={faCamera} />
