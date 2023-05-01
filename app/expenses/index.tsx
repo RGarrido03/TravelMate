@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, ScrollView, useColorScheme, Button, Modal } from "react-native";
+import { StyleSheet, View, Text, ScrollView, useColorScheme, Button } from "react-native";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { ExpensesButton } from "../../components/ExpensesButton";
 import { LinkButton } from "../../components/LinkButton";
@@ -7,6 +7,7 @@ import { useState } from "react";
 import { deleteExpenses, getCurrentExpenses } from "../../data/expenses";
 import { CircularProgress } from "../../components/CircularProgess";
 
+import { AddExpenseModal } from "../../components/ModalExpenses";
 
 export default function () {
     const colorScheme = useColorScheme(); // Color mode (light/dark)
@@ -22,10 +23,12 @@ export default function () {
         0
     );
 
-    const [isModalVisible, setModalVisible] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
+    const [expenses, setExpenses] = useState([]);
 
-    const toggleModal = () => {
-        setModalVisible(!isModalVisible);
+    const handleSaveExpense = (expense) => {
+        setExpenses([...expenses, expense]);
+        setModalVisible(false);
     };
 
     const styles = StyleSheet.create({
@@ -101,7 +104,7 @@ export default function () {
                                         icon={item.icon}
                                         title={item.title}
                                         cost={item.cost}
-                                        key={"poi" + index}
+                                        key={"expense" + index}
                                         newNavigation={"expenses/expense?id=" + index}
                                     />
                                 );
@@ -119,24 +122,27 @@ export default function () {
                     )}
 
                     <Button
-                        title={"TEST: Delete the first POI"}
+                        title={"TEST: Delete the first expense"}
                         onPress={() => {
                             setExpensesArray(getCurrentExpenses().slice(1));
                             deleteExpenses(0);
                         }}
                     />
                 </View>
-                <View style={{ flex: 1 }}>
-                    <Button title="Show modal" onPress={toggleModal} />
 
-                    <Modal visible={isModalVisible}>
-                        <View style={{ flex: 1 }}>
-                            <Text>Hello!</Text>
-
-                            <Button title="Hide modal" onPress={toggleModal} />
-                        </View>
-                    </Modal>
+                <View>
+                    <Button title="Adicionar Despesa" onPress={() => setModalVisible(true)} />
+                    <AddExpenseModal
+                        visible={modalVisible}
+                        onClose={() => setModalVisible(false)}
+                        onSave={handleSaveExpense}
+                    />
+                    <Text>Suas Despesas:</Text>
+                    {expenses.map((expense, index) => (
+                        <Text key={index}>{expense}</Text>
+                    ))}
                 </View>
+
                 {/* Other */}
                 <View style={[styles.rowContainer, { marginBottom: insets.bottom }]}>
                     <Text style={styles.subtitle}>Other</Text>

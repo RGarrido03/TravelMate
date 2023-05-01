@@ -17,6 +17,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/react-native-fontawesome": "^0.3.0",
+    "@react-native-community/datetimepicker": "6.7.3",
     "@types/react": "~18.0.27",
     "@types/react-native": "^0.71.5",
     "expo": "~48.0.9",
