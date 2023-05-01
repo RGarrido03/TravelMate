@@ -7,25 +7,34 @@ import {
     Button,
     Text,
     Pressable,
+    ColorSchemeName,
 } from "react-native";
-import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
-import { useState } from "react";
-import { getCurrentImages, deleteImage } from "../../data/images";
-import { useRouter } from "expo-router";
+import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
+import { useCallback, useState } from "react";
+import { getCurrentImages, deleteImage, Photo } from "../../data/images";
+import { useRouter, useFocusEffect } from "expo-router";
 
 export default function () {
-    const colorScheme = useColorScheme(); // Color mode (light/dark)
-    const insets = useSafeAreaInsets(); // SafeAreaView dimensions
-    const [containerWidth, setContainerWidth] = useState(0); // Grid container dimensions hook
-    const [imagesArray, setImagesArray] = useState(getCurrentImages()); // Images array
+    const colorScheme: ColorSchemeName = useColorScheme(); // Color mode (light/dark)
+    const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
     const navigation = useRouter();
 
+    const [containerWidth, setContainerWidth] = useState<number>(0); // Grid container dimensions hook
+    const [imagesArray, setImagesArray] = useState<Photo[]>([]); // Images array
+
     // Get container width during component creation
-    const onLayout = (event) => {
+    const onLayout = (event): void => {
         const { width } = event.nativeEvent.layout;
         setContainerWidth(width);
     };
-    const itemSize = (containerWidth - 24) / 3;
+    const itemSize: number = (containerWidth - 24) / 3;
+
+    useFocusEffect(
+        useCallback((): void => {
+            setImagesArray(getCurrentImages().slice());
+            console.log("useFocusEffect");
+        }, []) // Empty callback to avoid infinite loop
+    );
 
     const styles = StyleSheet.create({
         scrollView: {
@@ -63,14 +72,14 @@ export default function () {
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 {imagesArray.length > 0 ? ( // If there are photos, show them
                     <View onLayout={onLayout} style={styles.view} key={"imgGrid"}>
-                        {imagesArray.map((path: any, index: number) => {
+                        {imagesArray.map((image: any, index: number) => {
                             return (
                                 <Pressable
                                     key={"img" + index}
                                     onPress={() => navigation.push("photos/photo?id=" + index)}
                                     style={styles.photoPressable}
                                 >
-                                    <Image source={path} style={styles.photoImage} />
+                                    <Image source={image.image} style={styles.photoImage} />
                                 </Pressable>
                             );
                         })}
@@ -90,8 +99,8 @@ export default function () {
                 <Button
                     title={"TEST: Delete the first photo"}
                     onPress={() => {
-                        setImagesArray(getCurrentImages().slice(1));
                         deleteImage(0);
+                        setImagesArray(getCurrentImages().slice());
                     }}
                 />
             </ScrollView>
