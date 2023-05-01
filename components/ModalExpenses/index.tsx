@@ -1,16 +1,7 @@
 import React, { useState } from "react";
-import {
-    View,
-    Text,
-    TextInput,
-    Button,
-    Modal,
-    TouchableOpacity,
-    Pressable,
-    Platform,
-} from "react-native";
-import { StyleSheet, useColorScheme } from "react-native";
-import { faClose, faEuroSign } from "@fortawesome/free-solid-svg-icons";
+import { View, Text, TextInput, Modal, TouchableOpacity, Pressable, Platform } from "react-native";
+import { useColorScheme } from "react-native";
+import { faCalendarDays, faClose, faEuroSign } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { styles } from "./styles";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -73,49 +64,51 @@ export const AddExpenseModal = ({ visible, onClose, onSave }) => {
                     style={[styles.textInput, textInputColor]}
                 />
                 <Text style={styles.textSecondary}>Date</Text>
-                {showDatePicker && (
-                    <DateTimePicker
-                        mode="date"
-                        display="spinner"
-                        value={datePicker}
-                        onChange={onChangeDatePicker}
-                        style={styles.datePicker}
-                    />
-                )}
-                {showDatePicker && Platform.OS === "ios" && (
-                    <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-                        <TouchableOpacity
-                            style={[
-                                styles.button,
-                                styles.pickerButton,
-                                { backgroundColor: "#11182711" },
-                            ]}
-                        >
-                            <Text style={[styles.textButton]}>Cancel</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity
-                            style={[
-                                styles.button,
-                                styles.pickerButton,
-                            ]}
-                            onPress={confirmIOSDate}
-                        >
-                            <Text style={[styles.textButton]}>Confirm</Text>
-                        </TouchableOpacity>
-                    </View>
-                )}
+                <View style={[styles.textInputIcon, styles.textInput, textInputColor]}>
+                    {showDatePicker && (
+                        <DateTimePicker
+                            mode="date"
+                            display="spinner"
+                            value={datePicker}
+                            onChange={onChangeDatePicker}
+                            style={styles.datePicker}
+                        />
+                    )}
+                    {showDatePicker && Platform.OS === "ios" && (
+                        <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
+                            <TouchableOpacity
+                                style={[
+                                    styles.button,
+                                    styles.pickerButton,
+                                    { backgroundColor: "#11182711" },
+                                ]}
+                            >
+                                <Text style={[styles.textButton]}>Cancel</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={[styles.button, styles.pickerButton]}
+                                onPress={confirmIOSDate}
+                            >
+                                <Text style={[styles.textButton]}>Confirm</Text>
+                            </TouchableOpacity>
+                        </View>
+                    )}
 
-                <Pressable onPress={toggleDatePicker}>
-                    <TextInput
-                        value={date}
-                        onChangeText={setDate}
-                        placeholder="Date (dd/mm/aaaa)"
-                        keyboardType="numeric"
-                        style={[styles.textInput, textInputColor]}
-                        editable={false}
-                        onPressIn={toggleDatePicker}
-                    />
-                </Pressable>
+                    <Pressable onPress={toggleDatePicker}>
+                        <TextInput
+                            value={date}
+                            onChangeText={setDate}
+                            placeholder="Date (dd/mm/aaaa)"
+                            keyboardType="numeric"
+                            editable={false}
+                            onPressIn={toggleDatePicker}
+                            style={{ paddingRight: 150 }}
+                        />
+                    </Pressable>
+                    <Text style={{ fontSize: 20, marginRight: 5 }}>
+                        <FontAwesomeIcon icon={faCalendarDays} />
+                    </Text>
+                </View>
 
                 <Text style={styles.textSecondary}>Price</Text>
                 <View style={[styles.textInputIcon, styles.textInput, textInputColor]}>
