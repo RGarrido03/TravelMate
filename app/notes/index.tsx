@@ -40,7 +40,7 @@ export default function () {
                                 <NotesButton
                                     title={item.title}
                                     subtitle={item.content}
-                                    newNavigation={"note"}
+                                    newNavigation={"notes/note" + index}
                                     image={item.image}
                                     key={"note" + index}
                                 />

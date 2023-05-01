@@ -1,8 +1,8 @@
 import { StyleSheet, View, useColorScheme, ScrollView, Image, Text } from "react-native";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
-import { getCurrentNotes } from "../../data/notes";
-import { LinkButton } from "../../components/LinkButton";
+import { getCurrentNotes } from "../../../data/notes";
+import { LinkButton } from "../../../components/LinkButton";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 
 export default function () {
@@ -43,14 +43,42 @@ export default function () {
         marginBottom: {
             marginBottom: 32,
         },
+        photo: {
+            width: "100%",
+            height: "100%",
+            borderRadius: 8,
+        },
+        photoView: {
+            // Fix photo size bug
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+            width: "100%",
+            paddingBottom: insets.bottom + 8 + 20 + 16,
+        },
+        container: {
+            position: "absolute",
+            width: "100%",
+            height: 191.5,
+            backgroundColor: "#60BBB6",
+            borderWidth: 1,
+            borderColor: "#60BBB6",
+            borderRadius: 8,
+            boxSizing: "border-box",
+            },          
     });
 
     return (
         <SafeAreaProvider>
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
 
+                <View style={styles.container}>
+                    <Image style={styles.photo} source={require("/home/diogofalcao/Desktop/IHC/TravelMate/assets/images/one.png")} />
+                </View>
+
                 <View style={styles.marginBottom}>
-                    <Text style={styles.Title}>Lorem ipsum dolor sit amet</Text>
+                    <Text style={{ marginBottom: 195 }} />
+                    <Text style={styles.Title}>Nota 1</Text>
                     <Text>{'     '}</Text>
                     <Text style={styles.Subtitle}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </Text>
                     <Text>{'     '}</Text>

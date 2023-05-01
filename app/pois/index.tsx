@@ -55,7 +55,7 @@ export default function () {
                                     icon={item.icon}
                                     title={item.title}
                                     image={item.image}
-                                    newNavigation={"poi?id=" + index}
+                                    newNavigation={"pois/poi" + index}
                                     key={"poi" + index}
                                 />
                             );

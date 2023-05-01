@@ -51,7 +51,7 @@ export default function Layout() {
                 }}
             />
             <Stack.Screen
-                name="note/index"
+                name="notes/note0/index"
                 options={{
                     title: "Note",
                     headerTitleStyle: {
@@ -59,9 +59,39 @@ export default function Layout() {
                         color: textColor,
                     },
                     headerRight: () => (
-                        <TouchableOpacity>
-                            <Text style={{ color: textColor }}>Date</Text>
-                        </TouchableOpacity>
+                        <Text style={{ color: textColor }}>
+                            11/08/2022
+                        </Text>
+                    ),
+                }}
+            />
+            <Stack.Screen
+                name="notes/note1/index"
+                options={{
+                    title: "Note",
+                    headerTitleStyle: {
+                        fontWeight: "800", // Isn't this inconsistent?
+                        color: textColor,
+                    },
+                    headerRight: () => (
+                        <Text style={{ color: textColor }}>
+                            09/08/2022
+                        </Text>
+                    ),
+                }}
+            />
+            <Stack.Screen
+                name="notes/note2/index"
+                options={{
+                    title: "Note",
+                    headerTitleStyle: {
+                        fontWeight: "800", // Isn't this inconsistent?
+                        color: textColor,
+                    },
+                    headerRight: () => (
+                        <Text style={{ color: textColor }}>
+                            09/08/2022
+                        </Text>
                     ),
                 }}
             />
@@ -74,6 +104,24 @@ export default function Layout() {
                             <Text style={{ fontWeight: "500" }}>Date</Text> Hour
                         </Text>
                     ),
+                }}
+            />
+            <Stack.Screen
+                name="pois/poi2/index"
+                options={{
+                    title: "POI",
+                }}
+            />
+            <Stack.Screen
+                name="pois/poi1/index"
+                options={{
+                    title: "POI",
+                }}
+            />
+            <Stack.Screen
+                name="pois/poi0/index"
+                options={{
+                    title: "POI",
                 }}
             />
         </Stack>
