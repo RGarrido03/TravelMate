@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, ScrollView, useColorScheme, Button } from "react-native";
+import { StyleSheet, View, Text, ScrollView, useColorScheme, Button, Modal } from "react-native";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { ExpensesButton } from "../../components/ExpensesButton";
 import { LinkButton } from "../../components/LinkButton";
@@ -6,6 +6,7 @@ import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { deleteExpenses, getCurrentExpenses } from "../../data/expenses";
 import { CircularProgress } from "../../components/CircularProgess";
+
 
 export default function () {
     const colorScheme = useColorScheme(); // Color mode (light/dark)
@@ -20,6 +21,12 @@ export default function () {
         (accumulator, currentValue) => accumulator + currentValue.cost,
         0
     );
+
+    const [isModalVisible, setModalVisible] = useState(false);
+
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+    };
 
     const styles = StyleSheet.create({
         scrollView: {
@@ -119,7 +126,17 @@ export default function () {
                         }}
                     />
                 </View>
+                <View style={{ flex: 1 }}>
+                    <Button title="Show modal" onPress={toggleModal} />
 
+                    <Modal visible={isModalVisible}>
+                        <View style={{ flex: 1 }}>
+                            <Text>Hello!</Text>
+
+                            <Button title="Hide modal" onPress={toggleModal} />
+                        </View>
+                    </Modal>
+                </View>
                 {/* Other */}
                 <View style={[styles.rowContainer, { marginBottom: insets.bottom }]}>
                     <Text style={styles.subtitle}>Other</Text>
