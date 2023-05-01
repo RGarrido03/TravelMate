@@ -38,18 +38,24 @@ export default function Layout() {
                     title: "Notes",
                     headerRight: () => (
                         <Button
-                          onPress={() => alert('This is a button!')}
-                          title=" + "
-                          color="black"
+                            onPress={() => alert("This is a button!")}
+                            title=" + "
+                            color="black"
                         />
                     ),
                 }}
-                
             />
             <Stack.Screen
                 name="expenses/index"
                 options={{
                     title: "Expenses",
+                    headerRight: () => (
+                        <Button
+                            onPress={() => alert("This is a button!")}
+                            title=" + "
+                            color="black"
+                        />
+                    ),
                 }}
             />
             <Stack.Screen
@@ -66,11 +72,7 @@ export default function Layout() {
                         fontWeight: "800", // Isn't this inconsistent?
                         color: textColor,
                     },
-                    headerRight: () => (
-                        <Text style={{ color: textColor }}>
-                            11/08/2022
-                        </Text>
-                    ),
+                    headerRight: () => <Text style={{ color: textColor }}>11/08/2022</Text>,
                 }}
             />
             <Stack.Screen
@@ -81,11 +83,7 @@ export default function Layout() {
                         fontWeight: "800", // Isn't this inconsistent?
                         color: textColor,
                     },
-                    headerRight: () => (
-                        <Text style={{ color: textColor }}>
-                            09/08/2022
-                        </Text>
-                    ),
+                    headerRight: () => <Text style={{ color: textColor }}>09/08/2022</Text>,
                 }}
             />
             <Stack.Screen
@@ -96,11 +94,7 @@ export default function Layout() {
                         fontWeight: "800", // Isn't this inconsistent?
                         color: textColor,
                     },
-                    headerRight: () => (
-                        <Text style={{ color: textColor }}>
-                            09/08/2022
-                        </Text>
-                    ),
+                    headerRight: () => <Text style={{ color: textColor }}>09/08/2022</Text>,
                 }}
             />
             <Stack.Screen

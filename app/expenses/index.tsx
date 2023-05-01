@@ -1,8 +1,18 @@
-import { StyleSheet, View, Text, ScrollView, useColorScheme, Button } from "react-native";
+import { StyleSheet, View, Text, ScrollView, useColorScheme, Button, FlatList } from "react-native";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { ExpensesButton } from "../../components/ExpensesButton";
 import { LinkButton } from "../../components/LinkButton";
-import { faGear } from "@fortawesome/free-solid-svg-icons";
+import {
+    faCoins,
+    faDollar,
+    faDollarSign,
+    faGear,
+    faMoneyBill,
+    faMoneyBill1Wave,
+    faMoneyBillTransfer,
+    faSackDollar,
+    faWallet,
+} from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { deleteExpenses, getCurrentExpenses } from "../../data/expenses";
 import { CircularProgress } from "../../components/CircularProgess";
@@ -18,18 +28,23 @@ export default function () {
     const percentage = 67;
     const circumference = 2 * Math.PI * 36;
 
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const handleExpenseData = (data) => {
+        setExpensesArray(
+            ExpensesArray.concat({
+                date: data.date,
+                cost: parseFloat(data.value),
+                title: data.title,
+                icon: faWallet,
+            })
+        );
+    };
+
     const sumExpenses = ExpensesArray.reduce(
         (accumulator, currentValue) => accumulator + currentValue.cost,
         0
     );
-
-    const [modalVisible, setModalVisible] = useState(false);
-    const [expenses, setExpenses] = useState([]);
-
-    const handleSaveExpense = (expense) => {
-        setExpenses([...expenses, expense]);
-        setModalVisible(false);
-    };
 
     const styles = StyleSheet.create({
         scrollView: {
@@ -100,7 +115,7 @@ export default function () {
                             {ExpensesArray.map((item: any, index: number) => {
                                 return (
                                     <ExpensesButton
-                                        date={item.date.toDateString()}
+                                        date={item.date}
                                         icon={item.icon}
                                         title={item.title}
                                         cost={item.cost}
@@ -135,12 +150,8 @@ export default function () {
                     <AddExpenseModal
                         visible={modalVisible}
                         onClose={() => setModalVisible(false)}
-                        onSave={handleSaveExpense}
+                        onSave={handleExpenseData}
                     />
-                    <Text>Suas Despesas:</Text>
-                    {expenses.map((expense, index) => (
-                        <Text key={index}>{expense}</Text>
-                    ))}
                 </View>
 
                 {/* Other */}
