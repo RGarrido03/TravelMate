@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
-import { Button, ColorSchemeName, useColorScheme } from "react-native";
+import { ColorSchemeName, useColorScheme } from "react-native";
 
 export default function Layout() {
     const colorScheme: ColorSchemeName = useColorScheme();
@@ -13,20 +13,6 @@ export default function Layout() {
                 headerShown: false,
             }}
             initialRouteName={"index"}
-        >
-            <Stack.Screen
-                name="expenses/index"
-                options={{
-                    title: "Expenses",
-                    headerRight: () => (
-                        <Button
-                            onPress={() => alert("This is a button!")}
-                            title=" + "
-                            color="black"
-                        />
-                    ),
-                }}
-            />
-        </Stack>
+        ></Stack>
     );
 }
