@@ -10,8 +10,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { loadInitialImages } from "../data/images";
 import { loadInitialNotes } from "../data/notes";
-import { loadInitialPOIs } from "../data/pois";
+import { getCurrentPOIs, loadInitialPOIs } from "../data/pois";
 import { loadInitialExpenses } from "../data/expenses";
+import { POIsButton } from "../components/POIsButton";
+import { useState } from "react";
 
 export default function App() {
     loadInitialImages();
@@ -20,6 +22,7 @@ export default function App() {
     loadInitialExpenses();
     
     const insets = useSafeAreaInsets();
+    const [POIsArray] = useState(getCurrentPOIs());
 
     const styles = StyleSheet.create({
     photo: {
@@ -59,10 +62,21 @@ export default function App() {
                 <View style={styles.container}>
                     <Image style={styles.photo} source={require("../assets/images/one.png")} />
                 </View>
+                <View style={styles.view}>
+                    <Text style={{ marginBottom: 205 }} />
+                    <POIsButton
+                        date={POIsArray[2].date}
+                        icon={POIsArray[2].icon}
+                        title={POIsArray[2].title}
+                        image={POIsArray[2].image}
+                        newNavigation={"pois/poi2"}
+                        key={"poi2"}
+                    />
+                </View>
                 <View style={styles.view}>               
                     {/* Placeholders for other parts of the app.
                         We will be dead by the time we finish implementing the map. */}
-                    <Text style={{ marginBottom: 195 }} />
+                    <Text style={{ marginBottom: 15 }} />
                     <LinkButton title={"Photos"} newNavigation={"/photos"} icon={faCamera} />
                     <LinkButton title={"Notes"} newNavigation={"/notes"} icon={faNoteSticky} />
                     <LinkButton title={"POIs"} newNavigation={"/pois"} icon={faLocationPin} />
