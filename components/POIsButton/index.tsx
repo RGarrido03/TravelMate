@@ -1,4 +1,4 @@
-import { TouchableOpacity, View, Text, useColorScheme, Image } from "react-native";
+import { Image, Text, TouchableOpacity, useColorScheme, View } from "react-native";
 import { styles } from "./styles";
 import { useRouter } from "expo-router";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
