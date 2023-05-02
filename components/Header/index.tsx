@@ -1,5 +1,5 @@
 import { View, Text, useColorScheme, StyleSheet, TouchableOpacity, Platform } from "react-native";
-import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
+import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faArrowLeft, faAdd } from "@fortawesome/free-solid-svg-icons";
