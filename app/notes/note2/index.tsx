@@ -71,11 +71,11 @@ export default function () {
         <SafeAreaProvider>
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
 
-                {/*
+                
                 <View style={styles.container}>
-                    <Image style={styles.photo} source={require("/home/diogofalcao/Desktop/IHC/TravelMate/assets/images/three.png")} />
+                    <Image style={styles.photo} source={require("../../../assets/images/three.png")} />
                 </View>
-                */}
+               
 
                 <View style={styles.marginBottom}>
                     <Text style={{ marginBottom: 195 }} />
