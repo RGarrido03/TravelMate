@@ -31,7 +31,6 @@ export default function () {
     useFocusEffect(
         useCallback((): void => {
             setImagesArray(getCurrentImages().slice());
-            console.log("useFocusEffect");
         }, []) // Empty callback to avoid infinite loop
     );
 
