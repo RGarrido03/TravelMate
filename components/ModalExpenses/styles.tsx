@@ -36,12 +36,13 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         height: "100%",
         backgroundColor: "rgba(0, 0, 0, 0.5)",
+        paddingHorizontal: 16,
     },
     modalContent: {
         borderRadius: 16,
         overflow: "hidden",
         padding: 16,
-        width: "90%",
+        width: "100%",
     },
     modalContentLight: {
         backgroundColor: "rgba(255, 255, 255, 0.7)",
