@@ -5,8 +5,6 @@ export const styles = StyleSheet.create({
         fontStyle: "normal",
         fontWeight: "700",
         fontSize: 20,
-        lineHeight: 24,
-        alignItems: "center",
         color: "#3B4949",
     },
     textSecondary: {
@@ -22,7 +20,8 @@ export const styles = StyleSheet.create({
     textInput: {
         borderRadius: 8,
         borderWidth: 1,
-        padding: 4,
+        padding: 8,
+        maxHeight: 200,
     },
     containerLight: {
         backgroundColor: "#ffffffcc",
@@ -33,35 +32,44 @@ export const styles = StyleSheet.create({
         borderColor: "#BDF4F1",
     },
     modalBackground: {
-        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        height: "100%",
         backgroundColor: "rgba(0, 0, 0, 0.5)",
     },
     modalContent: {
-        backgroundColor: "#ffffff",
-        opacity: 1.0,
         borderRadius: 16,
+        overflow: "hidden",
         padding: 16,
-        width: "80%",
-        position: "absolute",
-        top: "25%",
-        left: "10%",
+        width: "90%",
+    },
+    modalContentLight: {
+        backgroundColor: "rgba(255, 255, 255, 0.7)",
+    },
+    modalContentDark: {
+        backgroundColor: "rgba(59, 73, 73, 0.7)",
+    },
+    buttonsView: {
+        flexDirection: "row",
+        columnGap: 8,
+        justifyContent: "center",
+        marginTop: 16,
     },
     buttonAdd: {
         marginTop: 16,
         justifyContent: "center",
         alignItems: "center",
         backgroundColor: "rgba(112, 217, 211, 0.7)",
-        border: "1px solid #60BBB6",
+        borderColor: "#60BBB6",
+        borderWidth: 1,
         borderRadius: 8,
         padding: 8,
-        marginHorizontal: 100,
+        width: "30%",
     },
     textButton: {
-        fontWeight: "700",
+        fontWeight: "600",
         fontSize: 16,
-        lineHeight: 22,
         textAlign: "center",
-        padding: 0,
         color: "#3B4949",
     },
     textInputIcon: {
@@ -75,13 +83,17 @@ export const styles = StyleSheet.create({
     pickerButton: {
         paddingHorizontal: 20,
     },
-    button:{
+    button: {
         height: 50,
         justifyContent: "center",
         alignItems: "center",
-        borderRadius:50,
+        borderRadius: 50,
         marginTop: 10,
         marginBottom: 15,
         backgroundColor: "lightgrey",
     },
+    textLight: { color: "#3B4949" },
+    textDark: { color: "#fff" },
+    placeholderTextColorLight: { color: "#888" },
+    placeholderTextColorDark: { color: "#ccc" },
 });
