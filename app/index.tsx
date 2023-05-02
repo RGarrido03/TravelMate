@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, Text, ScrollView } from "react-native";
+import { StyleSheet, View, Image, Text, ScrollView, useColorScheme } from "react-native";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { LinkButton } from "../components/LinkButton";
 import {
@@ -22,36 +22,37 @@ export default function App() {
     loadInitialExpenses();
 
     const insets = useSafeAreaInsets();
+    const isLightMode: boolean = useColorScheme() === "light";
     const [POIsArray] = useState(getCurrentPOIs());
 
     const styles = StyleSheet.create({
         photo: {
             width: "100%",
-            height: "100%",
+            height: 200,
             borderRadius: 8,
-        },
-        photoView: {
-            // Fix photo size bug
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100%",
-            width: "100%",
-            paddingBottom: insets.bottom + 8 + 20 + 16,
-        },
-        container: {
-            position: "absolute",
-            width: "100%",
-            height: 191.5,
-            backgroundColor: "#60BBB6",
             borderWidth: 1,
             borderColor: "#60BBB6",
-            borderRadius: 8,
-            boxSizing: "border-box",
         },
         view: {
+            marginBottom: 16,
+        },
+        scrollView: {
+            marginHorizontal: 16,
+            marginTop: 16,
+            borderRadius: 8,
+        },
+        buttonsView: {
+            marginBottom: insets.bottom,
+        },
+        column: {
             flexDirection: "column",
             rowGap: 8,
-            marginBottom: insets.bottom,
+        },
+        title: {
+            fontSize: 16,
+            fontWeight: "600",
+            color: isLightMode ? "#3B4949" : "#fff",
+            marginBottom: 4,
         },
     });
 
@@ -62,12 +63,13 @@ export default function App() {
                 hasAddButton={true}
                 addFunction={() => alert("Not implemented yet.")}
             />
-            <ScrollView style={{ marginHorizontal: 16, marginTop: 16, borderRadius: 8 }}>
-                <View style={styles.container}>
+            <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+                <View style={styles.view}>
+                    <Text style={styles.title}>Featured photo</Text>
                     <Image style={styles.photo} source={require("../assets/images/one.png")} />
                 </View>
                 <View style={styles.view}>
-                    <Text style={{ marginBottom: 205 }} />
+                    <Text style={styles.title}>Featured POI</Text>
                     <POIsButton
                         date={POIsArray[2].date}
                         icon={POIsArray[2].icon}
@@ -77,23 +79,20 @@ export default function App() {
                         key={"poi2"}
                     />
                 </View>
-                <View style={styles.view}>
-                    {/* Placeholders for other parts of the app.
-                        We will be dead by the time we finish implementing the map. */}
-                    <Text style={{ marginBottom: 15 }} />
-                    <LinkButton title={"Photos"} newNavigation={"/photos"} icon={faCamera} />
-                    <LinkButton title={"Notes"} newNavigation={"/notes"} icon={faNoteSticky} />
-                    <LinkButton title={"POIs"} newNavigation={"/pois"} icon={faLocationPin} />
-                    <LinkButton title={"Expenses"} newNavigation={"/expenses"} icon={faMoneyBill} />
+                <View style={styles.buttonsView}>
+                    <Text style={styles.title}>Main options</Text>
+                    <View style={styles.column}>
+                        <LinkButton title={"Photos"} newNavigation={"/photos"} icon={faCamera} />
+                        <LinkButton title={"Notes"} newNavigation={"/notes"} icon={faNoteSticky} />
+                        <LinkButton title={"POIs"} newNavigation={"/pois"} icon={faLocationPin} />
+                        <LinkButton
+                            title={"Expenses"}
+                            newNavigation={"/expenses"}
+                            icon={faMoneyBill}
+                        />
+                    </View>
                 </View>
             </ScrollView>
         </SafeAreaProvider>
     );
 }
-
-const styles = StyleSheet.create({
-    view: {
-        flexDirection: "column",
-        rowGap: 8,
-    },
-});
