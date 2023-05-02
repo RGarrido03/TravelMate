@@ -44,12 +44,14 @@ export default function () {
         },
         bottomBar: {
             backgroundColor: colorScheme === "light" ? "#E8F3F4" : "#33625F",
+            borderTopWidth: 1,
+            borderTopColor: "#BDF4F1",
             position: "absolute",
             bottom: 0,
             width: "100%",
         },
         iconsContainer: {
-            marginBottom: insets.bottom + 8,
+            marginBottom: insets.bottom != 0 ? insets.bottom + 8 : 16,
             marginTop: 16,
             flexDirection: "row",
             justifyContent: "space-around",
@@ -80,8 +82,6 @@ export default function () {
             </View>
             <View style={styles.bottomBar}>
                 <View style={styles.iconsContainer}>
-                    {/* TODO: Make these buttons work.
-                        Notes and pins probably require an array refactor. */}
                     <TouchableOpacity
                         activeOpacity={0.5}
                         onPress={() => {
