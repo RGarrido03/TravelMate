@@ -35,12 +35,12 @@ export default function () {
             // Fix photo size bug
             justifyContent: "center",
             alignItems: "center",
-            height: "100%",
-            width: "100%",
             paddingBottom: insets.bottom + 8 + 20 + 16,
         },
         photo: {
             width: "100%",
+            height: "100%",
+            resizeMode: "contain",
         },
         bottomBar: {
             backgroundColor: colorScheme === "light" ? "#E8F3F4" : "#33625F",
