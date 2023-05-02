@@ -6,7 +6,7 @@ import { POIsButton } from "../../components/POIsButton";
 import { Header } from "../../components/Header";
 
 export default function () {
-    const colorScheme = useColorScheme(); // Color mode (light/dark)
+    const isLightMode: boolean = useColorScheme() === "light";
     const insets = useSafeAreaInsets(); // SafeAreaView dimensions
     const [POIsArray, setPOIsArray] = useState(getCurrentPOIs());
 
@@ -27,14 +27,14 @@ export default function () {
             aspectRatio: 1,
             borderRadius: 8,
             borderWidth: 1,
-            borderColor: colorScheme === "light" ? "#60BBB6" : "#BDF4F1",
+            borderColor: isLightMode ? "#60BBB6" : "#BDF4F1",
         },
         rowContainer: {
             flexDirection: "column",
             rowGap: 8,
         },
         subtitle: {
-            color: colorScheme === "light" ? "#3B4949" : "#fff",
+            color: isLightMode ? "#3B4949" : "#fff",
             fontWeight: "600",
             fontSize: 16,
             lineHeight: 22,

@@ -8,7 +8,6 @@ import {
     Pressable,
     Platform,
     KeyboardAvoidingView,
-    ColorSchemeName,
 } from "react-native";
 import { useColorScheme } from "react-native";
 import { faCalendarDays, faClose, faEuroSign } from "@fortawesome/free-solid-svg-icons";
@@ -57,15 +56,13 @@ export const AddExpenseModal = ({ visible, onClose, onSave }) => {
         toggleDatePicker();
     };
 
-    const colorScheme: ColorSchemeName = useColorScheme();
-    const textInputColor = colorScheme === "light" ? styles.containerLight : styles.containerDark;
-    const modalContentColor =
-        colorScheme === "light" ? styles.modalContentLight : styles.modalContentDark;
-    const textColor = colorScheme === "light" ? styles.textLight : styles.textDark;
-    const placeholderTextColor =
-        colorScheme === "light"
-            ? styles.placeholderTextColorLight
-            : styles.placeholderTextColorDark;
+    const isLightMode: boolean = useColorScheme() === "light";
+    const textInputColor = isLightMode ? styles.containerLight : styles.containerDark;
+    const modalContentColor = isLightMode ? styles.modalContentLight : styles.modalContentDark;
+    const textColor = isLightMode ? styles.textLight : styles.textDark;
+    const placeholderTextColor = isLightMode
+        ? styles.placeholderTextColorLight
+        : styles.placeholderTextColorDark;
 
     return (
         <Modal

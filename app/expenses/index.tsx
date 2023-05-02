@@ -11,7 +11,7 @@ import { AddExpenseModal } from "../../components/ModalExpenses";
 import { Header } from "../../components/Header";
 
 export default function () {
-    const colorScheme = useColorScheme(); // Color mode (light/dark)
+    const isLightMode: boolean = useColorScheme() === "light";
     const insets = useSafeAreaInsets(); // SafeAreaView dimensions
 
     const [ExpensesArray, setExpensesArray] = useState(getCurrentExpenses());
@@ -49,18 +49,18 @@ export default function () {
             rowGap: 8,
         },
         summaryTitle: {
-            color: colorScheme === "light" ? "#3B4949" : "#fff",
+            color: isLightMode ? "#3B4949" : "#fff",
             fontWeight: "600",
             fontSize: 20,
             lineHeight: 27,
         },
         summarySubtitle: {
-            color: colorScheme === "light" ? "#3B4949" : "#fff",
+            color: isLightMode ? "#3B4949" : "#fff",
             fontSize: 16,
             lineHeight: 22,
         },
         subtitle: {
-            color: colorScheme === "light" ? "#3B4949" : "#fff",
+            color: isLightMode ? "#3B4949" : "#fff",
             fontWeight: "600",
             fontSize: 16,
             lineHeight: 22,

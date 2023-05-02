@@ -1,13 +1,4 @@
-import {
-    Image,
-    StyleSheet,
-    View,
-    useColorScheme,
-    ScrollView,
-    Text,
-    Pressable,
-    ColorSchemeName,
-} from "react-native";
+import { Image, StyleSheet, View, useColorScheme, ScrollView, Text, Pressable } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useCallback, useState } from "react";
 import { getCurrentImages, Photo } from "../../data/images";
@@ -15,7 +6,7 @@ import { useRouter, useFocusEffect } from "expo-router";
 import { Header } from "../../components/Header";
 
 export default function () {
-    const colorScheme: ColorSchemeName = useColorScheme(); // Color mode (light/dark)
+    const isLightMode: boolean = useColorScheme() === "light";
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
     const navigation = useRouter();
 
@@ -55,7 +46,7 @@ export default function () {
             aspectRatio: 1,
             borderRadius: 8,
             borderWidth: 1,
-            borderColor: colorScheme === "light" ? "#60BBB6" : "#BDF4F1",
+            borderColor: isLightMode ? "#60BBB6" : "#BDF4F1",
             width: itemSize,
             height: itemSize,
         },

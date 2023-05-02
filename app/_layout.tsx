@@ -1,14 +1,14 @@
 import { Stack } from "expo-router";
-import { ColorSchemeName, useColorScheme } from "react-native";
+import { useColorScheme } from "react-native";
 
 export default function Layout() {
-    const colorScheme: ColorSchemeName = useColorScheme();
+    const isLightMode: boolean = useColorScheme() === "light";
 
     return (
         <Stack
             screenOptions={{
                 contentStyle: {
-                    backgroundColor: colorScheme === "light" ? "#fff" : "#000",
+                    backgroundColor: isLightMode ? "#fff" : "#000",
                 },
                 headerShown: false,
             }}

@@ -7,9 +7,9 @@ import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 export const LinkButton = ({ newNavigation, title, icon }: Props) => {
     const navigation = useRouter();
-    const colorScheme = useColorScheme();
-    const textColor = colorScheme === "light" ? styles.textLight : styles.textDark;
-    const containerColor = colorScheme === "light" ? styles.containerLight : styles.containerDark;
+    const isLightMode: boolean = useColorScheme() === "light";
+    const textColor = isLightMode ? styles.textLight : styles.textDark;
+    const containerColor = isLightMode ? styles.containerLight : styles.containerDark;
 
     return (
         <TouchableOpacity

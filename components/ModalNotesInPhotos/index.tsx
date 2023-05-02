@@ -7,7 +7,6 @@ import {
     TouchableOpacity,
     useColorScheme,
     KeyboardAvoidingView,
-    ColorSchemeName,
 } from "react-native";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -36,15 +35,13 @@ export const AddNotesModal = ({ visible, onClose, onSave, index }) => {
         onClose();
     };
 
-    const colorScheme: ColorSchemeName = useColorScheme();
-    const modalContentColor =
-        colorScheme === "light" ? styles.modalContentLight : styles.modalContentDark;
-    const textBoxColor = colorScheme === "light" ? styles.containerLight : styles.containerDark;
-    const textColor = colorScheme === "light" ? styles.textLight : styles.textDark;
-    const placeholderTextColor =
-        colorScheme === "light"
-            ? styles.placeholderTextColorLight
-            : styles.placeholderTextColorDark;
+    const isLightMode: boolean = useColorScheme() === "light";
+    const modalContentColor = isLightMode ? styles.modalContentLight : styles.modalContentDark;
+    const textBoxColor = isLightMode ? styles.containerLight : styles.containerDark;
+    const textColor = isLightMode ? styles.textLight : styles.textDark;
+    const placeholderTextColor = isLightMode
+        ? styles.placeholderTextColorLight
+        : styles.placeholderTextColorDark;
 
     return (
         <Modal

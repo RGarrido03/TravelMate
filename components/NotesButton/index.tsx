@@ -4,10 +4,10 @@ import { styles } from "./styles";
 
 export const NotesButton = ({ newNavigation, subtitle, title, image }: Props) => {
     const navigation = useRouter();
-    const colorScheme = useColorScheme();
-    const textColor = colorScheme === "light" ? styles.textLight : styles.textDark;
-    const containerColor = colorScheme === "light" ? styles.containerLight : styles.containerDark;
-    const imageColor = colorScheme === "light" ? styles.imageLight : styles.imageDark;
+    const isLightMode: boolean = useColorScheme() === "light";
+    const textColor = isLightMode ? styles.textLight : styles.textDark;
+    const containerColor = isLightMode ? styles.containerLight : styles.containerDark;
+    const imageColor = isLightMode ? styles.imageLight : styles.imageDark;
 
     return (
         <TouchableOpacity

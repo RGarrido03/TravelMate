@@ -6,7 +6,7 @@ import { NotesButton } from "../../components/NotesButton";
 import { Header } from "../../components/Header";
 
 export default function () {
-    const colorScheme = useColorScheme();
+    const isLightMode: boolean = useColorScheme() === "light";
     const insets = useSafeAreaInsets();
     const [notesArray, setNotesArray] = useState(getCurrentNotes());
 
@@ -27,7 +27,7 @@ export default function () {
             aspectRatio: 1,
             borderRadius: 8,
             borderWidth: 1,
-            borderColor: colorScheme === "light" ? "#60BBB6" : "#BDF4F1",
+            borderColor: isLightMode ? "#60BBB6" : "#BDF4F1",
         },
     });
 

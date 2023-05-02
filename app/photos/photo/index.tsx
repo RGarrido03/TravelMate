@@ -5,7 +5,6 @@ import {
     useColorScheme,
     ImageSourcePropType,
     TouchableOpacity,
-    ColorSchemeName,
 } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
@@ -17,7 +16,7 @@ import { AddNotesModal } from "../../../components/ModalNotesInPhotos";
 import { Header } from "../../../components/Header";
 
 export default function () {
-    const colorScheme: ColorSchemeName = useColorScheme(); // Color mode (light/dark)
+    const isLightMode: boolean = useColorScheme() === "light";
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
     const router = useRouter();
 
@@ -44,7 +43,7 @@ export default function () {
             resizeMode: "contain",
         },
         bottomBar: {
-            backgroundColor: colorScheme === "light" ? "#E8F3F4" : "#33625F",
+            backgroundColor: isLightMode ? "#E8F3F4" : "#33625F",
             borderTopWidth: 1,
             borderTopColor: "#BDF4F1",
             position: "absolute",
@@ -58,13 +57,13 @@ export default function () {
             justifyContent: "space-around",
         },
         icon: {
-            color: colorScheme === "light" ? "#3B4949" : "#fff",
+            color: isLightMode ? "#3B4949" : "#fff",
         },
         iconTrash: {
             color: "#EB8C6F",
         },
         iconFavorite: {
-            color: isFavorite ? "#EB8C6F" : colorScheme === "light" ? "#3B4949" : "#fff",
+            color: isFavorite ? "#EB8C6F" : isLightMode ? "#3B4949" : "#fff",
         },
     });
 
