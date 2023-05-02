@@ -1,18 +1,8 @@
-import { StyleSheet, View, Text, ScrollView, useColorScheme, Button, FlatList } from "react-native";
+import { StyleSheet, View, Text, ScrollView, useColorScheme, Button } from "react-native";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { ExpensesButton } from "../../components/ExpensesButton";
 import { LinkButton } from "../../components/LinkButton";
-import {
-    faCoins,
-    faDollar,
-    faDollarSign,
-    faGear,
-    faMoneyBill,
-    faMoneyBill1Wave,
-    faMoneyBillTransfer,
-    faSackDollar,
-    faWallet,
-} from "@fortawesome/free-solid-svg-icons";
+import { faGear, faWallet } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { deleteExpenses, getCurrentExpenses } from "../../data/expenses";
 import { CircularProgress } from "../../components/CircularProgess";

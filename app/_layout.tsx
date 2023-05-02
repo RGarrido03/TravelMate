@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
-import { Button, ColorSchemeName, Text, useColorScheme } from "react-native";
+import { Button, ColorSchemeName, useColorScheme } from "react-native";
 
 export default function Layout() {
     const colorScheme: ColorSchemeName = useColorScheme();
