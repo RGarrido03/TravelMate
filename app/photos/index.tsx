@@ -4,14 +4,13 @@ import {
     View,
     useColorScheme,
     ScrollView,
-    Button,
     Text,
     Pressable,
     ColorSchemeName,
 } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useCallback, useState } from "react";
-import { getCurrentImages, deleteImage, Photo } from "../../data/images";
+import { getCurrentImages, Photo } from "../../data/images";
 import { useRouter, useFocusEffect } from "expo-router";
 
 export default function () {
