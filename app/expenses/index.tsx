@@ -18,6 +18,7 @@ import { deleteExpenses, getCurrentExpenses } from "../../data/expenses";
 import { CircularProgress } from "../../components/CircularProgess";
 
 import { AddExpenseModal } from "../../components/ModalExpenses";
+import { Header } from "../../components/Header";
 
 export default function () {
     const colorScheme = useColorScheme(); // Color mode (light/dark)
@@ -92,6 +93,12 @@ export default function () {
 
     return (
         <SafeAreaProvider>
+            <Header
+                title={"Expenses"}
+                hasBackButton={true}
+                hasAddButton={true}
+                addFunction={() => setModalVisible(true)}
+            />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 {/* Summary */}
                 <View style={styles.container}>
@@ -145,14 +152,11 @@ export default function () {
                     />
                 </View>
 
-                <View>
-                    <Button title="Adicionar Despesa" onPress={() => setModalVisible(true)} />
-                    <AddExpenseModal
-                        visible={modalVisible}
-                        onClose={() => setModalVisible(false)}
-                        onSave={handleExpenseData}
-                    />
-                </View>
+                <AddExpenseModal
+                    visible={modalVisible}
+                    onClose={() => setModalVisible(false)}
+                    onSave={handleExpenseData}
+                />
 
                 {/* Other */}
                 <View style={[styles.rowContainer, { marginBottom: insets.bottom }]}>

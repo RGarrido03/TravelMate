@@ -1,6 +1,5 @@
-import { StyleSheet, View, Image, Text } from "react-native";
-import { StatusBar } from "expo-status-bar";
-import { SafeAreaProvider, SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
+import { StyleSheet, View, Image, Text, ScrollView } from "react-native";
+import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { LinkButton } from "../components/LinkButton";
 import {
     faCamera,
@@ -14,51 +13,56 @@ import { getCurrentPOIs, loadInitialPOIs } from "../data/pois";
 import { loadInitialExpenses } from "../data/expenses";
 import { POIsButton } from "../components/POIsButton";
 import { useState } from "react";
+import { Header } from "../components/Header";
 
 export default function App() {
     loadInitialImages();
     loadInitialNotes();
     loadInitialPOIs();
     loadInitialExpenses();
-    
+
     const insets = useSafeAreaInsets();
     const [POIsArray] = useState(getCurrentPOIs());
 
     const styles = StyleSheet.create({
-    photo: {
-        width: "100%",
-        height: "100%",
-        borderRadius: 8,
-    },
-    photoView: {
-        // Fix photo size bug
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100%",
-        width: "100%",
-        paddingBottom: insets.bottom + 8 + 20 + 16,
-    },
-    container: {
-        position: "absolute",
-        width: "100%",
-        height: 191.5,
-        backgroundColor: "#60BBB6",
-        borderWidth: 1,
-        borderColor: "#60BBB6",
-        borderRadius: 8,
-        boxSizing: "border-box",
+        photo: {
+            width: "100%",
+            height: "100%",
+            borderRadius: 8,
         },
-    view: {
-        flexDirection: "column",
-        rowGap: 8,
-        marginBottom: insets.bottom,
-    },
-    })
+        photoView: {
+            // Fix photo size bug
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+            width: "100%",
+            paddingBottom: insets.bottom + 8 + 20 + 16,
+        },
+        container: {
+            position: "absolute",
+            width: "100%",
+            height: 191.5,
+            backgroundColor: "#60BBB6",
+            borderWidth: 1,
+            borderColor: "#60BBB6",
+            borderRadius: 8,
+            boxSizing: "border-box",
+        },
+        view: {
+            flexDirection: "column",
+            rowGap: 8,
+            marginBottom: insets.bottom,
+        },
+    });
 
     return (
         <SafeAreaProvider>
-            <StatusBar style="auto" />
-            <SafeAreaView style={{ marginHorizontal: 16, marginTop: 16 }}>
+            <Header
+                title={"TravelMate"}
+                hasAddButton={true}
+                addFunction={() => alert("Not implemented yet.")}
+            />
+            <ScrollView style={{ marginHorizontal: 16, marginTop: 16, borderRadius: 8 }}>
                 <View style={styles.container}>
                     <Image style={styles.photo} source={require("../assets/images/one.png")} />
                 </View>
@@ -73,7 +77,7 @@ export default function App() {
                         key={"poi2"}
                     />
                 </View>
-                <View style={styles.view}>               
+                <View style={styles.view}>
                     {/* Placeholders for other parts of the app.
                         We will be dead by the time we finish implementing the map. */}
                     <Text style={{ marginBottom: 15 }} />
@@ -82,7 +86,7 @@ export default function App() {
                     <LinkButton title={"POIs"} newNavigation={"/pois"} icon={faLocationPin} />
                     <LinkButton title={"Expenses"} newNavigation={"/expenses"} icon={faMoneyBill} />
                 </View>
-            </SafeAreaView>
+            </ScrollView>
         </SafeAreaProvider>
     );
 }

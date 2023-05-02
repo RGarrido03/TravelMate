@@ -3,6 +3,7 @@ import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-cont
 import { useState } from "react";
 import { getCurrentPOIs, deletePOIs } from "../../data/pois";
 import { POIsButton } from "../../components/POIsButton";
+import { Header } from "../../components/Header";
 
 export default function () {
     const colorScheme = useColorScheme(); // Color mode (light/dark)
@@ -45,6 +46,12 @@ export default function () {
 
     return (
         <SafeAreaProvider>
+            <Header
+                title={"POIs"}
+                hasBackButton={true}
+                hasAddButton={true}
+                addFunction={() => alert("Not implemented yet.")}
+            />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 {POIsArray.length > 0 ? (
                     <View style={styles.view}>

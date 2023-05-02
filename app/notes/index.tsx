@@ -3,6 +3,7 @@ import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-cont
 import { useState } from "react";
 import { getCurrentNotes, deleteNote } from "../../data/notes";
 import { NotesButton } from "../../components/NotesButton";
+import { Header } from "../../components/Header";
 
 export default function () {
     const colorScheme = useColorScheme();
@@ -32,6 +33,12 @@ export default function () {
 
     return (
         <SafeAreaProvider>
+            <Header
+                title={"Notes"}
+                hasBackButton={true}
+                hasAddButton={true}
+                addFunction={() => alert("Not implemented yet.")}
+            />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 {notesArray.length > 0 ? (
                     <View style={styles.view}>

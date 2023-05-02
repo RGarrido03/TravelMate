@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faNoteSticky, faTrash, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useRouter, useSearchParams } from "expo-router";
 import { AddNotesModal } from "../../../components/ModalNotesInPhotos";
+import { Header } from "../../../components/Header";
 
 export default function () {
     const colorScheme: ColorSchemeName = useColorScheme(); // Color mode (light/dark)
@@ -32,10 +33,10 @@ export default function () {
 
     const styles = StyleSheet.create({
         photoView: {
-            // Fix photo size bug
             justifyContent: "center",
             alignItems: "center",
-            paddingBottom: insets.bottom + 8 + 20 + 16,
+            height: "100%",
+            paddingBottom: (insets.bottom + 8 + 20 + 16) * 2, // I don't fucking know why it's needed a *2, but ok
         },
         photo: {
             width: "100%",
@@ -69,6 +70,11 @@ export default function () {
 
     return (
         <SafeAreaProvider>
+            <Header
+                title={"Photo"}
+                hasBackButton={true}
+                rightText={imagesArray[id].date + " | " + imagesArray[id].hour}
+            />
             <AddNotesModal
                 visible={modalVisible}
                 onClose={() => setModalVisible(false)}

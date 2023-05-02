@@ -4,6 +4,7 @@ import { useState } from "react";
 import { getCurrentNotes } from "../../../data/notes";
 import { LinkButton } from "../../../components/LinkButton";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import { Header } from "../../../components/Header";
 
 export default function () {
     const colorScheme = useColorScheme();
@@ -47,20 +48,29 @@ export default function () {
 
     return (
         <SafeAreaProvider>
+            <Header title={"Note"} hasBackButton={true} rightText={"09/08/2022"} />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-
                 <View style={styles.marginBottom}>
                     <Text style={styles.Title}>Nota 2</Text>
-                    <Text>{'     '}</Text>
-                    <Text style={styles.Subtitle}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </Text>
-                    <Text>{'     '}</Text>
-                    <Text style={styles.Subtitle}>Arcu non odio euismod lacinia at quis risus. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam. </Text>
-                    <Text>{'     '}</Text>
+                    <Text>{"     "}</Text>
+                    <Text style={styles.Subtitle}>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.{" "}
+                    </Text>
+                    <Text>{"     "}</Text>
+                    <Text style={styles.Subtitle}>
+                        Arcu non odio euismod lacinia at quis risus. Vel fringilla est ullamcorper
+                        eget nulla facilisi etiam dignissim diam.{" "}
+                    </Text>
+                    <Text>{"     "}</Text>
                     <TextInput style={styles.Subtitle}>Acabar os meus toughts...</TextInput>
                 </View>
 
-                <LinkButton title={"Add related photos"} newNavigation={"/photos"} icon={faCamera} />
-
+                <LinkButton
+                    title={"Add related photos"}
+                    newNavigation={"/photos"}
+                    icon={faCamera}
+                />
             </ScrollView>
         </SafeAreaProvider>
     );

@@ -12,6 +12,7 @@ import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-sa
 import { useCallback, useState } from "react";
 import { getCurrentImages, Photo } from "../../data/images";
 import { useRouter, useFocusEffect } from "expo-router";
+import { Header } from "../../components/Header";
 
 export default function () {
     const colorScheme: ColorSchemeName = useColorScheme(); // Color mode (light/dark)
@@ -67,6 +68,12 @@ export default function () {
 
     return (
         <SafeAreaProvider>
+            <Header
+                title={"Photos"}
+                hasBackButton={true}
+                hasAddButton={true}
+                addFunction={() => alert("Not implemented yet.")}
+            />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 {imagesArray.length > 0 ? ( // If there are photos, show them
                     <View onLayout={onLayout} style={styles.view} key={"imgGrid"}>
