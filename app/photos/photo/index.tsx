@@ -9,10 +9,11 @@ import {
 } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
-import { getCurrentImages, deleteImage, setFavorite, Photo } from "../../../data/images";
+import { getCurrentImages, deleteImage, setFavorite, Photo, setNote } from "../../../data/images";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faNoteSticky, faTrash, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useRouter, useSearchParams } from "expo-router";
+import { AddNotesModal } from "../../../components/ModalNotesInPhotos";
 
 export default function () {
     const colorScheme: ColorSchemeName = useColorScheme(); // Color mode (light/dark)
@@ -25,6 +26,9 @@ export default function () {
     const id: number = parseInt(searchParams["id"][0]);
 
     const [isFavorite, setIsFavorite] = useState(imagesArray[id].isFavorite);
+
+    // Notes modal
+    const [modalVisible, setModalVisible] = useState(false);
 
     const styles = StyleSheet.create({
         photoView: {
@@ -63,6 +67,14 @@ export default function () {
 
     return (
         <SafeAreaProvider>
+            <AddNotesModal
+                visible={modalVisible}
+                onClose={() => setModalVisible(false)}
+                onSave={(text: string): void => {
+                    setNote(id, text);
+                }}
+                index={id}
+            />
             <View style={styles.photoView}>
                 <Image source={imagesArray[id].image as ImageSourcePropType} style={styles.photo} />
             </View>
@@ -73,7 +85,7 @@ export default function () {
                     <TouchableOpacity
                         activeOpacity={0.5}
                         onPress={() => {
-                            console.log("notes");
+                            setModalVisible(true);
                         }}
                     >
                         <FontAwesomeIcon icon={faNoteSticky} size={20} style={styles.icon} />

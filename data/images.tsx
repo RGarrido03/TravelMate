@@ -107,3 +107,7 @@ export const deleteImage = (idx: number): void => {
 export const setFavorite = (idx: number, isFavorite: boolean): void => {
     images[idx].isFavorite = isFavorite;
 };
+
+export const setNote = (idx: number, note: string): void => {
+    images[idx].note = note;
+};
