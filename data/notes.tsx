@@ -6,7 +6,7 @@ export type Note = {
     image: string;
     date: string;
 };
-export const loadInitialNotes = async () => {
+export const loadInitialNotes = (): void => {
     notes.length = 0;
     notes.push({
         title: "Note 1",
@@ -28,14 +28,14 @@ export const loadInitialNotes = async () => {
     });
 };
 
-export const getCurrentNotes = () => {
+export const getCurrentNotes = (): Note[] => {
     return notes;
 };
 
-export const addNote = (note: Note) => {
+export const addNote = (note: Note): void => {
     notes.push(note);
 };
 
-export const deleteNote = (idx: number) => {
+export const deleteNote = (idx: number): void => {
     notes.splice(idx, 1);
 };

@@ -1,5 +1,5 @@
 import { StyleSheet, View, Image, Text, ScrollView, useColorScheme } from "react-native";
-import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
+import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { LinkButton } from "../components/LinkButton";
 import {
     faCamera,
@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { loadInitialImages } from "../data/images";
 import { loadInitialNotes } from "../data/notes";
-import { getCurrentPOIs, loadInitialPOIs } from "../data/pois";
+import { getCurrentPOIs, loadInitialPOIs, POIs } from "../data/pois";
 import { loadInitialExpenses } from "../data/expenses";
 import { POIsButton } from "../components/POIsButton";
 import { useState } from "react";
@@ -21,9 +21,9 @@ export default function App() {
     loadInitialPOIs();
     loadInitialExpenses();
 
-    const insets = useSafeAreaInsets();
+    const insets: EdgeInsets = useSafeAreaInsets();
     const isLightMode: boolean = useColorScheme() === "light";
-    const [POIsArray] = useState(getCurrentPOIs());
+    const [POIsArray] = useState<POIs[]>(getCurrentPOIs());
 
     const styles = StyleSheet.create({
         photo: {

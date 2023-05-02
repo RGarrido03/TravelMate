@@ -25,10 +25,10 @@ export default function () {
     const searchParams: Partial<URLSearchParams> = useSearchParams();
     const id: number = parseInt(searchParams["id"][0]);
 
-    const [isFavorite, setIsFavorite] = useState(imagesArray[id].isFavorite);
+    const [isFavorite, setIsFavorite] = useState<boolean>(imagesArray[id].isFavorite);
 
     // Notes modal
-    const [modalVisible, setModalVisible] = useState(false);
+    const [modalVisible, setModalVisible] = useState<boolean>(false);
 
     const styles = StyleSheet.create({
         photoView: {

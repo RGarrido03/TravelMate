@@ -1,14 +1,14 @@
 import { StyleSheet, View, useColorScheme, ScrollView, Button, Text } from "react-native";
-import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
+import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
-import { getCurrentNotes, deleteNote } from "../../data/notes";
+import { getCurrentNotes, deleteNote, Note } from "../../data/notes";
 import { NotesButton } from "../../components/NotesButton";
 import { Header } from "../../components/Header";
 
 export default function () {
     const isLightMode: boolean = useColorScheme() === "light";
-    const insets = useSafeAreaInsets();
-    const [notesArray, setNotesArray] = useState(getCurrentNotes());
+    const insets: EdgeInsets = useSafeAreaInsets();
+    const [notesArray, setNotesArray] = useState<Note[]>(getCurrentNotes());
 
     const styles = StyleSheet.create({
         scrollView: {

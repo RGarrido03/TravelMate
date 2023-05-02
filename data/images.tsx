@@ -11,7 +11,7 @@ export type Photo = {
 };
 
 // Load images from the "assets/images" folder
-export const loadInitialImages = async (): Promise<void> => {
+export const loadInitialImages = (): void => {
     images.length = 0;
     images.push({
         image: require("../assets/images/one.png"),

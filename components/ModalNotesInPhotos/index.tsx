@@ -17,7 +17,7 @@ import { getCurrentImages } from "../../data/images";
 
 export const AddNotesModal = ({ visible, onClose, onSave, index }) => {
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
-    const [text, setText] = useState(getCurrentImages()[index].note);
+    const [text, setText] = useState<string>(getCurrentImages()[index].note);
 
     const handleSave = (): void => {
         onSave(text);

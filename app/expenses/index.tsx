@@ -1,10 +1,10 @@
 import { StyleSheet, View, Text, ScrollView, useColorScheme, Button } from "react-native";
-import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
+import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { ExpensesButton } from "../../components/ExpensesButton";
 import { LinkButton } from "../../components/LinkButton";
 import { faGear, faWallet } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { deleteExpenses, getCurrentExpenses } from "../../data/expenses";
+import { deleteExpenses, getCurrentExpenses, Expenses } from "../../data/expenses";
 import { CircularProgress } from "../../components/CircularProgess";
 
 import { AddExpenseModal } from "../../components/ModalExpenses";
@@ -12,16 +12,16 @@ import { Header } from "../../components/Header";
 
 export default function () {
     const isLightMode: boolean = useColorScheme() === "light";
-    const insets = useSafeAreaInsets(); // SafeAreaView dimensions
+    const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
 
-    const [ExpensesArray, setExpensesArray] = useState(getCurrentExpenses());
+    const [ExpensesArray, setExpensesArray] = useState<Expenses[]>(getCurrentExpenses());
 
-    const percentage = 67;
-    const circumference = 2 * Math.PI * 36;
+    const percentage: number = 67;
+    const circumference: number = 2 * Math.PI * 36;
 
-    const [modalVisible, setModalVisible] = useState(false);
+    const [modalVisible, setModalVisible] = useState<boolean>(false);
 
-    const handleExpenseData = (data) => {
+    const handleExpenseData = (data): void => {
         setExpensesArray(
             ExpensesArray.concat({
                 date: data.date,
@@ -32,8 +32,8 @@ export default function () {
         );
     };
 
-    const sumExpenses = ExpensesArray.reduce(
-        (accumulator, currentValue) => accumulator + currentValue.cost,
+    const sumExpenses: number = ExpensesArray.reduce(
+        (accumulator: number, currentValue: Expenses) => accumulator + currentValue.cost,
         0
     );
 

@@ -9,7 +9,7 @@ export type POIs = {
     title: string;
     image: any;
 };
-export const loadInitialPOIs = async () => {
+export const loadInitialPOIs = (): void => {
     POIs.length = 0;
     POIs.push({
         date: "A day ago",
@@ -31,14 +31,14 @@ export const loadInitialPOIs = async () => {
     });
 };
 
-export const getCurrentPOIs = () => {
+export const getCurrentPOIs = (): POIs[] => {
     return POIs;
 };
 
-export const addPOIs = (poi: POIs) => {
+export const addPOIs = (poi: POIs): void => {
     POIs.push(poi);
 };
 
-export const deletePOIs = (idx: number) => {
+export const deletePOIs = (idx: number): void => {
     POIs.splice(idx, 1);
 };

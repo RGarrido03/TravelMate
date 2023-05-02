@@ -9,7 +9,8 @@ export type Expenses = {
     title: string;
     cost: number;
 };
-export const loadInitialExpenses = async () => {
+
+export const loadInitialExpenses = (): void => {
     Expenses.length = 0;
     Expenses.push({
         date: "Tue Ago 09 2022",
@@ -31,14 +32,14 @@ export const loadInitialExpenses = async () => {
     });
 };
 
-export const getCurrentExpenses = () => {
+export const getCurrentExpenses = (): Expenses[] => {
     return Expenses;
 };
 
-export const addExpenses = (expense: Expenses) => {
+export const addExpenses = (expense: Expenses): void => {
     Expenses.push(expense);
 };
 
-export const deleteExpenses = (idx: number) => {
+export const deleteExpenses = (idx: number): void => {
     Expenses.splice(idx, 1);
 };

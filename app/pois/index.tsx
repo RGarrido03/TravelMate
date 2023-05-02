@@ -1,14 +1,14 @@
 import { StyleSheet, View, Text, ScrollView, useColorScheme, Button } from "react-native";
-import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
+import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
-import { getCurrentPOIs, deletePOIs } from "../../data/pois";
+import { getCurrentPOIs, deletePOIs, POIs } from "../../data/pois";
 import { POIsButton } from "../../components/POIsButton";
 import { Header } from "../../components/Header";
 
 export default function () {
     const isLightMode: boolean = useColorScheme() === "light";
-    const insets = useSafeAreaInsets(); // SafeAreaView dimensions
-    const [POIsArray, setPOIsArray] = useState(getCurrentPOIs());
+    const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
+    const [POIsArray, setPOIsArray] = useState<POIs[]>(getCurrentPOIs());
 
     const styles = StyleSheet.create({
         scrollView: {

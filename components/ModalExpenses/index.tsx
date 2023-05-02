@@ -20,9 +20,9 @@ import { BlurView } from "expo-blur";
 export const AddExpenseModal = ({ visible, onClose, onSave }) => {
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
 
-    const [title, setTitle] = useState("");
-    const [value, setValue] = useState("");
-    const [date, setDate] = useState("");
+    const [title, setTitle] = useState<string>("");
+    const [value, setValue] = useState<string>("");
+    const [date, setDate] = useState<string>("");
     const handleSave = (): void => {
         onSave({ title, value, date });
         onClose();
@@ -31,8 +31,8 @@ export const AddExpenseModal = ({ visible, onClose, onSave }) => {
         setDate("");
     };
 
-    const [datePicker, setDatePicker] = useState(new Date());
-    const [showDatePicker, setShowDatePicker] = useState(false);
+    const [datePicker, setDatePicker] = useState<Date>(new Date());
+    const [showDatePicker, setShowDatePicker] = useState<boolean>(false);
 
     const toggleDatePicker = (): void => {
         setShowDatePicker(!showDatePicker);

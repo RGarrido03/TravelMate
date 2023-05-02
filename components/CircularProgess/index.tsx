@@ -2,8 +2,8 @@ import { useColorScheme } from "react-native";
 import Svg, { Circle, Path, Text as SvgText, G } from "react-native-svg";
 
 export const CircularProgress = ({ percentage, circumference }: Props) => {
-    const strokeDasharray = `${circumference} ${circumference}`;
-    const strokeDashoffset = circumference - (circumference * percentage) / 100;
+    const strokeDasharray: string = `${circumference} ${circumference}`;
+    const strokeDashoffset: number = circumference - (circumference * percentage) / 100;
     return (
         <Svg height="60em" width="60em" viewBox="0 0 80 80">
             <G>
