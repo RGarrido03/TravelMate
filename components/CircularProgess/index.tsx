@@ -1,4 +1,3 @@
-import { useColorScheme } from "react-native";
 import Svg, { Circle, Path, Text as SvgText, G } from "react-native-svg";
 
 export const CircularProgress = ({ percentage, circumference }: Props) => {
