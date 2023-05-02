@@ -93,16 +93,6 @@ export default function () {
                         <Text style={{ fontWeight: "300" }}>Add one by pressing the + icon.</Text>
                     </View>
                 )}
-
-                {/* Test button for deleting photos. It's not planned to stay here.
-                    We need luck to implement the selected photo goddamn thing :') */}
-                <Button
-                    title={"TEST: Delete the first photo"}
-                    onPress={() => {
-                        deleteImage(0);
-                        setImagesArray(getCurrentImages().slice());
-                    }}
-                />
             </ScrollView>
         </SafeAreaProvider>
     );
