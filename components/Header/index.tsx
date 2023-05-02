@@ -22,7 +22,7 @@ export const Header = ({ hasBackButton, rightText, hasAddButton, addFunction, ti
             backgroundColor: isLightMode ? "#E8F3F4" : "#33625F",
             paddingTop: insets.top,
             borderBottomWidth: 1,
-            borderBottomColor: isLightMode ? "#BDF4F1" : "#BDF4F1",
+            borderBottomColor: "#BDF4F1",
         },
         header: {
             paddingHorizontal: 16,
