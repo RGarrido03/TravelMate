@@ -5,6 +5,7 @@
   "main": "index.tsx",
   "scripts": {
     "start": "expo start",
+    "startdev": "expo start --dev-client",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -35,7 +36,9 @@
     "react-native-screens": "~3.20.0",
     "react-native-svg": "13.4.0",
     "react-native-web": "~0.18.10",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "expo-dev-client": "~2.2.1",
+    "react-native-gesture-handler": "~2.9.0"
   },
   "overrides": {
     "metro": "0.76.0",
