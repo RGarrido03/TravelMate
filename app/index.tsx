@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, Text, ScrollView, useColorScheme } from "react-native";
+import { StyleSheet, View, Image, Text, ScrollView, useColorScheme, Button } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { LinkButton } from "../components/LinkButton";
 import {
@@ -6,9 +6,12 @@ import {
     faLocationPin,
     faMoneyBill,
     faNoteSticky,
+    faPlane,
 } from "@fortawesome/free-solid-svg-icons";
 import { loadInitialImages } from "../data/images";
 import { loadInitialNotes } from "../data/notes";
+import { loadInitialTrips } from "../data/trips";
+import { loadInitialWishList } from "../data/wishList";
 import { getCurrentPOIs, loadInitialPOIs, POIs } from "../data/pois";
 import { loadInitialExpenses } from "../data/expenses";
 import { POIsButton } from "../components/POIsButton";
@@ -21,6 +24,8 @@ export default function App() {
     loadInitialNotes();
     loadInitialPOIs();
     loadInitialExpenses();
+    loadInitialTrips();
+    loadInitialWishList();
 
     const insets: EdgeInsets = useSafeAreaInsets();
     const isLightMode: boolean = useColorScheme() === "light";
@@ -38,14 +43,14 @@ export default function App() {
             marginBottom: 16,
         },
         topView: {
-            flexDirection: 'row', 
-            justifyContent: 'space-between',
-            alignItems: 'center'
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
         },
         topView2: {
-            flexDirection: 'row', 
-            justifyContent: 'space-between',
-            alignItems: 'center',
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
             marginBottom: 16,
         },
         scrollView: {
@@ -84,6 +89,7 @@ export default function App() {
         },
     });
 
+
     return (
         <SafeAreaProvider>
             <Header
@@ -92,14 +98,20 @@ export default function App() {
                 addFunction={() => alert("Not implemented yet.")}
             />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-                <View  style={styles.topView}>
+                <View style={styles.topView}>
                     <Text style={styles.mainTitle}>Ibiza Island, Spain 🇪🇸</Text>
-                    <Text style={styles.mainSubtitle}> 10  <FontAwesomeIcon icon={faCamera} style={styles.icon} /> </Text>
+                    <Text style={styles.mainSubtitle}>
+                        {" "}
+                        10 <FontAwesomeIcon icon={faCamera} style={styles.icon} />{" "}
+                    </Text>
                 </View>
                 {/* style={[styles.textBox, cost < 500 ? styles.textBoxLow : styles.textBoxHigh]} */}
                 <View style={styles.topView2}>
                     <Text style={styles.mainSubtitle}>8 August 2022 - 13 August 2022</Text>
-                    <Text style={styles.mainSubtitle}> 3  <FontAwesomeIcon icon={faNoteSticky} style={styles.icon} /> </Text>
+                    <Text style={styles.mainSubtitle}>
+                        {" "}
+                        3 <FontAwesomeIcon icon={faNoteSticky} style={styles.icon} />{" "}
+                    </Text>
                 </View>
                 <View style={styles.view}>
                     <Text style={styles.title}>Featured photo</Text>
@@ -126,6 +138,11 @@ export default function App() {
                             title={"Expenses"}
                             newNavigation={"/expenses"}
                             icon={faMoneyBill}
+                        />
+                        <LinkButton
+                            title={"listview"}
+                            newNavigation={"/listView"}
+                            icon={faPlane}
                         />
                     </View>
                 </View>
