@@ -14,6 +14,7 @@ import { loadInitialExpenses } from "../data/expenses";
 import { POIsButton } from "../components/POIsButton";
 import { useState } from "react";
 import { Header } from "../components/Header";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
 export default function App() {
     loadInitialImages();
@@ -36,6 +37,17 @@ export default function App() {
         view: {
             marginBottom: 16,
         },
+        topView: {
+            flexDirection: 'row', 
+            justifyContent: 'space-between',
+            alignItems: 'center'
+        },
+        topView2: {
+            flexDirection: 'row', 
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: 16,
+        },
         scrollView: {
             marginHorizontal: 16,
             marginTop: 16,
@@ -54,6 +66,22 @@ export default function App() {
             color: isLightMode ? "#3B4949" : "#fff",
             marginBottom: 4,
         },
+        mainTitle: {
+            fontSize: 26,
+            fontWeight: "800",
+            color: isLightMode ? "#3B4949" : "#fff",
+            marginBottom: 4,
+            letterSpacing: -1,
+        },
+        mainSubtitle: {
+            fontSize: 12,
+            fontWeight: "600",
+            color: isLightMode ? "#3B4949" : "#fff",
+            marginBottom: 4,
+        },
+        icon: {
+            color: isLightMode ? "#3B4949" : "#fff",
+        },
     });
 
     return (
@@ -64,6 +92,15 @@ export default function App() {
                 addFunction={() => alert("Not implemented yet.")}
             />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+                <View  style={styles.topView}>
+                    <Text style={styles.mainTitle}>Ibiza Island, Spain 🇪🇸</Text>
+                    <Text style={styles.mainSubtitle}> 10  <FontAwesomeIcon icon={faCamera} style={styles.icon} /> </Text>
+                </View>
+                {/* style={[styles.textBox, cost < 500 ? styles.textBoxLow : styles.textBoxHigh]} */}
+                <View style={styles.topView2}>
+                    <Text style={styles.mainSubtitle}>8 August 2022 - 13 August 2022</Text>
+                    <Text style={styles.mainSubtitle}> 3  <FontAwesomeIcon icon={faNoteSticky} style={styles.icon} /> </Text>
+                </View>
                 <View style={styles.view}>
                     <Text style={styles.title}>Featured photo</Text>
                     <Image style={styles.photo} source={require("../assets/images/one.png")} />
