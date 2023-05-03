@@ -23,7 +23,7 @@
     "expo-blur": "~12.3.0",
     "expo-constants": "~14.2.1",
     "expo-linking": "~4.0.1",
-    "expo-router": "^1.7.1",
+    "expo-router": "^1.5.3",
     "expo-status-bar": "~1.4.4",
     "expo-system-ui": "^2.2.1",
     "expo-updates": "~0.16.4",
