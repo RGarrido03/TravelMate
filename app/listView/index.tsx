@@ -34,9 +34,10 @@ export default function () {
         },
         summarySubtitle: {
             color: isLightMode ? "#3B4949" : "#fff",
-            fontSize: 16,
+            fontSize: 20,
             lineHeight: 22,
             fontWeight: "600",
+            marginBottom: 10
         },
         subtitle: {
             color: isLightMode ? "#3B4949" : "#fff",
@@ -96,11 +97,11 @@ export default function () {
                                 Add one by pressing the + icon.
                             </Text>
                         </View>
-                    )}
+                    )} 
                 </View>
                 {/* Latest expenses */}
                 <View style={{ alignSelf: "flex-start" }}>
-                    <Text style={styles.summarySubtitle}>Wish List</Text>
+                    <Text style={styles.summarySubtitle}> Wish List </Text>
                 </View>
                 <View style={[styles.rowContainer, styles.marginBottom]}>
                     {WishArray.length > 0 ? (

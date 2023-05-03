@@ -101,8 +101,8 @@ export default function () {
                     <Text style={styles.Subtitle2}>April 6th, 2023</Text>
                     <Text>{"     "}</Text>
                     <Text style={styles.Subtitle}>
-                        Arcu non odio euismod lacinia at quis risus. Vel fringilla est ullamcorper
-                        eget nulla facilisi etiam dignissim diam.{" "}
+                        Playa de Las Salinas is known for its stunning white sand, crystal-clear water, 
+                        and lively beach clubs, making it one of the most popular beaches in Ibiza.{" "}
                     </Text>
                     <Text>{"     "}</Text>
 

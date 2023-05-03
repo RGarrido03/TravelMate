@@ -81,19 +81,21 @@ export default function () {
 
                 <View style={styles.marginBottom}>
                     <Text style={{ marginBottom: 195 }} />
-                    <Text style={styles.Title}>Nota 3</Text>
+                    <Text style={styles.Title}>Under the Palms</Text>
                     <Text>{"     "}</Text>
                     <Text style={styles.Subtitle}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.{" "}
+                        While the palm trees of Ibiza are synonymous with paradise and relaxation, 
+                        they can pose a serious danger to those who use hallucinogens.{" "}
                     </Text>
                     <Text>{"     "}</Text>
                     <Text style={styles.Subtitle}>
-                        Arcu non odio euismod lacinia at quis risus. Vel fringilla est ullamcorper
-                        eget nulla facilisi etiam dignissim diam.{" "}
+                    In certain cases, individuals who take hallucinogens
+                    may experience a condition known as "palinopsia" or "visual snow." 
+                    This condition can cause a person's vision to become distorted, and palm trees may 
+                    appear to be moving in unnatural and menacing ways.{" "}
                     </Text>
                     <Text>{"     "}</Text>
-                    <TextInput style={styles.Subtitle}>Acabar os meus toughts...</TextInput>
+                    <TextInput style={styles.Subtitle}>Warn the homeless people - delete later</TextInput>
                 </View>
 
                 <LinkButton

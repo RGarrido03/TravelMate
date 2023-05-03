@@ -106,8 +106,8 @@ export default function () {
                     <Text style={styles.Subtitle2}>April 6th, 2023</Text>
                     <Text>{"     "}</Text>
                     <Text style={styles.Subtitle}>
-                        Arcu non odio euismod lacinia at quis risus. Vel fringilla est ullamcorper
-                        eget nulla facilisi etiam dignissim diam.{" "}
+                        Museum Puget is a hidden gem in Ibiza's Old Town, showcasing a 
+                        collection of exquisite art and artifacts that offer a glimpse into the island's rich history and culture.{" "}
                     </Text>
                     <Text>{"     "}</Text>
 

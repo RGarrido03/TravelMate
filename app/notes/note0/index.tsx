@@ -82,19 +82,22 @@ export default function () {
 
                 <View style={styles.marginBottom}>
                     <Text style={{ marginBottom: 195 }} />
-                    <Text style={styles.Title}>Nota 1</Text>
+                    <Text style={styles.Title}>The Secrets of Ibiza Castle</Text>
                     <Text>{"     "}</Text>
                     <Text style={styles.Subtitle}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.{" "}
+                        Nestled on a rocky promontory overlooking the sparkling Mediterranean Sea, 
+                        the Castle of Ibiza is a breathtaking marvel of architecture and history. 
+                        But beneath its ancient stone walls lies a world of sensual secrets, waiting 
+                        to be discovered by adventurous lovers.{" "}
                     </Text>
                     <Text>{"     "}</Text>
                     <Text style={styles.Subtitle}>
-                        Arcu non odio euismod lacinia at quis risus. Vel fringilla est ullamcorper
-                        eget nulla facilisi etiam dignissim diam.{" "}
+                    As night falls, the castle comes alive with the pulse of music and dance. Join 
+                    the pulsing throng of bodies and let the rhythm carry you away, spinning and 
+                    twirling under the starry sky.{" "}
                     </Text>
                     <Text>{"     "}</Text>
-                    <TextInput style={styles.Subtitle}>Acabar os meus toughts...</TextInput>
+                    <TextInput style={styles.Subtitle}>Note Finished - delete later</TextInput>
                 </View>
 
                 <LinkButton

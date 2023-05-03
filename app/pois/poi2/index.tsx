@@ -107,8 +107,8 @@ export default function () {
                     <Text style={styles.Subtitle2}>April 6th, 2023</Text>
                     <Text>{"     "}</Text>
                     <Text style={styles.Subtitle}>
-                        Arcu non odio euismod lacinia at quis risus. Vel fringilla est ullamcorper
-                        eget nulla facilisi etiam dignissim diam.{" "}
+                        Playa de Cala Bassa is a tranquil and picturesque beach located on Ibiza's western coast, 
+                        known for its turquoise waters, soft white sand, and stunning sunsets.{" "}
                     </Text>
                     <Text>{"     "}</Text>
 

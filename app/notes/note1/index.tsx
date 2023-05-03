@@ -51,19 +51,21 @@ export default function () {
             <Header title={"Note"} hasBackButton={true} rightText={"09/08/2022"} />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 <View style={styles.marginBottom}>
-                    <Text style={styles.Title}>Nota 2</Text>
+                    <Text style={styles.Title}>Things of Ibiza's Day Life</Text>
                     <Text>{"     "}</Text>
                     <Text style={styles.Subtitle}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.{" "}
+                        Beyond the pulsing nightlife and hedonistic parties, 
+                        Ibiza's day life is a haven of relaxation, offering a 
+                        tranquil escape from the hustle and bustle of everyday life.{" "}
                     </Text>
                     <Text>{"     "}</Text>
                     <Text style={styles.Subtitle}>
-                        Arcu non odio euismod lacinia at quis risus. Vel fringilla est ullamcorper
-                        eget nulla facilisi etiam dignissim diam.{" "}
+                        Discover hidden coves and unspoiled nature reserves, 
+                        where the only sounds are the chirping of birds and 
+                        the gentle rustling of leaves.{" "}
                     </Text>
                     <Text>{"     "}</Text>
-                    <TextInput style={styles.Subtitle}>Acabar os meus toughts...</TextInput>
+                    <TextInput style={styles.Subtitle}>The sky turned a brilliant shade of... acabar</TextInput>
                 </View>
 
                 <LinkButton
