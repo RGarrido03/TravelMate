@@ -208,18 +208,27 @@ export const AddExpenseModal = ({
 
                     <View style={styles.buttonsView}>
                         {isAdd && (
-                            <TouchableOpacity style={styles.buttonAdd} onPress={handleAdd}>
-                                <Text style={styles.textButton}>Add</Text>
+                            <TouchableOpacity
+                                style={[styles.buttonCommon, styles.buttonAdd]}
+                                onPress={handleAdd}
+                            >
+                                <Text style={[styles.textButton, textColor]}>Add</Text>
                             </TouchableOpacity>
                         )}
                         {isEdit && (
-                            <TouchableOpacity style={styles.buttonAdd} onPress={handleEdit}>
-                                <Text style={styles.textButton}>Edit</Text>
+                            <TouchableOpacity
+                                style={[styles.buttonCommon, styles.buttonAdd]}
+                                onPress={handleEdit}
+                            >
+                                <Text style={[styles.textButton, textColor]}>Edit</Text>
                             </TouchableOpacity>
                         )}
                         {isEdit && (
-                            <TouchableOpacity style={styles.buttonAdd} onPress={handleDelete}>
-                                <Text style={styles.textButton}>Delete</Text>
+                            <TouchableOpacity
+                                style={[styles.buttonCommon, styles.buttonDelete]}
+                                onPress={handleDelete}
+                            >
+                                <Text style={[styles.textButton, textColor]}>Delete</Text>
                             </TouchableOpacity>
                         )}
                     </View>

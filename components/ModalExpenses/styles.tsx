@@ -59,16 +59,22 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         marginTop: 16,
     },
-    buttonAdd: {
+    buttonCommon: {
         marginTop: 16,
         justifyContent: "center",
         alignItems: "center",
-        backgroundColor: "rgba(112, 217, 211, 0.7)",
-        borderColor: "#60BBB6",
         borderWidth: 1,
         borderRadius: 8,
         padding: 8,
         width: "30%",
+    },
+    buttonAdd: {
+        backgroundColor: "rgba(112, 217, 211, 0.7)",
+        borderColor: "#60BBB6",
+    },
+    buttonDelete: {
+        backgroundColor: "rgba(235, 140, 111, 0.7)",
+        borderColor: "#EB8C6F",
     },
     textButton: {
         fontWeight: "600",
