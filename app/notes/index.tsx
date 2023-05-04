@@ -4,6 +4,7 @@ import { useState } from "react";
 import { getCurrentNotes, deleteNote, Note } from "../../data/notes";
 import { NotesButton } from "../../components/NotesButton";
 import { Header } from "../../components/Header";
+import { useSearchParams } from "expo-router";
 
 export default function () {
     const isLightMode: boolean = useColorScheme() === "light";
@@ -47,7 +48,7 @@ export default function () {
                                 <NotesButton
                                     title={item.title}
                                     subtitle={item.content}
-                                    newNavigation={"notes/note" + index}
+                                    newNavigation={"notes/note?id=" + index}
                                     image={item.image}
                                     key={"note" + index}
                                 />
