@@ -56,7 +56,11 @@ export const AddNotesModal = ({ visible, onClose, onSave, index }) => {
                 style={styles.modalBackground}
                 keyboardVerticalOffset={insets.top}
             >
-                <BlurView style={[styles.modalContent, modalContentColor]}>
+                <BlurView
+                    style={[styles.modalContent, modalContentColor]}
+                    blurReductionFactor={2}
+                    tint={isLightMode ? "light" : "dark"}
+                >
                     <View
                         style={{
                             flexDirection: "row",

@@ -33,6 +33,9 @@ export const styles = StyleSheet.create({
         overflow: "hidden",
         padding: 16,
         width: "100%",
+        borderWidth: 1,
+        borderColor: "#60BBB6",
+        shadowRadius: 4,
     },
     modalContentLight: {
         backgroundColor: "rgba(255, 255, 255, 0.7)",
