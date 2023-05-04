@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { useRouter } from "expo-router";
 
-export const ExpensesButton = ({ title, icon, cost, date }: Props) => {
+export const ExpensesButton = ({ title, icon, cost, date, onClick }: Props) => {
     const isLightMode: boolean = useColorScheme() === "light";
     const textColor = isLightMode ? styles.textLight : styles.textDark;
     const containerColor = isLightMode ? styles.containerLight : styles.containerDark;
@@ -13,6 +13,7 @@ export const ExpensesButton = ({ title, icon, cost, date }: Props) => {
         <TouchableOpacity
             activeOpacity={0.5}
             style={[styles.container, containerColor]}
+            onPress={onClick}
         >
             <View style={styles.view}>
                 <FontAwesomeIcon icon={icon} size={22} style={textColor} />
@@ -43,4 +44,5 @@ interface Props {
     icon: IconDefinition;
     title: string;
     cost: number;
+    onClick: () => void;
 }

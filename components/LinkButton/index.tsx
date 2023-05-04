@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
-export const LinkButton = ({ newNavigation, title, icon }: Props) => {
+export const LinkButton = ({ newNavigation, title, icon, onClick }: Props) => {
     const navigation = useRouter();
     const isLightMode: boolean = useColorScheme() === "light";
     const textColor = isLightMode ? styles.textLight : styles.textDark;
@@ -14,8 +14,9 @@ export const LinkButton = ({ newNavigation, title, icon }: Props) => {
     return (
         <TouchableOpacity
             activeOpacity={0.5}
-            onPress={() => navigation.push(newNavigation)}
+            onPress={() =>{ newNavigation ? navigation.push(newNavigation) : onClick}}
             style={[styles.container, containerColor]}
+
         >
             <View style={styles.view}>
                 <FontAwesomeIcon icon={icon} size={22} style={textColor} />
@@ -28,6 +29,7 @@ export const LinkButton = ({ newNavigation, title, icon }: Props) => {
 
 interface Props {
     icon: IconDefinition;
-    newNavigation: string;
+    newNavigation?: string;
     title: string;
+    onClick: any;
 }

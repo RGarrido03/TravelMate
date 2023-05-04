@@ -4,9 +4,9 @@ import { ExpensesButton } from "../../components/ExpensesButton";
 import { LinkButton } from "../../components/LinkButton";
 import { faGear, faWallet } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { deleteExpenses, getCurrentExpenses, Expenses } from "../../data/expenses";
+import { getCurrentExpenses, Expenses } from "../../data/expenses";
 import { CircularProgress } from "../../components/CircularProgess";
-
+import { BudgetModal } from "../../components/ModalBudget";
 import { AddExpenseModal } from "../../components/ModalExpenses";
 import { Header } from "../../components/Header";
 
@@ -20,9 +20,17 @@ export default function () {
     const circumference: number = 2 * Math.PI * 36;
 
     const [modalVisible, setModalVisible] = useState<boolean>(false);
-    const [selectedExpense, setSelectedExpense] = useState(null);
+    const [modalBudgetVisible, setBudgetVisible] = useState<boolean>(false);
 
-    const handleExpenseData = (data): void => {
+    const [isAdd, setIsAdd] = useState<boolean>(true);
+
+    const [id, setId] = useState<number>(-1);
+
+    const [title, setTitle] = useState<string>("");
+    const [value, setValue] = useState<string>("");
+    const [date, setDate] = useState<string>("");
+
+    const handleAddExpense = (data): void => {
         setExpensesArray(
             ExpensesArray.concat({
                 date: data.date,
@@ -31,6 +39,23 @@ export default function () {
                 icon: faWallet,
             })
         );
+    };
+
+    const handleEditExpense = (data): void => {
+        const updatedExpensesArray = [...ExpensesArray];
+        updatedExpensesArray[id] = {
+            date: data.date,
+            cost: parseFloat(data.value),
+            title: data.title,
+            icon: faWallet,
+        };
+        setExpensesArray(updatedExpensesArray);
+    };
+
+    const handleDeleteExpense = (): void => {
+        const updatedExpensesArray = [...ExpensesArray];
+        updatedExpensesArray.splice(id, 1);
+        setExpensesArray(updatedExpensesArray);
     };
 
     const sumExpenses: number = ExpensesArray.reduce(
@@ -88,7 +113,9 @@ export default function () {
                 title={"Expenses"}
                 hasBackButton={true}
                 hasAddButton={true}
-                addFunction={() => setModalVisible(true)}
+                addFunction={() => {
+                    setIsAdd(true), setTitle(""), setValue(""), setDate(""), setModalVisible(true);
+                }}
             />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 {/* Summary */}
@@ -117,6 +144,15 @@ export default function () {
                                         icon={item.icon}
                                         title={item.title}
                                         cost={item.cost}
+                                        key={index}
+                                        onClick={() => {
+                                            setIsAdd(false),
+                                                setTitle(item.title),
+                                                setDate(item.date),
+                                                setValue(item.cost),
+                                                setId(index);
+                                            setModalVisible(true);
+                                        }}
                                     />
                                 );
                             })}
@@ -131,29 +167,40 @@ export default function () {
                             </Text>
                         </View>
                     )}
-
-                    <Button
-                        title={"TEST: Delete the first expense"}
-                        onPress={() => {
-                            setExpensesArray(getCurrentExpenses().slice(1));
-                            deleteExpenses(0);
-                        }}
-                    />
                 </View>
 
                 <AddExpenseModal
                     visible={modalVisible}
                     onClose={() => setModalVisible(false)}
-                    onSave={handleExpenseData}
+                    onDelete={!isAdd && handleDeleteExpense}
+                    onAdd={isAdd && handleAddExpense}
+                    isAdd={isAdd}
+                    isEdit={!isAdd}
+                    onEdit={!isAdd && handleEditExpense}
+                    title={title}
+                    value={value}
+                    date={date}
+                    setTitle={setTitle}
+                    setValue={setValue}
+                    setDate={setDate}
                 />
+
+                <BudgetModal />
 
                 {/* Other */}
                 <View style={[styles.rowContainer, { marginBottom: insets.bottom }]}>
                     <Text style={styles.subtitle}>Other</Text>
                     <LinkButton
                         title={"Budget settings"}
-                        newNavigation={"/expenses/settings"}
                         icon={faGear}
+                        onClick={() => {
+                            setIsAdd(false),
+                                setTitle(item.title),
+                                setDate(item.date),
+                                setValue(item.cost),
+                                setId(index);
+                            setModalVisible(true);
+                        }}
                     />
                 </View>
             </ScrollView>
