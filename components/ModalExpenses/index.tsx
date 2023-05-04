@@ -22,7 +22,7 @@ interface props {
     onClose: () => void;
     onAdd?: ({ title, value, date }: { title: string; value: string; date: string }) => void;
     onDelete?: () => void;
-    onEdit?:  ({ title, value, date }: { title: string; value: string; date: string }) => void;
+    onEdit?: ({ title, value, date }: { title: string; value: string; date: string }) => void;
     isAdd?: boolean;
     isEdit?: boolean;
     title: string;
@@ -33,7 +33,21 @@ interface props {
     setDate: (date: string) => void;
 }
 
-export const AddExpenseModal = ({ visible, onClose, onAdd, onDelete, isAdd, isEdit, onEdit, title, setTitle, value, setValue, date, setDate }: props) => {
+export const AddExpenseModal = ({
+    visible,
+    onClose,
+    onAdd,
+    onDelete,
+    isAdd,
+    isEdit,
+    onEdit,
+    title,
+    setTitle,
+    value,
+    setValue,
+    date,
+    setDate,
+}: props) => {
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
 
     const handleAdd = (): void => {
@@ -117,7 +131,9 @@ export const AddExpenseModal = ({ visible, onClose, onAdd, onDelete, isAdd, isEd
                             justifyContent: "space-between",
                         }}
                     >
-                        <Text style={[styles.textPrincipal, textColor]}>{isAdd ? "New" : "Edit"} Expense</Text>
+                        <Text style={[styles.textPrincipal, textColor]}>
+                            {isAdd ? "New" : "Edit"} Expense
+                        </Text>
                         <TouchableOpacity onPress={onClose}>
                             <FontAwesomeIcon icon={faClose} size={22} color={textColor.color} />
                         </TouchableOpacity>
@@ -190,16 +206,22 @@ export const AddExpenseModal = ({ visible, onClose, onAdd, onDelete, isAdd, isEd
                         <FontAwesomeIcon icon={faEuroSign} size={20} color={textColor.color} />
                     </View>
 
-                    <View style={styles.buttonsView} >
-                        { isAdd && <TouchableOpacity style={styles.buttonAdd} onPress={handleAdd}>
-                            <Text style={styles.textButton}>Add</Text>
-                        </TouchableOpacity>}
-                        { isEdit && <TouchableOpacity style={styles.buttonAdd} onPress={handleEdit}>
-                            <Text style={styles.textButton}>Edit</Text>
-                        </TouchableOpacity>}
-                        { isEdit && <TouchableOpacity style={styles.buttonAdd} onPress={handleDelete}>
-                            <Text style={styles.textButton}>Delete</Text>
-                        </TouchableOpacity>}
+                    <View style={styles.buttonsView}>
+                        {isAdd && (
+                            <TouchableOpacity style={styles.buttonAdd} onPress={handleAdd}>
+                                <Text style={styles.textButton}>Add</Text>
+                            </TouchableOpacity>
+                        )}
+                        {isEdit && (
+                            <TouchableOpacity style={styles.buttonAdd} onPress={handleEdit}>
+                                <Text style={styles.textButton}>Edit</Text>
+                            </TouchableOpacity>
+                        )}
+                        {isEdit && (
+                            <TouchableOpacity style={styles.buttonAdd} onPress={handleDelete}>
+                                <Text style={styles.textButton}>Delete</Text>
+                            </TouchableOpacity>
+                        )}
                     </View>
                 </BlurView>
             </KeyboardAvoidingView>
