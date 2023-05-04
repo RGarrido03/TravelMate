@@ -15,6 +15,7 @@ export default function () {
     const [TripsArray, setTripsArray] = useState<Trips[]>(getCurrentTrips());
     const [WishArray, setWishArray] = useState<WishList[]>(getCurrentWishList());
 
+
     const styles = StyleSheet.create({
         scrollView: {
             borderRadius: 8,
@@ -37,7 +38,7 @@ export default function () {
             fontSize: 20,
             lineHeight: 22,
             fontWeight: "600",
-            marginBottom: 10
+            marginBottom: 10,
         },
         subtitle: {
             color: isLightMode ? "#3B4949" : "#fff",
@@ -97,7 +98,7 @@ export default function () {
                                 Add one by pressing the + icon.
                             </Text>
                         </View>
-                    )} 
+                    )}
                 </View>
                 {/* Latest expenses */}
                 <View style={{ alignSelf: "flex-start" }}>

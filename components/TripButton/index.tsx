@@ -33,11 +33,11 @@ export const TripsButton = ({ city, nPhotos, nNotes, date, newNavigation }: Prop
                 <View style={{ flexDirection: "column"  }}>
                     <View style={styles.notes}>
                         <Text style={[styles.info, textColor]}>{nPhotos}</Text>
-                        <FontAwesomeIcon icon={faCamera} color="#3B4949" />
+                        <FontAwesomeIcon icon={faCamera} style={textColor} />
                     </View>
                     <View style={styles.notes}>
                         <Text style={[styles.info, textColor]}>{nNotes}</Text>
-                        <FontAwesomeIcon icon={faNoteSticky} color="#3B4949" />
+                        <FontAwesomeIcon icon={faNoteSticky} style={textColor} />
                     </View>
                 </View>
             </View>

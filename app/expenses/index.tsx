@@ -20,6 +20,7 @@ export default function () {
     const circumference: number = 2 * Math.PI * 36;
 
     const [modalVisible, setModalVisible] = useState<boolean>(false);
+    const [selectedExpense, setSelectedExpense] = useState(null);
 
     const handleExpenseData = (data): void => {
         setExpensesArray(
@@ -116,8 +117,6 @@ export default function () {
                                         icon={item.icon}
                                         title={item.title}
                                         cost={item.cost}
-                                        key={"expense" + index}
-                                        newNavigation={"expenses/expense?id=" + index}
                                     />
                                 );
                             })}
