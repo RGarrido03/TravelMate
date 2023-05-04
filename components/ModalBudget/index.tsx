@@ -8,24 +8,24 @@ import {
     useColorScheme,
     KeyboardAvoidingView,
 } from "react-native";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { faClose, faEuroSign } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { styles } from "./styles";
 import { BlurView } from "expo-blur";
 import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
-import { getCurrentImages } from "../../data/images";
 
-export const BudgetModal = ({ visible, onClose, onSave, index }) => {
+
+export const BudgetModal = ({ visible, onClose, onSave, budget, setBudget } : Props) => {
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
-    const [text, setText] = useState<string>(getCurrentImages()[index].note);
 
-    const handleEdit = (): void => {
-        onSave(text);
-        onClose();
-    };
 
     const handleClose = (): void => {
-        setText(getCurrentImages()[index].note);
+        onClose();
+    };
+    
+
+    const handleSave  = (): void => {
+        onSave({ budget });
         onClose();
     };
 
@@ -58,28 +58,31 @@ export const BudgetModal = ({ visible, onClose, onSave, index }) => {
                             marginBottom: 16,
                         }}
                     >
-                        <Text style={[styles.textPrincipal, textColor]}>Notes</Text>
+                        <Text style={[styles.textPrincipal, textColor]}>Budget Settings</Text>
                         <TouchableOpacity onPress={handleClose}>
                             <FontAwesomeIcon icon={faClose} size={22} color={textColor.color} />
                         </TouchableOpacity>
                     </View>
-
-                    <TextInput
-                        value={text}
-                        onChangeText={setText}
-                        placeholder="Notes"
-                        style={[styles.textInput, textBoxColor, textColor]}
-                        multiline={true}
-                        placeholderTextColor={placeholderTextColor.color}
-                    />
+                    <Text style={[styles.textSecondary, textColor]}>New amount</Text>
+                    <View style={[styles.textInputIcon, styles.textInput, textBoxColor]}>
+                        <TextInput
+                            value={budget}
+                            onChangeText={setBudget}
+                            placeholder="0,00"
+                            keyboardType="numeric"
+                            style={[{ flex: 1 }, textColor]}
+                            placeholderTextColor={placeholderTextColor.color}
+                        />
+                        <FontAwesomeIcon icon={faEuroSign} size={20} color={textColor.color} />
+                    </View>
 
                     <View style={styles.buttonsView}>
                         <TouchableOpacity
                             activeOpacity={0.5}
                             style={[styles.button, styles.buttonAdd]}
-                            onPress={handleEdit}
+                            onPress={handleSave}
                         >
-                            <Text style={[styles.textButton, textColor]}>Save</Text>
+                            <Text style={[styles.textButton, textColor]}>Edit</Text>
                         </TouchableOpacity>
                     </View>
                 </BlurView>
@@ -87,3 +90,11 @@ export const BudgetModal = ({ visible, onClose, onSave, index }) => {
         </Modal>
     );
 };
+
+interface Props {
+    visible: boolean;
+    onClose: () => void;
+    onSave: (budget: { budget: string }) => void;
+    budget: string;
+    setBudget: (budget: string) => void;
+}

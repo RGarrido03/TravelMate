@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
         fontStyle: "normal",
         fontWeight: "700",
         fontSize: 20,
+        lineHeight: 24,
         color: "#3B4949",
     },
     textInput: {
@@ -72,4 +73,17 @@ export const styles = StyleSheet.create({
     textDark: { color: "#fff" },
     placeholderTextColorLight: { color: "#888" },
     placeholderTextColorDark: { color: "#ccc" },
+    textSecondary: {
+        fontStyle: "normal",
+        fontWeight: "600",
+        fontSize: 16,
+        lineHeight: 22,
+        alignItems: "center",
+        color: "#3B4949",
+        paddingBottom: 4,
+    },
+    textInputIcon: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
 });

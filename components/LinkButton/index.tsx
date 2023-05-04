@@ -14,9 +14,12 @@ export const LinkButton = ({ newNavigation, title, icon, onClick }: Props) => {
     return (
         <TouchableOpacity
             activeOpacity={0.5}
-            onPress={() =>{ newNavigation ? navigation.push(newNavigation) : onClick}}
+            onPress={() =>
+                newNavigation && typeof newNavigation === "string"
+                    ? navigation.push(newNavigation)
+                    : onClick && onClick()
+            }
             style={[styles.container, containerColor]}
-
         >
             <View style={styles.view}>
                 <FontAwesomeIcon icon={icon} size={22} style={textColor} />
@@ -31,5 +34,5 @@ interface Props {
     icon: IconDefinition;
     newNavigation?: string;
     title: string;
-    onClick: any;
+    onClick?: () => void;
 }

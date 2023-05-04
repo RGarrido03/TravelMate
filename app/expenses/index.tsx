@@ -16,9 +16,6 @@ export default function () {
 
     const [ExpensesArray, setExpensesArray] = useState<Expenses[]>(getCurrentExpenses());
 
-    const percentage: number = 67;
-    const circumference: number = 2 * Math.PI * 36;
-
     const [modalVisible, setModalVisible] = useState<boolean>(false);
     const [modalBudgetVisible, setBudgetVisible] = useState<boolean>(false);
 
@@ -39,6 +36,7 @@ export default function () {
                 icon: faWallet,
             })
         );
+        setExpenses(expenses + parseFloat(data.value));
     };
 
     const handleEditExpense = (data): void => {
@@ -50,18 +48,30 @@ export default function () {
             icon: faWallet,
         };
         setExpensesArray(updatedExpensesArray);
+        setExpenses(expenses - ExpensesArray[id].cost + parseFloat(data.value))
     };
 
     const handleDeleteExpense = (): void => {
         const updatedExpensesArray = [...ExpensesArray];
         updatedExpensesArray.splice(id, 1);
         setExpensesArray(updatedExpensesArray);
+        setExpenses(expenses - ExpensesArray[id].cost);
     };
 
-    const sumExpenses: number = ExpensesArray.reduce(
+    const [budget, setBudget] = useState<string>("4500,00");
+
+    const handleBudget = (data): void => {
+        setBudget(data.budget);
+    };
+
+    const circumference: number = 2 * Math.PI * 36;
+
+    const [expenses, setExpenses] = useState<number>(ExpensesArray.reduce(
         (accumulator: number, currentValue: Expenses) => accumulator + currentValue.cost,
         0
-    );
+    ));
+    const percentage: number = Math.floor((expenses * 100) / parseFloat(budget));
+
 
     const styles = StyleSheet.create({
         scrollView: {
@@ -121,10 +131,10 @@ export default function () {
                 {/* Summary */}
                 <View style={styles.container}>
                     <View style={{ alignSelf: "flex-start" }}>
-                        <Text style={styles.summaryTitle}>1484,50€ remaining</Text>
+                        <Text style={styles.summaryTitle}>{parseFloat(budget) - expenses}€ remaining</Text>
                         <Text style={styles.summarySubtitle}>
                             {" "}
-                            {sumExpenses}€ spent out of 4500,00€
+                            {expenses}€ spent out of {parseFloat(budget)}€
                         </Text>
                     </View>
                     <View style={{ alignItems: "flex-end" }}>
@@ -149,7 +159,7 @@ export default function () {
                                             setIsAdd(false),
                                                 setTitle(item.title),
                                                 setDate(item.date),
-                                                setValue(item.cost),
+                                                setValue((item.cost).toString()),
                                                 setId(index);
                                             setModalVisible(true);
                                         }}
@@ -185,8 +195,13 @@ export default function () {
                     setDate={setDate}
                 />
 
-                <BudgetModal />
-
+                <BudgetModal
+                    visible={modalBudgetVisible}
+                    onClose={() => setBudgetVisible(false)}
+                    onSave={handleBudget}
+                    budget={budget}
+                    setBudget={setBudget}
+                />
                 {/* Other */}
                 <View style={[styles.rowContainer, { marginBottom: insets.bottom }]}>
                     <Text style={styles.subtitle}>Other</Text>
@@ -194,12 +209,7 @@ export default function () {
                         title={"Budget settings"}
                         icon={faGear}
                         onClick={() => {
-                            setIsAdd(false),
-                                setTitle(item.title),
-                                setDate(item.date),
-                                setValue(item.cost),
-                                setId(index);
-                            setModalVisible(true);
+                            setBudgetVisible(true);
                         }}
                     />
                 </View>
