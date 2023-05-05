@@ -32,7 +32,7 @@ export const CircularProgress = ({ percentage, circumference }: Props) => {
                 />
                 <Path
                     d="M40 4.6322 a 35.3678 35.3678 0 0 1 0 70.7356 a 35.3678 35.3678 0 0 1 0 -70.7356"
-                    stroke="#70D9D3"
+                    stroke={percentage === 100 ? "#FF4500" : percentage > 75 ? "#EB8C6F" : "#70D9D3"}
                     strokeWidth="6"
                     strokeLinecap="round"
                     fill="none"

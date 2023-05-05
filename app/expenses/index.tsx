@@ -72,7 +72,7 @@ export default function () {
             0
         )
     );
-    const percentage: number = Math.floor((expenses * 100) / parseFloat(budget));
+    const percentage: number = Math.min(Math.floor((expenses * 100) / parseFloat(budget)), 100);
 
     const styles = StyleSheet.create({
         scrollView: {
