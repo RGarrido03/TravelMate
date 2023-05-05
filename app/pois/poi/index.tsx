@@ -14,7 +14,7 @@ export default function () {
     const [poisArray, setPoisArray] = useState(getCurrentPOIs());
 
     const searchParams: Partial<URLSearchParams> = useSearchParams();
-    const id: number = parseInt(searchParams["id"][0]);
+    const id: number = searchParams?.["id"] ? parseInt(searchParams["id"][0]) : 0;
 
     const handleAddPoi = (data): void => {
         setPoisArray(

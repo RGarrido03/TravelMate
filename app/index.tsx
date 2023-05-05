@@ -1,23 +1,16 @@
-import { StyleSheet, View, Image, Text, ScrollView, useColorScheme, Button } from "react-native";
+
+import { StyleSheet, View, Text, ScrollView, useColorScheme } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
-import { LinkButton } from "../components/LinkButton";
-import {
-    faCamera,
-    faLocationPin,
-    faMoneyBill,
-    faNoteSticky,
-    faPlane,
-} from "@fortawesome/free-solid-svg-icons";
 import { loadInitialImages } from "../data/images";
 import { loadInitialNotes } from "../data/notes";
-import { loadInitialTrips } from "../data/trips";
-import { loadInitialWishList } from "../data/wishList";
-import { getCurrentPOIs, loadInitialPOIs, POIs } from "../data/pois";
+import { Trips, getCurrentTrips, loadInitialTrips } from "../data/trips";
+import { WishList, getCurrentWishList, loadInitialWishList } from "../data/wishList";
+import { loadInitialPOIs } from "../data/pois";
 import { loadInitialExpenses } from "../data/expenses";
-import { POIsButton } from "../components/POIsButton";
 import { useState } from "react";
 import { Header } from "../components/Header";
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { WishButton } from "../components/WishButton";
+import { TripsButton } from "../components/TripButton";
 
 export default function App() {
     loadInitialImages();
@@ -27,126 +20,123 @@ export default function App() {
     loadInitialTrips();
     loadInitialWishList();
 
-    const insets: EdgeInsets = useSafeAreaInsets();
     const isLightMode: boolean = useColorScheme() === "light";
-    const [POIsArray] = useState<POIs[]>(getCurrentPOIs());
+    const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
+
+    const [TripsArray] = useState<Trips[]>(getCurrentTrips());
+    const [WishArray] = useState<WishList[]>(getCurrentWishList());
+    
 
     const styles = StyleSheet.create({
-        photo: {
-            width: "100%",
-            height: 200,
-            borderRadius: 8,
-            borderWidth: 1,
-            borderColor: "#60BBB6",
-        },
-        view: {
-            marginBottom: 16,
-        },
-        topView: {
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-        },
-        topView2: {
-            flexDirection: "row",
-            justifyContent: "space-between",
-            alignItems: "center",
-            marginBottom: 16,
-        },
         scrollView: {
+            borderRadius: 8,
             marginHorizontal: 16,
             marginTop: 16,
-            borderRadius: 8,
+            overflow: "hidden",
         },
-        buttonsView: {
-            marginBottom: insets.bottom,
-        },
-        column: {
+        rowContainer: {
             flexDirection: "column",
             rowGap: 8,
         },
-        title: {
+        summaryTitle: {
+            color: isLightMode ? "#3B4949" : "#fff",
+            fontWeight: "600",
+            fontSize: 20,
+            lineHeight: 27,
+        },
+        summarySubtitle: {
+            color: isLightMode ? "#3B4949" : "#fff",
+            fontSize: 20,
+            lineHeight: 22,
+            fontWeight: "600",
+            marginBottom: 10,
+        },
+        subtitle: {
+            color: isLightMode ? "#3B4949" : "#fff",
+            fontWeight: "600",
             fontSize: 16,
-            fontWeight: "600",
-            color: isLightMode ? "#3B4949" : "#fff",
-            marginBottom: 4,
+            lineHeight: 22,
         },
-        mainTitle: {
-            fontSize: 26,
-            fontWeight: "800",
-            color: isLightMode ? "#3B4949" : "#fff",
-            marginBottom: 4,
-            letterSpacing: -1,
+        marginBottom: {
+            marginBottom: 32,
         },
-        mainSubtitle: {
-            fontSize: 12,
-            fontWeight: "600",
-            color: isLightMode ? "#3B4949" : "#fff",
-            marginBottom: 4,
+        container: {
+            flexDirection: "row",
+            justifyContent: "space-between",
+            paddingHorizontal: 8,
+            paddingVertical: 8,
         },
-        icon: {
-            color: isLightMode ? "#3B4949" : "#fff",
+        view: {
+            flexDirection: "column",
+            rowGap: 8,
+            marginBottom: insets.bottom,
         },
     });
 
 
     return (
         <SafeAreaProvider>
-            <Header
-                title={"TravelMate"}
-                hasAddButton={true}
-                addFunction={() => alert("Not implemented yet.")}
-            />
+            <Header title={"List View"} hasBackButton={false} hasAddButton={true} />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-                <View style={styles.topView}>
-                    <Text style={styles.mainTitle}>Ibiza Island, Spain 🇪🇸</Text>
-                    <Text style={styles.mainSubtitle}>
-                        {" "}
-                        10 <FontAwesomeIcon icon={faCamera} style={styles.icon} />{" "}
-                    </Text>
-                </View>
-                {/* style={[styles.textBox, cost < 500 ? styles.textBoxLow : styles.textBoxHigh]} */}
-                <View style={styles.topView2}>
-                    <Text style={styles.mainSubtitle}>8 August 2022 - 13 August 2022</Text>
-                    <Text style={styles.mainSubtitle}>
-                        {" "}
-                        3 <FontAwesomeIcon icon={faNoteSticky} style={styles.icon} />{" "}
-                    </Text>
-                </View>
-                <View style={styles.view}>
-                    <Text style={styles.title}>Featured photo</Text>
-                    <Image style={styles.photo} source={require("../assets/images/one.png")} />
-                </View>
-                <View style={styles.view}>
-                    <Text style={styles.title}>Featured POI</Text>
-                    <POIsButton
-                        date={POIsArray[2].date}
-                        icon={POIsArray[2].icon}
-                        title={POIsArray[2].title}
-                        image={POIsArray[2].image}
-                        newNavigation={"pois/poi2"}
-                        key={"poi2"}
-                    />
-                </View>
-                <View style={styles.buttonsView}>
-                    <Text style={styles.title}>Main options</Text>
-                    <View style={styles.column}>
-                        <LinkButton title={"Photos"} newNavigation={"/photos"} icon={faCamera} />
-                        <LinkButton title={"Notes"} newNavigation={"/notes"} icon={faNoteSticky} />
-                        <LinkButton title={"POIs"} newNavigation={"/pois"} icon={faLocationPin} />
-                        <LinkButton
-                            title={"Expenses"}
-                            newNavigation={"/expenses"}
-                            icon={faMoneyBill}
-                        />
-                        <LinkButton
-                            title={"listview"}
-                            newNavigation={"/listView"}
-                            icon={faPlane}
-                        />
+                {/* Summary */}
+                <View style={styles.container}>
+                    <View style={{ alignSelf: "flex-start" }}>
+                        <Text style={styles.summaryTitle}>List View</Text>
                     </View>
+                </View>
+
+                {/* Latest expenses */}
+
+                <View style={[styles.rowContainer, styles.marginBottom]}>
+                    {TripsArray.length > 0 ? (
+                        <View style={styles.view}>
+                            {TripsArray.map((item: any, index: number) => {
+                                return (
+                                    <TripsButton
+                                        date={item.date}
+                                        city={item.city}
+                                        nPhotos={item.nPhotos}
+                                        nNotes={item.nNotes}
+                                        newNavigation={("/tripDetails?id=" + index)}
+                                        key={index}
+                                    />
+                                );
+                            })}
+                        </View>
+                    ) : (
+                        <View style={{ alignItems: "center", justifyContent: "center" }}>
+                            <Text style={{ fontWeight: "bold", fontSize: 20, marginBottom: 8 }}>
+                                No Trips
+                            </Text>
+                            <Text style={{ fontWeight: "300" }}>
+                                Add one by pressing the + icon.
+                            </Text>
+                        </View>
+                    )}
+                </View>
+                {/* Latest expenses */}
+                <View style={{ alignSelf: "flex-start" }}>
+                    <Text style={styles.summarySubtitle}> Wish List </Text>
+                </View>
+                <View style={[styles.rowContainer, styles.marginBottom]}>
+                    {WishArray.length > 0 ? (
+                        <View style={styles.view}>
+                            {WishArray.map((item: any, index: number) => {
+                                return <WishButton city={item.city} newNavigation={"./"} key={index} />;
+                            })}
+                        </View>
+                    ) : (
+                        <View style={{ alignItems: "center", justifyContent: "center" }}>
+                            <Text style={{ fontWeight: "bold", fontSize: 20, marginBottom: 8 }}>
+                                No Trips
+                            </Text>
+                            <Text style={{ fontWeight: "300" }}>
+                                Add one by pressing the + icon.
+                            </Text>
+                        </View>
+                    )}
                 </View>
             </ScrollView>
         </SafeAreaProvider>
     );
-}
+};

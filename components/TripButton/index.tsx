@@ -1,17 +1,13 @@
 import { TouchableOpacity, View, Text, useColorScheme } from "react-native";
 import { styles } from "./styles";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { useRouter } from "expo-router";
 import {
     faCamera,
     faNoteSticky,
-    faNotesMedical,
-    faStickyNote,
 } from "@fortawesome/free-solid-svg-icons";
-import { faEvernote, faItunesNote, faNode } from "@fortawesome/free-brands-svg-icons";
 
-export const TripsButton = ({ city, nPhotos, nNotes, date, newNavigation }: Props) => {
+export const TripsButton = ({ city, nPhotos, nNotes, date, newNavigation}: Props) => {
     const navigation = useRouter();
     const isLightMode: boolean = useColorScheme() === "light";
     const textColor = isLightMode ? styles.textLight : styles.textDark;

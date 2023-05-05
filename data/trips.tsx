@@ -14,7 +14,7 @@ export const loadInitialTrips= (): void => {
     Trips.push({
         city: "Ibiza Island, Spain 🇪🇸",
         date: "August 8-13, 2022",
-        nPhotos: 10,
+        nPhotos: 11,
         nNotes: 0,
         budget: 4500,
     });
