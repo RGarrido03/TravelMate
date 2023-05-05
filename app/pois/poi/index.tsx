@@ -2,19 +2,31 @@ import { Image, View, Text, useColorScheme, ScrollView, StyleSheet, ImageSourceP
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { Header } from "../../../components/Header";
 import { LinkButton } from "../../../components/LinkButton";
-import { faCamera } from "@fortawesome/free-solid-svg-icons";
-import { getCurrentNotes } from "../../../data/notes";
+import { faCamera, faMoneyBill, faPlus, faSun } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useSearchParams } from "expo-router";
-import { TextInput } from "react-native-gesture-handler";
+import { getCurrentPOIs } from "../../../data/pois";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
-export default ({ title, image, date, texto  }: Props) => {
+export default function () {
     const isLightMode: boolean = useColorScheme() === "light";
     const insets = useSafeAreaInsets();
-    const [notesArray, setNotesArray] = useState(getCurrentNotes());
+    const [poisArray, setPoisArray] = useState(getCurrentPOIs());
 
     const searchParams: Partial<URLSearchParams> = useSearchParams();
     const id: number = parseInt(searchParams["id"][0]);
+
+    const handleAddPoi = (data): void => {
+        setPoisArray(
+            poisArray.concat({
+                date: data.date,
+                icon: data.value,
+                title: data.title,
+                image: data.image,
+                text: data.text,
+            })
+        );
+    };
 
     const styles = StyleSheet.create({
         container: {
@@ -96,42 +108,75 @@ export default ({ title, image, date, texto  }: Props) => {
             backgroundColor: "#60BBB6",
             borderColor: "#60BBB6",
             marginBottom: 16,
-        }
+        },
+        icon: {
+            color: isLightMode ? "#3B4949" : "#fff",
+            marginBottom: 16,
+        },
 
     })
 
-    if (notesArray[id].image) {
+    if (poisArray[id].image) {
   return (
     <SafeAreaProvider>
-      <Header title={"Note"} hasBackButton={true} rightText={notesArray[id].date} />
+      <Header title={"Note"} hasBackButton={true} rightText={poisArray[id].date} />
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        <Image source={notesArray[id].image as ImageSourcePropType} style={styles.photo} />
+        <Image source={poisArray[id].image as ImageSourcePropType} style={styles.photo} />
         <View style={styles.marginBottom}>
-          <TextInput style={styles.Title}>{notesArray[id].title}</TextInput>
-          <TextInput multiline={true} style={styles.Subtitle}>{notesArray[id].texto}</TextInput>
+            <Text style={styles.icon}>
+                <FontAwesomeIcon size={55} icon={poisArray[id].icon} style={styles.icon} />
+            </Text>
+            <Text style={styles.Title}>{poisArray[id].title}</Text>
+            <Text style={styles.Subtitle}>{poisArray[id].date}</Text>
+            <Text></Text> 
+            <Text style={styles.Subtitle}>{poisArray[id].text}</Text>
         </View>
-        <LinkButton
-          title={"Add related photos"}
-          newNavigation={"../photos"}
-          icon={faCamera}
-        />
+        <View style={styles.view}>
+            <LinkButton
+            title={"Related photos"}
+            newNavigation={"/photos/index.tsx"}
+            icon={faCamera}
+            />
+            <LinkButton
+            title={"Related expendes"}
+            newNavigation={"/expenses"}
+            icon={faMoneyBill}
+            />
+        </View>
       </ScrollView>
     </SafeAreaProvider>
   );
 } else {
   return (
     <SafeAreaProvider>
-      <Header title={"Note"} hasBackButton={true} rightText={notesArray[id].date} />
+      <Header title={"Note"} hasBackButton={true} rightText={poisArray[id].date} />
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <View style={styles.marginBottom}>
-          <TextInput style={styles.Title}>{notesArray[id].title}</TextInput>
-          <TextInput multiline={true} style={styles.Subtitle}>{notesArray[id].texto}</TextInput>
+            <Text style={styles.icon}>
+                <FontAwesomeIcon size={55} icon={poisArray[id].icon} style={styles.icon} />
+            </Text>
+            <Text style={styles.Title}>{poisArray[id].title}</Text>
+            <Text style={styles.Subtitle}>{poisArray[id].date}</Text>
+            <Text></Text> 
+            <Text style={styles.Subtitle}>{poisArray[id].text}</Text>
         </View>
-        <LinkButton
-          title={"Add related photos"}
-          newNavigation={"../photos"}
-          icon={faCamera}
-        />
+        <View style={styles.view}>
+            <LinkButton
+            title={"Add cover photo"}
+            newNavigation={"/photos/index.tsx"}
+            icon={faPlus}
+            />
+            <LinkButton
+            title={"Related photos"}
+            newNavigation={"/photos/index.tsx"}
+            icon={faCamera}
+            />
+            <LinkButton
+            title={"Related expendes"}
+            newNavigation={"/expenses"}
+            icon={faMoneyBill}
+            />
+        </View>
       </ScrollView>
     </SafeAreaProvider>
   );

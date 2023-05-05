@@ -1,14 +1,28 @@
 import { StyleSheet, View, Text, ScrollView, useColorScheme, Button } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
-import { getCurrentPOIs, deletePOIs, POIs } from "../../data/pois";
+import { getCurrentPOIs, POIs } from "../../data/pois";
 import { POIsButton } from "../../components/POIsButton";
 import { Header } from "../../components/Header";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { faSun } from "@fortawesome/free-solid-svg-icons";
+import { AddExpenseModal } from "../../components/AddPoi";
+
 
 export default function () {
     const isLightMode: boolean = useColorScheme() === "light";
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
     const [POIsArray, setPOIsArray] = useState<POIs[]>(getCurrentPOIs());
+
+    const [modalVisible, setModalVisible] = useState<boolean>(false);
+    const [isAdd, setIsAdd] = useState<boolean>(true);
+
+    const [title, setTitle] = useState<string>("");
+    const [value, setValue] = useState<string>("");
+    const [date, setDate] = useState<string>("");
+    const [icon, setIcon] = useState<IconDefinition>();
+    const [image, setImage] = useState<any>("");
+    const [text, setText] = useState<any>("");
 
     const styles = StyleSheet.create({
         scrollView: {
@@ -50,7 +64,16 @@ export default function () {
                 title={"POIs"}
                 hasBackButton={true}
                 hasAddButton={true}
-                addFunction={() => alert("Not implemented yet.")}
+                addFunction={() => {
+                    setIsAdd(true);
+                    setDate("");
+                    setIcon(faSun);
+                    setTitle("");
+                    setValue("");
+                    setImage(null);
+                    setText("");
+                    setModalVisible(true);
+                }}
             />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 {POIsArray.length > 0 ? (
@@ -62,7 +85,7 @@ export default function () {
                                     icon={item.icon}
                                     title={item.title}
                                     image={item.image}
-                                    newNavigation={"pois/poi" + index}
+                                    newNavigation={"pois/poi?id=" + index}
                                     key={"poi" + index}
                                 />
                             );
@@ -76,13 +99,17 @@ export default function () {
                         <Text style={{ fontWeight: "300" }}>Add one by pressing the + icon.</Text>
                     </View>
                 )}
-
-                <Button
-                    title={"TEST: Delete the first POI"}
-                    onPress={() => {
-                        setPOIsArray(getCurrentPOIs().slice(1));
-                        deletePOIs(0);
-                    }}
+            <AddExpenseModal
+                    visible={modalVisible}
+                    onClose={() => setModalVisible(false)}
+                    isAdd={isAdd}
+                    isEdit={!isAdd}
+                    title={title}
+                    value={value}
+                    date={date}
+                    setTitle={setTitle}
+                    setValue={setValue}
+                    setDate={setDate}
                 />
             </ScrollView>
         </SafeAreaProvider>

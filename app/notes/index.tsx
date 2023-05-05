@@ -4,7 +4,6 @@ import { useState } from "react";
 import { getCurrentNotes, deleteNote, Note } from "../../data/notes";
 import { NotesButton } from "../../components/NotesButton";
 import { Header } from "../../components/Header";
-import { useSearchParams } from "expo-router";
 
 export default function () {
     const isLightMode: boolean = useColorScheme() === "light";
@@ -34,9 +33,11 @@ export default function () {
 
     const handleAddNotePress = () => {
         const newNote: Note = {
-            title: "New Note", content: "Click to edit", image: null,
-            date: "",
-            texto: ""
+            title: "New Note", 
+            content: "Click to edit!", 
+            image: null,
+            date: null,
+            texto: null
         };
         setNotesArray([...notesArray, newNote]);
     };
@@ -76,7 +77,7 @@ export default function () {
                 <Button
                     title={"TEST: Delete the first note"}
                     onPress={() => {
-                        setNotesArray(getCurrentNotes().slice(1));
+                        setNotesArray(getCurrentNotes().slice(0));
                         deleteNote(0);
                     }}
                 />
