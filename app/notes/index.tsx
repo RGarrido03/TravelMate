@@ -32,13 +32,22 @@ export default function () {
         },
     });
 
+    const handleAddNotePress = () => {
+        const newNote: Note = {
+            title: "New Note", content: "Click to edit", image: null,
+            date: "",
+            texto: ""
+        };
+        setNotesArray([...notesArray, newNote]);
+    };
+
     return (
         <SafeAreaProvider>
             <Header
                 title={"Notes"}
                 hasBackButton={true}
                 hasAddButton={true}
-                addFunction={() => alert("Not implemented yet.")}
+                addFunction={handleAddNotePress}
             />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 {notesArray.length > 0 ? (

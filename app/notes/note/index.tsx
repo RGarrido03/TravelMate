@@ -6,6 +6,7 @@ import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { getCurrentNotes } from "../../../data/notes";
 import { useState } from "react";
 import { useSearchParams } from "expo-router";
+import { TextInput } from "react-native-gesture-handler";
 
 export default ({ title, image, date, texto  }: Props) => {
     const isLightMode: boolean = useColorScheme() === "light";
@@ -83,9 +84,11 @@ export default ({ title, image, date, texto  }: Props) => {
             color: isLightMode ? "#3B4949" : "#fff",
             fontSize: 16,
             lineHeight: 22,
+            multiline: "true"
         },
         marginBottom: {
             marginBottom: 32,
+            multiline: "true"
         },
         photo: {
             borderRadius: 8,
@@ -106,8 +109,8 @@ export default ({ title, image, date, texto  }: Props) => {
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <Image source={notesArray[id].image as ImageSourcePropType} style={styles.photo} />
         <View style={styles.marginBottom}>
-          <Text style={styles.Title}>{notesArray[id].title}</Text>
-          <Text style={styles.Subtitle}>{notesArray[id].texto}</Text>
+          <TextInput style={styles.Title}>{notesArray[id].title}</TextInput>
+          <TextInput multiline={true} style={styles.Subtitle}>{notesArray[id].texto}</TextInput>
         </View>
         <LinkButton
           title={"Add related photos"}
@@ -123,8 +126,8 @@ export default ({ title, image, date, texto  }: Props) => {
       <Header title={"Note"} hasBackButton={true} rightText={notesArray[id].date} />
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <View style={styles.marginBottom}>
-          <Text style={styles.Title}>{notesArray[id].title}</Text>
-          <Text style={styles.Subtitle}>{notesArray[id].texto}</Text>
+          <TextInput style={styles.Title}>{notesArray[id].title}</TextInput>
+          <TextInput multiline={true} style={styles.Subtitle}>{notesArray[id].texto}</TextInput>
         </View>
         <LinkButton
           title={"Add related photos"}
