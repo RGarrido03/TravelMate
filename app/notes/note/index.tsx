@@ -99,23 +99,42 @@ export default ({ title, image, date, texto  }: Props) => {
 
     })
 
-    return (
-         <SafeAreaProvider>
-         <Header title={"Note"} hasBackButton={true} rightText={notesArray[id].date} />
-         <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-            <Image source={notesArray[id].image as ImageSourcePropType} style={styles.photo} />
-             <View style={styles.marginBottom}>
-                 <Text style={styles.Title}>{notesArray[id].title}</Text>
-                 <Text style={styles.Subtitle}>{notesArray[id].texto}</Text>
-             </View>
-             <LinkButton
-                 title={"Add related photos"}
-                 newNavigation={"/photos"}
-                 icon={faCamera}
-             />
-         </ScrollView>
-     </SafeAreaProvider>
-    );
+    if (notesArray[id].image) {
+  return (
+    <SafeAreaProvider>
+      <Header title={"Note"} hasBackButton={true} rightText={notesArray[id].date} />
+      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+        <Image source={notesArray[id].image as ImageSourcePropType} style={styles.photo} />
+        <View style={styles.marginBottom}>
+          <Text style={styles.Title}>{notesArray[id].title}</Text>
+          <Text style={styles.Subtitle}>{notesArray[id].texto}</Text>
+        </View>
+        <LinkButton
+          title={"Add related photos"}
+          newNavigation={"/photos"}
+          icon={faCamera}
+        />
+      </ScrollView>
+    </SafeAreaProvider>
+  );
+} else {
+  return (
+    <SafeAreaProvider>
+      <Header title={"Note"} hasBackButton={true} rightText={notesArray[id].date} />
+      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+        <View style={styles.marginBottom}>
+          <Text style={styles.Title}>{notesArray[id].title}</Text>
+          <Text style={styles.Subtitle}>{notesArray[id].texto}</Text>
+        </View>
+        <LinkButton
+          title={"Add related photos"}
+          newNavigation={"/photos"}
+          icon={faCamera}
+        />
+      </ScrollView>
+    </SafeAreaProvider>
+  );
+}
 };
 
 interface Props {
