@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, ScrollView, useColorScheme, Button } from "react-native";
+import { StyleSheet, View, Text, ScrollView, useColorScheme } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { ExpensesButton } from "../../components/ExpensesButton";
 import { LinkButton } from "../../components/LinkButton";
@@ -48,7 +48,7 @@ export default function () {
             icon: faWallet,
         };
         setExpensesArray(updatedExpensesArray);
-        setExpenses(expenses - ExpensesArray[id].cost + parseFloat(data.value))
+        setExpenses(expenses - ExpensesArray[id].cost + parseFloat(data.value));
     };
 
     const handleDeleteExpense = (): void => {
@@ -66,12 +66,13 @@ export default function () {
 
     const circumference: number = 2 * Math.PI * 36;
 
-    const [expenses, setExpenses] = useState<number>(ExpensesArray.reduce(
-        (accumulator: number, currentValue: Expenses) => accumulator + currentValue.cost,
-        0
-    ));
+    const [expenses, setExpenses] = useState<number>(
+        ExpensesArray.reduce(
+            (accumulator: number, currentValue: Expenses) => accumulator + currentValue.cost,
+            0
+        )
+    );
     const percentage: number = Math.floor((expenses * 100) / parseFloat(budget));
-
 
     const styles = StyleSheet.create({
         scrollView: {
@@ -99,21 +100,16 @@ export default function () {
             color: isLightMode ? "#3B4949" : "#fff",
             fontWeight: "600",
             fontSize: 16,
-            lineHeight: 22,
-        },
-        marginBottom: {
-            marginBottom: 32,
         },
         container: {
             flexDirection: "row",
             justifyContent: "space-between",
-            paddingHorizontal: 16,
-            paddingVertical: 8,
+            marginBottom: 16,
         },
         view: {
             flexDirection: "column",
             rowGap: 8,
-            marginBottom: insets.bottom,
+            marginBottom: 32,
         },
     });
 
@@ -124,26 +120,42 @@ export default function () {
                 hasBackButton={true}
                 hasAddButton={true}
                 addFunction={() => {
-                    setIsAdd(true), setTitle(""), setValue(""), setDate(""), setModalVisible(true);
+                    setIsAdd(true);
+                    setTitle("");
+                    setValue("");
+                    setDate("");
+                    setModalVisible(true);
                 }}
             />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 {/* Summary */}
                 <View style={styles.container}>
-                    <View style={{ alignSelf: "flex-start" }}>
-                        <Text style={styles.summaryTitle}>{parseFloat(budget) - expenses}€ remaining</Text>
+                    <View style={{ flex: 1 }}>
+                        <Text style={styles.summaryTitle}>
+                            {(parseFloat(budget) - expenses).toLocaleString("pt-PT", {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                            })}
+                            € remaining
+                        </Text>
                         <Text style={styles.summarySubtitle}>
-                            {" "}
-                            {expenses}€ spent out of {parseFloat(budget)}€
+                            {expenses.toLocaleString("pt-PT", {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                            })}
+                            € spent out of{" "}
+                            {parseFloat(budget).toLocaleString("pt-PT", {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                            })}
+                            €
                         </Text>
                     </View>
-                    <View style={{ alignItems: "flex-end" }}>
-                        <CircularProgress percentage={percentage} circumference={circumference} />
-                    </View>
+                    <CircularProgress percentage={percentage} circumference={circumference} />
                 </View>
-                {/* Latest expenses */}
 
-                <View style={[styles.rowContainer, styles.marginBottom]}>
+                {/* Latest expenses */}
+                <View style={styles.rowContainer}>
                     <Text style={styles.subtitle}>Latest expenses</Text>
                     {ExpensesArray.length > 0 ? (
                         <View style={styles.view}>
@@ -156,11 +168,11 @@ export default function () {
                                         cost={item.cost}
                                         key={index}
                                         onClick={() => {
-                                            setIsAdd(false),
-                                                setTitle(item.title),
-                                                setDate(item.date),
-                                                setValue((item.cost).toString()),
-                                                setId(index);
+                                            setIsAdd(false);
+                                            setTitle(item.title);
+                                            setDate(item.date);
+                                            setValue(item.cost.toString());
+                                            setId(index);
                                             setModalVisible(true);
                                         }}
                                     />
