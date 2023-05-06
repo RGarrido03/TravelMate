@@ -20,20 +20,18 @@ import { BlurView } from "expo-blur";
 interface props {
     visible: boolean;
     onClose: () => void;
-    onAdd?: ({ title, value, date }: { title: string; value: string; date: string }) => void;
+    onAdd?: ({ title, date }: { title: string; date: string }) => void;
     onDelete?: () => void;
-    onEdit?: ({ title, value, date }: { title: string; value: string; date: string }) => void;
+    onEdit?: ({ title,  date }: { title: string; date: string }) => void;
     isAdd?: boolean;
     isEdit?: boolean;
     title: string;
     setTitle: (title: string) => void;
-    value: string;
-    setValue: (value: string) => void;
     date: string;
     setDate: (date: string) => void;
 }
 
-export const AddExpenseModal = ({
+export const AddPoiModal = ({
     visible,
     onClose,
     onAdd,
@@ -43,26 +41,22 @@ export const AddExpenseModal = ({
     onEdit,
     title,
     setTitle,
-    value,
-    setValue,
     date,
     setDate,
 }: props) => {
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
 
     const handleAdd = (): void => {
-        onAdd({ title, value, date });
+        onAdd({ title, date });
         onClose();
         setTitle("");
-        setValue("");
         setDate("");
     };
 
     const handleEdit = (): void => {
-        onEdit({ title, value, date });
+        onEdit({ title, date });
         onClose();
         setTitle("");
-        setValue("");
         setDate("");
     };
 
@@ -70,7 +64,6 @@ export const AddExpenseModal = ({
         onDelete();
         onClose();
         setTitle("");
-        setValue("");
         setDate("");
     };
 

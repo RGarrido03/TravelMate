@@ -1,12 +1,12 @@
 import { StyleSheet, View, Text, ScrollView, useColorScheme, Button } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
-import { getCurrentPOIs, POIs } from "../../data/pois";
+import { deletePOIs, getCurrentPOIs, POIs } from "../../data/pois";
 import { POIsButton } from "../../components/POIsButton";
 import { Header } from "../../components/Header";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { faSun } from "@fortawesome/free-solid-svg-icons";
-import { AddExpenseModal } from "../../components/AddPoi";
+import { faSprayCan, faSun } from "@fortawesome/free-solid-svg-icons";
+import { AddPoiModal } from "../../components/AddPoi";
 
 
 export default function () {
@@ -23,6 +23,18 @@ export default function () {
     const [icon, setIcon] = useState<IconDefinition>();
     const [image, setImage] = useState<any>("");
     const [text, setText] = useState<any>("");
+
+    const handleAddPoi = (data): void => {
+        setPOIsArray(
+            POIsArray.concat({
+                date: data.date,
+                title: data.title,
+                icon: faSprayCan,
+                image: null,
+                text: ""
+            })
+        );
+    };
 
     const styles = StyleSheet.create({
         scrollView: {
@@ -99,16 +111,21 @@ export default function () {
                         <Text style={{ fontWeight: "300" }}>Add one by pressing the + icon.</Text>
                     </View>
                 )}
-            <AddExpenseModal
+                <Button
+                    title={"TEST: Delete the first POI"}
+                    onPress={() => {
+                        setPOIsArray(getCurrentPOIs().slice(1));
+                        deletePOIs(1);
+                    }}
+                />
+            <AddPoiModal
                     visible={modalVisible}
                     onClose={() => setModalVisible(false)}
+                    onAdd={isAdd && handleAddPoi}
                     isAdd={isAdd}
-                    isEdit={!isAdd}
                     title={title}
-                    value={value}
                     date={date}
                     setTitle={setTitle}
-                    setValue={setValue}
                     setDate={setDate}
                 />
             </ScrollView>
