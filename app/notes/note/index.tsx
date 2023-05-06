@@ -108,50 +108,62 @@ export default ({ title, image, date, texto }: Props) => {
         },
     });
 
-    if (notesArray[id].image) {
-        return (
-            <SafeAreaProvider>
-                <Header title={"Note"} hasBackButton={true} rightText={notesArray[id].date} />
-                <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-                    <Image
-                        source={notesArray[id].image}
-                        style={styles.photo}
-                    />
-                    <View style={styles.marginBottom}>
-                        <TextInput style={styles.Title}>{notesArray[id].title}</TextInput>
-                        <TextInput multiline={true} style={styles.Subtitle}>
-                            {notesArray[id].text}
-                        </TextInput>
-                    </View>
-                    <LinkButton
-                        title={"Add related photos"}
-                        newNavigation={"../photos"}
-                        icon={faCamera}
-                    />
-                </ScrollView>
-            </SafeAreaProvider>
-        );
+    if (notesArray[id]) {
+        if (notesArray[id].image) {
+      return (
+        <SafeAreaProvider>
+          <Header title={"Note"} hasBackButton={true} rightText={notesArray[id].date} />
+          <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+            <Image source={notesArray[id].image as ImageSourcePropType} style={styles.photo} />
+            <View style={styles.marginBottom}>
+              <TextInput style={styles.Title}>{notesArray[id].title}</TextInput>
+              <TextInput multiline={true} style={styles.Subtitle}>{notesArray[id].text}</TextInput>
+            </View>
+            <LinkButton
+              title={"Add related photos"}
+              newNavigation={"/photos"}
+              icon={faCamera}
+            />
+          </ScrollView>
+        </SafeAreaProvider>
+      );
     } else {
-        return (
-            <SafeAreaProvider>
-                <Header title={"Note"} hasBackButton={true} rightText={notesArray[id].date} />
-                <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-                    <View style={styles.marginBottom}>
-                        <TextInput style={styles.Title}>{notesArray[id].title}</TextInput>
-                        <TextInput multiline={true} style={styles.Subtitle}>
-                            {notesArray[id].text}
-                        </TextInput>
-                    </View>
-                    <LinkButton
-                        title={"Add related photos"}
-                        newNavigation={"../photos"}
-                        icon={faCamera}
-                    />
-                </ScrollView>
-            </SafeAreaProvider>
-        );
+      return (
+        <SafeAreaProvider>
+          <Header title={"Note"} hasBackButton={true} rightText={notesArray[id].date} />
+          <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+            <View style={styles.marginBottom}>
+              <TextInput style={styles.Title}>{notesArray[id].title}</TextInput>
+              <TextInput multiline={true} style={styles.Subtitle}>{notesArray[id].text}</TextInput>
+            </View>
+            <LinkButton
+              title={"Add related photos"}
+              newNavigation={"/photos"}
+              icon={faCamera}
+            />
+          </ScrollView>
+        </SafeAreaProvider>
+      );
+    } } else {
+      return (
+        <SafeAreaProvider>
+          <Header title={"Note"} hasBackButton={true} rightText={"23-05-2023"} />
+          <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+            <View style={styles.marginBottom}>
+              <TextInput style={styles.Title}>New Note</TextInput>
+              <TextInput multiline={true} style={styles.Subtitle} placeholder="Click here to edit" placeholderTextColor={isLightMode ? "#3B4949" : "#fff"}></TextInput>
+            </View>
+            <LinkButton
+              title={"Add related photos"}
+              newNavigation={"/photos"}
+              icon={faCamera}
+            />
+          </ScrollView>
+        </SafeAreaProvider>
+      );
     }
-};
+  };
+  
 
 interface Props {
     title: string;
