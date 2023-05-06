@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
-import { getCurrentImages, deleteImage, setFavorite, Photo, setNote } from "../../../data/images";
+import { getCurrentImages, deleteImage, setFavorite, Photo, setNote, loadImagesByKey } from "../../../data/images";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faNoteSticky, faTrash, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useRouter, useSearchParams } from "expo-router";
@@ -19,11 +19,11 @@ export default function () {
     const isLightMode: boolean = useColorScheme() === "light";
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
     const router = useRouter();
-
-    const [imagesArray] = useState<Photo[]>(getCurrentImages()); // Images array
-
     const searchParams: Partial<URLSearchParams> = useSearchParams();
-    const id: number = parseInt(searchParams["id"][0]);
+    const id: number = searchParams?.["id"] ? parseInt(searchParams["id"]) : 0;
+    const tripID: number = searchParams?.["tripID"] ? parseInt(searchParams["tripID"][0]) : 0;
+
+    const [imagesArray] = useState<Photo[]>(loadImagesByKey(tripID)); // Images array
 
     const [isFavorite, setIsFavorite] = useState<boolean>(imagesArray[id].isFavorite);
 
@@ -78,7 +78,7 @@ export default function () {
                 visible={modalVisible}
                 onClose={() => setModalVisible(false)}
                 onSave={(text: string): void => {
-                    setNote(id, text);
+                    setNote(tripID,id, text);
                 }}
                 index={id}
             />
@@ -99,10 +99,10 @@ export default function () {
                         activeOpacity={0.5}
                         onPress={() => {
                             if (imagesArray[id].isFavorite) {
-                                setFavorite(id, false);
+                                setFavorite(tripID, id, false);
                                 setIsFavorite(false);
                             } else {
-                                setFavorite(id, true);
+                                setFavorite(tripID, id, true);
                                 setIsFavorite(true);
                             }
                         }}
@@ -113,7 +113,7 @@ export default function () {
                         activeOpacity={0.5}
                         onPress={() => {
                             console.log("delete");
-                            deleteImage(id);
+                            deleteImage(tripID, id);
                             router.back();
                         }}
                     >

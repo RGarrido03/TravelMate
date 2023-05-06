@@ -12,7 +12,7 @@ export default function () {
     const navigation = useRouter();
 
     const searchParams: Partial<URLSearchParams> = useSearchParams();
-    const tripID: number = searchParams?.["id"] ? parseInt(searchParams["id"][0]) : 0;
+    const tripID: number = searchParams?.["id"] ? parseInt(searchParams["id"]) : 0;
 
     const [containerWidth, setContainerWidth] = useState<number>(0); // Grid container dimensions hook
     const [imagesArray, setImagesArray] = useState<Photo[]>(loadImagesByKey(tripID)); // Images array
@@ -76,7 +76,7 @@ export default function () {
                             return (
                                 <Pressable
                                     key={"img" + index}
-                                    onPress={() => navigation.push("photos/photo?id=" + index)}
+                                    onPress={() => navigation.push("photos/photo?id=" + index + "&tripID=" + tripID)}
                                     style={styles.photoPressable}
                                 >
                                     <Image source={image.image} style={styles.photoImage} />

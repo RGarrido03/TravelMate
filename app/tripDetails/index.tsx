@@ -23,7 +23,12 @@ export default function () {
 
     const [TripsArray] = useState<Trips[]>(getCurrentTrips());
     const searchParams: Partial<URLSearchParams> = useSearchParams();
-    const tripID: number = searchParams?.["id"] ? parseInt(searchParams["id"][0]) : 0;
+    const tripID: number = searchParams?.["tripID"] ? parseInt(searchParams["tripID"]) : 0;
+
+    const [city] = useState<string>(TripsArray[tripID].city);
+    const [date] = useState<string>(TripsArray[tripID].date);
+    const [nPhotos] = useState<number>(loadImagesByKey(tripID).length);
+    const [nNotes] = useState<number>(TripsArray[tripID].nNotes);
 
     const styles = StyleSheet.create({
         photo: {
@@ -88,6 +93,8 @@ export default function () {
             justifyContent: "flex-end",
         },
     });
+
+
     
     return (
         <SafeAreaProvider>
@@ -99,17 +106,17 @@ export default function () {
             />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 <View style={styles.topView}>
-                    <Text style={styles.mainTitle}>{TripsArray[tripID].city}</Text>
+                    <Text style={styles.mainTitle}>{city} {}</Text>
                     <View style={styles.notes}>
-                        <Text style={styles.mainSubtitle}>{loadImagesByKey(tripID).length}</Text>
+                        <Text style={styles.mainSubtitle}>{nPhotos}</Text>
                         <FontAwesomeIcon icon={faCamera} style={styles.icon} />
                     </View>
                 </View>
                 {/* style={[styles.textBox, cost < 500 ? styles.textBoxLow : styles.textBoxHigh]} */}
                 <View style={styles.topView2}>
-                    <Text style={styles.mainSubtitle}>{TripsArray[tripID].date}</Text>
+                    <Text style={styles.mainSubtitle}>{date}</Text>
                     <View style={styles.notes}>
-                        <Text style={styles.mainSubtitle}>{TripsArray[tripID].nNotes}</Text>
+                        <Text style={styles.mainSubtitle}>{nNotes}</Text>
                         <FontAwesomeIcon icon={faNoteSticky} style={styles.icon} />
                     </View>
                 </View>

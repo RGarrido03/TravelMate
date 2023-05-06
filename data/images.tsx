@@ -75,7 +75,7 @@ const images: Photo[] = [
         image: require("../assets/images/eleven.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: "Lorem ipsum dolor sit amet",
+        note: "nkdfvxzpk",
         isFavorite: false,
     },
 ];
@@ -105,9 +105,81 @@ const images2: Photo[] = [
     },
 ];
 
+const images3: Photo[] = [
+    {
+        image: require("../assets/images/one.png"),
+        date: "2022-08-03",
+        hour: "12:00",
+        note: "Lorem ipsum dolor sit amet",
+        isFavorite: true,
+    },
+    {
+        image: require("../assets/images/two.png"),
+        date: "2022-08-03",
+        hour: "12:00",
+        note: null,
+        isFavorite: false,
+    },
+    {
+        image: require("../assets/images/eight.png"),
+        date: "2022-08-03",
+        hour: "12:00",
+        note: "Lorem ipsum dolor sit amet",
+        isFavorite: false,
+    },
+    {
+        image: require("../assets/images/nine.png"),
+        date: "2022-08-03",
+        hour: "12:00",
+        note: "Lorem ipsum dolor sit amet",
+        isFavorite: false,
+    },
+    {
+        image: require("../assets/images/ten.png"),
+        date: "2022-08-03",
+        hour: "12:00",
+        note: "Lorem ipsum dolor sit amet",
+        isFavorite: false,
+    },
+    {
+        image: require("../assets/images/eleven.png"),
+        date: "2022-08-03",
+        hour: "12:00",
+        note: "Lorem ipsum dolor sit amet",
+        isFavorite: false,
+    },
+];
+
+const images4: Photo[] = [
+
+    {
+        image: require("../assets/images/nine.png"),
+        date: "2022-08-03",
+        hour: "12:00",
+        note: "Lorem ipsum dolor sit amet",
+        isFavorite: false,
+    },
+    {
+        image: require("../assets/images/ten.png"),
+        date: "2022-08-03",
+        hour: "12:00",
+        note: "Lorem ipsum dolor sit amet",
+        isFavorite: false,
+    },
+    {
+        image: require("../assets/images/eleven.png"),
+        date: "2022-08-03",
+        hour: "12:00",
+        note: "Lorem ipsum dolor sit amet",
+        isFavorite: false,
+    },
+];
+
 const imageMap: { [key: number]: Photo[] } = {
     0: images,
     1: images2,
+    2: images3,
+    3: images4,
 };
 
 export const loadImagesByKey = (key: number): Photo[] => {

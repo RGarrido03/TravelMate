@@ -96,7 +96,7 @@ export default function App() {
                                         city={item.city}
                                         nPhotos={loadImagesByKey(index).length}
                                         nNotes={item.nNotes}
-                                        newNavigation={("/tripDetails?id=" + index)}
+                                        newNavigation={("/tripDetails?tripID=" + index)}
                                         key={index}
                                     />
                                 );
