@@ -134,7 +134,7 @@ export default function () {
         <View style={styles.view}>
             <LinkButton
             title={"Related photos"}
-            newNavigation={"/photos/index.tsx"}
+            newNavigation={"/photos"}
             icon={faCamera}
             />
             <LinkButton
@@ -163,12 +163,12 @@ export default function () {
         <View style={styles.view}>
             <LinkButton
             title={"Add cover photo"}
-            newNavigation={"/photos/index.tsx"}
+            newNavigation={"/photos"}
             icon={faPlus}
             />
             <LinkButton
             title={"Related photos"}
-            newNavigation={"/photos/index.tsx"}
+            newNavigation={"/photos"}
             icon={faCamera}
             />
             <LinkButton

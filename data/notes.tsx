@@ -3,7 +3,7 @@ const notes: Note[] = [];
 export type Note = {
     title: string;
     content: string;
-    image: string;
+    image: any;
     date: string;
     texto: string;
 };
