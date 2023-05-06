@@ -15,6 +15,7 @@ import { Header } from "../../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { useSearchParams } from "expo-router";
 import { loadImagesByKey } from "../../data/images";
+import { loadNotesByIdx } from "../../data/notes";
 
 export default function () {
     const insets: EdgeInsets = useSafeAreaInsets();
@@ -28,7 +29,7 @@ export default function () {
     const [city] = useState<string>(TripsArray[tripID].city);
     const [date] = useState<string>(TripsArray[tripID].date);
     const [nPhotos] = useState<number>(loadImagesByKey(tripID).length);
-    const [nNotes] = useState<number>(TripsArray[tripID].nNotes);
+    const [nNotes] = useState<number>(loadNotesByIdx(tripID).length);
 
     const styles = StyleSheet.create({
         photo: {
@@ -143,7 +144,7 @@ export default function () {
                         <LinkButton title={"Photos"} newNavigation={"../photos?id=" + tripID} icon={faCamera} />
                         <LinkButton
                             title={"Notes"}
-                            newNavigation={"../notes"}
+                            newNavigation={"../notes?id=" + tripID}
                             icon={faNoteSticky}
                         />
                         <LinkButton title={"POIs"} newNavigation={"../pois"} icon={faLocationPin} />

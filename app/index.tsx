@@ -1,7 +1,6 @@
 
 import { StyleSheet, View, Text, ScrollView, useColorScheme } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
-import { loadInitialNotes } from "../data/notes";
 import { Trips, getCurrentTrips, loadInitialTrips } from "../data/trips";
 import { WishList, getCurrentWishList, loadInitialWishList } from "../data/wishList";
 import { loadInitialPOIs } from "../data/pois";
@@ -11,9 +10,9 @@ import { Header } from "../components/Header";
 import { WishButton } from "../components/WishButton";
 import { TripsButton } from "../components/TripButton";
 import { loadImagesByKey } from "../data/images";
+import { loadNotesByIdx } from "../data/notes";
 
 export default function App() {
-    loadInitialNotes();
     loadInitialPOIs();
     loadInitialExpenses();
     loadInitialTrips();
@@ -95,7 +94,7 @@ export default function App() {
                                         date={item.date}
                                         city={item.city}
                                         nPhotos={loadImagesByKey(index).length}
-                                        nNotes={item.nNotes}
+                                        nNotes={loadNotesByIdx(index).length}
                                         newNavigation={("/tripDetails?tripID=" + index)}
                                         key={index}
                                     />

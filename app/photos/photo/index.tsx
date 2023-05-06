@@ -8,7 +8,8 @@ import {
 } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
-import { getCurrentImages, deleteImage, setFavorite, Photo, setNote, loadImagesByKey } from "../../../data/images";
+import { deleteImage, setFavorite, Photo, loadImagesByKey } from "../../../data/images";
+import { addNote, Note, loadNotesByIdx, updateNote } from "../../../data/notes";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faNoteSticky, faTrash, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useRouter, useSearchParams } from "expo-router";
@@ -25,10 +26,43 @@ export default function () {
 
     const [imagesArray] = useState<Photo[]>(loadImagesByKey(tripID)); // Images array
 
+    // Notes
+    const [notesArray] = useState<Note[]>(loadNotesByIdx(tripID));
+
+    const hasImage = notesArray.some((note) => note.image === imagesArray[id].image);
+    
+    const [text, setText] = useState<string>(
+        hasImage ? notesArray.find((note) => note.image === imagesArray[id].image).text : ""
+    );
+    const [title, setTitle] = useState<string>(
+        hasImage ? notesArray.find((note) => note.image === imagesArray[id].image).title : ""
+    );
+    const [content, setContent] = useState<string>(
+        hasImage ? notesArray.find((note) => note.image === imagesArray[id].image).content : ""
+    );
     const [isFavorite, setIsFavorite] = useState<boolean>(imagesArray[id].isFavorite);
 
     // Notes modal
     const [modalVisible, setModalVisible] = useState<boolean>(false);
+    const currentDate = new Date();
+    const date = currentDate.getDate();
+
+    const handleAddNote = (data): void => {
+        const newNote: Note = {
+            title: data.title,
+            content: data.content,
+            image: imagesArray[id].image,
+            date: date.toString(),
+            text: data.text,
+        };
+        if (hasImage) {
+            updateNote(tripID, id, newNote);
+        } else {
+            addNote(tripID, newNote);
+        }
+
+        setModalVisible(false);
+    };
 
     const styles = StyleSheet.create({
         photoView: {
@@ -77,10 +111,13 @@ export default function () {
             <AddNotesModal
                 visible={modalVisible}
                 onClose={() => setModalVisible(false)}
-                onSave={(text: string): void => {
-                    setNote(tripID,id, text);
-                }}
-                index={id}
+                onSave={handleAddNote}
+                text={text}
+                title={title}
+                setText={setText}
+                setTitle={setTitle}
+                content={content}
+                setContent={setContent}
             />
             <View style={styles.photoView}>
                 <Image source={imagesArray[id].image as ImageSourcePropType} style={styles.photo} />

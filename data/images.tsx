@@ -1,106 +1,92 @@
 import { ImageSourcePropType } from "react-native";
 
+export type Photo = {
+    image: ImageSourcePropType;
+    date: string;
+    hour: string;
+    isFavorite: boolean;
+};
+
 const images: Photo[] = [
     {
         image: require("../assets/images/one.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: "Lorem ipsum dolor sit amet",
         isFavorite: true,
     },
     {
         image: require("../assets/images/two.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: null,
         isFavorite: false,
     },
     {
         image: require("../assets/images/three.png"),
         date: "2022-08-04",
         hour: "12:00",
-        note: "Lorem ipsum dolor sit amet",
         isFavorite: false,
     },
     {
         image: require("../assets/images/four.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: "Lorem ipsum dolor sit amet",
         isFavorite: false,
     },
     {
         image: require("../assets/images/five.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: "Lorem ipsum dolor sit amet",
         isFavorite: false,
     },
     {
         image: require("../assets/images/six.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: "Lorem ipsum dolor sit amet",
         isFavorite: false,
     },
     {
         image: require("../assets/images/seven.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: "Lorem ipsum dolor sit amet",
         isFavorite: false,
     },
     {
         image: require("../assets/images/eight.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: "Lorem ipsum dolor sit amet",
         isFavorite: false,
     },
     {
         image: require("../assets/images/nine.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: "Lorem ipsum dolor sit amet",
         isFavorite: false,
     },
     {
         image: require("../assets/images/ten.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: "Lorem ipsum dolor sit amet",
         isFavorite: false,
     },
     {
         image: require("../assets/images/eleven.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: "nkdfvxzpk",
         isFavorite: false,
     },
 ];
-
-export type Photo = {
-    image: ImageSourcePropType;
-    date: string;
-    hour: string;
-    note: string;
-    isFavorite: boolean;
-};
 
 const images2: Photo[] = [
     {
         image: require("../assets/images/one.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: "Lorem ipsum dolor sit amet",
         isFavorite: true,
     },
     {
         image: require("../assets/images/two.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: null,
         isFavorite: false,
     },
 ];
@@ -110,42 +96,36 @@ const images3: Photo[] = [
         image: require("../assets/images/one.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: "Lorem ipsum dolor sit amet",
         isFavorite: true,
     },
     {
         image: require("../assets/images/two.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: null,
         isFavorite: false,
     },
     {
         image: require("../assets/images/eight.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: "Lorem ipsum dolor sit amet",
         isFavorite: false,
     },
     {
         image: require("../assets/images/nine.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: "Lorem ipsum dolor sit amet",
         isFavorite: false,
     },
     {
         image: require("../assets/images/ten.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: "Lorem ipsum dolor sit amet",
         isFavorite: false,
     },
     {
         image: require("../assets/images/eleven.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: "Lorem ipsum dolor sit amet",
         isFavorite: false,
     },
 ];
@@ -156,21 +136,18 @@ const images4: Photo[] = [
         image: require("../assets/images/nine.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: "Lorem ipsum dolor sit amet",
         isFavorite: false,
     },
     {
         image: require("../assets/images/ten.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: "Lorem ipsum dolor sit amet",
         isFavorite: false,
     },
     {
         image: require("../assets/images/eleven.png"),
         date: "2022-08-03",
         hour: "12:00",
-        note: "Lorem ipsum dolor sit amet",
         isFavorite: false,
     },
 ];
@@ -184,10 +161,6 @@ const imageMap: { [key: number]: Photo[] } = {
 
 export const loadImagesByKey = (key: number): Photo[] => {
     return imageMap[key] || [];
-};
-
-export const getCurrentImages = (): Photo[] => {
-    return images;
 };
 
 export const addImage = (key: number, photo: Photo): void => {
@@ -209,12 +182,5 @@ export const setFavorite = (key: number, idx: number, isFavorite: boolean): void
     const imagesForKey = imageMap[key];
     if (imagesForKey) {
         imagesForKey[idx].isFavorite = isFavorite;
-    }
-};
-
-export const setNote = (key: number, idx: number, note: string): void => {
-    const imagesForKey = imageMap[key];
-    if (imagesForKey) {
-        imagesForKey[idx].note = note;
     }
 };

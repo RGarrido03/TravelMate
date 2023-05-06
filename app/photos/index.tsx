@@ -1,7 +1,7 @@
 import { Image, StyleSheet, View, useColorScheme, ScrollView, Text, Pressable } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useCallback, useState } from "react";
-import { getCurrentImages, loadImagesByKey, Photo } from "../../data/images";
+import { loadImagesByKey, Photo } from "../../data/images";
 import { useRouter, useFocusEffect, useSearchParams } from "expo-router";
 import { Header } from "../../components/Header";
 

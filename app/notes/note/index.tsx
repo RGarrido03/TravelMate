@@ -1,20 +1,29 @@
-import { Image, View, Text, useColorScheme, ScrollView, StyleSheet, ImageSourcePropType } from "react-native";
+import {
+    Image,
+    View,
+    useColorScheme,
+    ScrollView,
+    StyleSheet,
+    ImageSourcePropType,
+} from "react-native";
 import { SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { Header } from "../../../components/Header";
 import { LinkButton } from "../../../components/LinkButton";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
-import { getCurrentNotes } from "../../../data/notes";
 import { useState } from "react";
 import { useSearchParams } from "expo-router";
 import { TextInput } from "react-native-gesture-handler";
+import { loadNotesByIdx } from "../../../data/notes";
 
-export default ({ title, image, date, texto  }: Props) => {
+export default ({ title, image, date, texto }: Props) => {
     const isLightMode: boolean = useColorScheme() === "light";
     const insets = useSafeAreaInsets();
-    const [notesArray, setNotesArray] = useState(getCurrentNotes());
-
+  
     const searchParams: Partial<URLSearchParams> = useSearchParams();
-    const id: number = parseInt(searchParams["id"][0]);
+    const id: number = searchParams?.["id"] ? parseInt(searchParams["id"]) : 0;
+    const tripID: number = searchParams?.["tripID"] ? parseInt(searchParams["tripID"][0]) : 0;
+
+    const [notesArray, setNotesArray] = useState(loadNotesByIdx(tripID));
 
     const styles = StyleSheet.create({
         container: {
@@ -96,65 +105,52 @@ export default ({ title, image, date, texto  }: Props) => {
             backgroundColor: "#60BBB6",
             borderColor: "#60BBB6",
             marginBottom: 16,
-        }
+        },
+    });
 
-    })
-    
-
-    if (notesArray[id]) {
-      if (notesArray[id].image) {
-    return (
-      <SafeAreaProvider>
-        <Header title={"Note"} hasBackButton={true} rightText={notesArray[id].date} />
-        <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-          <Image source={notesArray[id].image as ImageSourcePropType} style={styles.photo} />
-          <View style={styles.marginBottom}>
-            <TextInput style={styles.Title}>{notesArray[id].title}</TextInput>
-            <TextInput multiline={true} style={styles.Subtitle}>{notesArray[id].texto}</TextInput>
-          </View>
-          <LinkButton
-            title={"Add related photos"}
-            newNavigation={"/photos"}
-            icon={faCamera}
-          />
-        </ScrollView>
-      </SafeAreaProvider>
-    );
-  } else {
-    return (
-      <SafeAreaProvider>
-        <Header title={"Note"} hasBackButton={true} rightText={notesArray[id].date} />
-        <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-          <View style={styles.marginBottom}>
-            <TextInput style={styles.Title}>{notesArray[id].title}</TextInput>
-            <TextInput multiline={true} style={styles.Subtitle}>{notesArray[id].texto}</TextInput>
-          </View>
-          <LinkButton
-            title={"Add related photos"}
-            newNavigation={"/photos"}
-            icon={faCamera}
-          />
-        </ScrollView>
-      </SafeAreaProvider>
-    );
-  } } else {
-    return (
-      <SafeAreaProvider>
-        <Header title={"Note"} hasBackButton={true} rightText={"23-05-2023"} />
-        <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-          <View style={styles.marginBottom}>
-            <TextInput style={styles.Title}>New Note</TextInput>
-            <TextInput multiline={true} style={styles.Subtitle} placeholder="Click here to edit" placeholderTextColor={isLightMode ? "#3B4949" : "#fff"}></TextInput>
-          </View>
-          <LinkButton
-            title={"Add related photos"}
-            newNavigation={"/photos"}
-            icon={faCamera}
-          />
-        </ScrollView>
-      </SafeAreaProvider>
-    );
-  }
+    if (notesArray[id].image) {
+        return (
+            <SafeAreaProvider>
+                <Header title={"Note"} hasBackButton={true} rightText={notesArray[id].date} />
+                <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+                    <Image
+                        source={notesArray[id].image}
+                        style={styles.photo}
+                    />
+                    <View style={styles.marginBottom}>
+                        <TextInput style={styles.Title}>{notesArray[id].title}</TextInput>
+                        <TextInput multiline={true} style={styles.Subtitle}>
+                            {notesArray[id].text}
+                        </TextInput>
+                    </View>
+                    <LinkButton
+                        title={"Add related photos"}
+                        newNavigation={"../photos"}
+                        icon={faCamera}
+                    />
+                </ScrollView>
+            </SafeAreaProvider>
+        );
+    } else {
+        return (
+            <SafeAreaProvider>
+                <Header title={"Note"} hasBackButton={true} rightText={notesArray[id].date} />
+                <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+                    <View style={styles.marginBottom}>
+                        <TextInput style={styles.Title}>{notesArray[id].title}</TextInput>
+                        <TextInput multiline={true} style={styles.Subtitle}>
+                            {notesArray[id].text}
+                        </TextInput>
+                    </View>
+                    <LinkButton
+                        title={"Add related photos"}
+                        newNavigation={"../photos"}
+                        icon={faCamera}
+                    />
+                </ScrollView>
+            </SafeAreaProvider>
+        );
+    }
 };
 
 interface Props {

@@ -13,19 +13,29 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { styles } from "./styles";
 import { BlurView } from "expo-blur";
 import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
-import { getCurrentImages } from "../../data/images";
 
-export const AddNotesModal = ({ visible, onClose, onSave, index }) => {
+export const AddNotesModal = ({
+    visible,
+    onClose,
+    onSave,
+    text,
+    title,
+    setText,
+    setTitle,
+    content,
+    setContent,
+}) => {
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
-    const [text, setText] = useState<string>(getCurrentImages()[index].note);
 
     const handleSave = (): void => {
-        onSave(text);
+        onSave({ title, text, content });
         onClose();
+        setText("");
+        setTitle("");
+        setContent("");
     };
 
     const handleClose = (): void => {
-        setText(getCurrentImages()[index].note);
         onClose();
     };
 
@@ -75,10 +85,32 @@ export const AddNotesModal = ({ visible, onClose, onSave, index }) => {
                     </View>
 
                     <TextInput
+                        value={title}
+                        onChangeText={setTitle}
+                        placeholder="Title"
+                        style={[styles.textInput, textBoxColor, textColor, { marginBottom: 16 }]}
+                        multiline={false}
+                        placeholderTextColor={placeholderTextColor.color}
+                    />
+                    <TextInput
+                        value={content}
+                        onChangeText={setContent}
+                        placeholder="Subtitle"
+                        style={[styles.textInput, textBoxColor, textColor, { marginBottom: 16 }]}
+                        multiline={false}
+                        placeholderTextColor={placeholderTextColor.color}
+                    />
+
+                    <TextInput
                         value={text}
                         onChangeText={setText}
                         placeholder="Notes"
-                        style={[styles.textInput, textBoxColor, textColor]}
+                        style={[
+                            styles.textInput,
+                            textBoxColor,
+                            textColor,
+                            { height: 200, textAlignVertical: "top" },
+                        ]}
                         multiline={true}
                         placeholderTextColor={placeholderTextColor.color}
                     />

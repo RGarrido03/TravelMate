@@ -1,14 +1,20 @@
 import { StyleSheet, View, useColorScheme, ScrollView, Button, Text } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
-import { getCurrentNotes, deleteNote, Note } from "../../data/notes";
+import { deleteNote, Note, loadNotesByIdx } from "../../data/notes";
 import { NotesButton } from "../../components/NotesButton";
 import { Header } from "../../components/Header";
+import { useSearchParams } from "expo-router";
 
 export default function () {
     const isLightMode: boolean = useColorScheme() === "light";
     const insets: EdgeInsets = useSafeAreaInsets();
-    const [notesArray, setNotesArray] = useState<Note[]>(getCurrentNotes());
+
+    const searchParams: Partial<URLSearchParams> = useSearchParams();
+    const tripID: number = searchParams?.["id"] ? parseInt(searchParams["id"]) : 0;
+    
+
+    const [notesArray, setNotesArray] = useState<Note[]>(loadNotesByIdx(tripID)); // Images array
 
     const styles = StyleSheet.create({
         scrollView: {
@@ -37,7 +43,7 @@ export default function () {
             content: "Click to edit!", 
             image: null,
             date: null,
-            texto: null
+            text: null
         };
         setNotesArray([...notesArray, newNote]);
     };
@@ -77,8 +83,8 @@ export default function () {
                 <Button
                     title={"TEST: Delete the first note"}
                     onPress={() => {
-                        setNotesArray(getCurrentNotes().slice(0));
-                        deleteNote(0);
+                        setNotesArray(loadNotesByIdx(tripID).slice(0));
+                        deleteNote(tripID,0);
                     }}
                 />
             </ScrollView>
