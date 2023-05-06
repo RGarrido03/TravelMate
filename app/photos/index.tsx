@@ -1,17 +1,21 @@
 import { Image, StyleSheet, View, useColorScheme, ScrollView, Text, Pressable } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useCallback, useState } from "react";
-import { getCurrentImages, Photo } from "../../data/images";
-import { useRouter, useFocusEffect } from "expo-router";
+import { getCurrentImages, loadImagesByKey, Photo } from "../../data/images";
+import { useRouter, useFocusEffect, useSearchParams } from "expo-router";
 import { Header } from "../../components/Header";
 
 export default function () {
+    
     const isLightMode: boolean = useColorScheme() === "light";
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
     const navigation = useRouter();
 
+    const searchParams: Partial<URLSearchParams> = useSearchParams();
+    const tripID: number = searchParams?.["id"] ? parseInt(searchParams["id"][0]) : 0;
+
     const [containerWidth, setContainerWidth] = useState<number>(0); // Grid container dimensions hook
-    const [imagesArray, setImagesArray] = useState<Photo[]>([]); // Images array
+    const [imagesArray, setImagesArray] = useState<Photo[]>(loadImagesByKey(tripID)); // Images array
 
     // Get container width during component creation
     const onLayout = (event): void => {
@@ -22,7 +26,7 @@ export default function () {
 
     useFocusEffect(
         useCallback((): void => {
-            setImagesArray(getCurrentImages().slice());
+            setImagesArray(loadImagesByKey(tripID).slice());
         }, []) // Empty callback to avoid infinite loop
     );
 

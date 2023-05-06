@@ -14,6 +14,7 @@ import { useState } from "react";
 import { Header } from "../../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { useSearchParams } from "expo-router";
+import { loadImagesByKey } from "../../data/images";
 
 export default function () {
     const insets: EdgeInsets = useSafeAreaInsets();
@@ -100,7 +101,7 @@ export default function () {
                 <View style={styles.topView}>
                     <Text style={styles.mainTitle}>{TripsArray[tripID].city}</Text>
                     <View style={styles.notes}>
-                        <Text style={styles.mainSubtitle}>{TripsArray[tripID].nPhotos}</Text>
+                        <Text style={styles.mainSubtitle}>{loadImagesByKey(tripID).length}</Text>
                         <FontAwesomeIcon icon={faCamera} style={styles.icon} />
                     </View>
                 </View>
@@ -132,7 +133,7 @@ export default function () {
                     <Text style={styles.title}>Main options</Text>
                     <View style={styles.column}>
                         
-                        <LinkButton title={"Photos"} newNavigation={"../photos"} icon={faCamera} />
+                        <LinkButton title={"Photos"} newNavigation={"../photos?id=" + tripID} icon={faCamera} />
                         <LinkButton
                             title={"Notes"}
                             newNavigation={"../notes"}
