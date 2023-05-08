@@ -97,19 +97,14 @@ export default function () {
         },
     });
 
-
-    
     return (
         <SafeAreaProvider>
-            <Header
-                title={"TravelMate"}
-                hasAddButton={true}
-                addFunction={() => alert("Not implemented yet.")}
-                
-            />
+            <Header title={"Trip details"} hasBackButton={true} />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 <View style={styles.topView}>
-                    <Text style={styles.mainTitle}>{city} {}</Text>
+                    <Text style={styles.mainTitle}>
+                        {city} {}
+                    </Text>
                     <View style={styles.notes}>
                         <Text style={styles.mainSubtitle}>{nPhotos}</Text>
                         <FontAwesomeIcon icon={faCamera} style={styles.icon} />
@@ -126,7 +121,10 @@ export default function () {
                 <Pressable onPress={() => navigation.push("photos/photo?id=" + 0 + "&tripID=" + 0)}>
                     <View style={styles.view}>
                         <Text style={styles.title}>Featured photo</Text>
-                        <Image style={styles.photo} source={require("../../assets/images/one.png")} />
+                        <Image
+                            style={styles.photo}
+                            source={require("../../assets/images/one.png")}
+                        />
                     </View>
                 </Pressable>
                 <View style={styles.view}>
@@ -140,12 +138,15 @@ export default function () {
                         key={"poi2"}
                     />
                 </View>
-                
+
                 <View style={styles.buttonsView}>
                     <Text style={styles.title}>Main options</Text>
                     <View style={styles.column}>
-                        
-                        <LinkButton title={"Photos"} newNavigation={"../photos?id=" + tripID} icon={faCamera} />
+                        <LinkButton
+                            title={"Photos"}
+                            newNavigation={"../photos?id=" + tripID}
+                            icon={faCamera}
+                        />
                         <LinkButton
                             title={"Notes"}
                             newNavigation={"../notes?id=" + tripID}
@@ -157,7 +158,6 @@ export default function () {
                             newNavigation={"../expenses"}
                             icon={faMoneyBill}
                         />
-                        
                     </View>
                 </View>
             </ScrollView>

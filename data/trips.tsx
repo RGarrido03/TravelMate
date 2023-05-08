@@ -1,13 +1,12 @@
-
 const Trips: Trips[] = [];
 
 export type Trips = {
-    city: string,
-    date: string,
-    budget: number,
+    city: string;
+    date: string;
+    budget: number;
 };
 
-export const loadInitialTrips= (): void => {
+export const loadInitialTrips = (): void => {
     Trips.length = 0;
     Trips.push({
         city: "Ibiza Island, Spain 🇪🇸",
@@ -25,7 +24,7 @@ export const loadInitialTrips= (): void => {
         budget: null,
     });
     Trips.push({
-        city: "kyiv, Ukraine 🇺🇦",
+        city: "Kyiv, Ukraine 🇺🇦",
         date: "January 4-25, 2021",
         budget: 1000,
     });
@@ -38,5 +37,3 @@ export const getCurrentTrips = (): Trips[] => {
 export const addTrip = (trip: Trips): void => {
     Trips.push(trip);
 };
-
-
