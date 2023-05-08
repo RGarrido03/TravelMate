@@ -11,7 +11,7 @@ export const loadInitialWishList= (): void => {
         city: "Stockholm, Sweden 🇸🇪",
     });
     WishList.push({
-        city: "prague, Czech Republic 🇨🇿",
+        city: "Prague, Czech Republic 🇨🇿",
     });
 
 };
