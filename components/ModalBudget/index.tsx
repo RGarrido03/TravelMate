@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     View,
     Text,
@@ -14,17 +14,14 @@ import { styles } from "./styles";
 import { BlurView } from "expo-blur";
 import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
 
-
-export const BudgetModal = ({ visible, onClose, onSave, budget, setBudget } : Props) => {
+export const BudgetModal = ({ visible, onClose, onSave, budget, setBudget }: Props) => {
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
-
 
     const handleClose = (): void => {
         onClose();
     };
-    
 
-    const handleSave  = (): void => {
+    const handleSave = (): void => {
         onSave({ budget });
         onClose();
     };
@@ -50,7 +47,7 @@ export const BudgetModal = ({ visible, onClose, onSave, budget, setBudget } : Pr
                 style={styles.modalBackground}
                 keyboardVerticalOffset={insets.top}
             >
-                <BlurView style={[styles.modalContent, modalContentColor]}>
+                <BlurView style={[styles.modalContent, modalContentColor]} blurReductionFactor={2}>
                     <View
                         style={{
                             flexDirection: "row",
