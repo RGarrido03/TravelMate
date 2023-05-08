@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, ScrollView, useColorScheme, Button } from "react-native";
+import { StyleSheet, View, Text, ScrollView, useColorScheme } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { TripsButton } from "../../components/TripButton";
 import { WishButton } from "../../components/WishButton";

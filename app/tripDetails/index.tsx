@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, Text, ScrollView, useColorScheme } from "react-native";
+import { StyleSheet, View, Image, Text, ScrollView, useColorScheme, Pressable } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { LinkButton } from "../../components/LinkButton";
 import {
@@ -13,7 +13,7 @@ import { POIsButton } from "../../components/POIsButton";
 import { useState } from "react";
 import { Header } from "../../components/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { useSearchParams } from "expo-router";
+import { useRouter, useSearchParams } from "expo-router";
 import { loadImagesByKey } from "../../data/images";
 import { loadNotesByIdx } from "../../data/notes";
 
@@ -21,6 +21,8 @@ export default function () {
     const insets: EdgeInsets = useSafeAreaInsets();
     const isLightMode: boolean = useColorScheme() === "light";
     const [POIsArray] = useState<POIs[]>(getCurrentPOIs());
+
+    const navigation = useRouter();
 
     const [TripsArray] = useState<Trips[]>(getCurrentTrips());
     const searchParams: Partial<URLSearchParams> = useSearchParams();
@@ -121,10 +123,12 @@ export default function () {
                         <FontAwesomeIcon icon={faNoteSticky} style={styles.icon} />
                     </View>
                 </View>
-                <View style={styles.view}>
-                    <Text style={styles.title}>Featured photo</Text>
-                    <Image style={styles.photo} source={require("../../assets/images/one.png")} />
-                </View>
+                <Pressable onPress={() => navigation.push("photos/photo?id=" + 0 + "&tripID=" + 0)}>
+                    <View style={styles.view}>
+                        <Text style={styles.title}>Featured photo</Text>
+                        <Image style={styles.photo} source={require("../../assets/images/one.png")} />
+                    </View>
+                </Pressable>
                 <View style={styles.view}>
                     <Text style={styles.title}>Featured POI</Text>
                     <POIsButton
