@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { loadImagesByKey, Photo } from "../../data/images";
 import { useRouter, useFocusEffect, useSearchParams } from "expo-router";
 import { Header } from "../../components/Header";
+import * as ImagePicker from 'expo-image-picker';
 
 export default function () {
     
@@ -19,6 +20,24 @@ export default function () {
 
     const [animatedValue, setAnimatedValue] = useState(new Animated.Value(0));
 
+    const openImagePicker = async () => {
+        const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== 'granted') {
+          alert('Sorry, we need camera roll permissions to make this work!');
+          return;
+        }
+      
+        const result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.Images,
+          allowsEditing: true,
+          quality: 1,
+        });
+      
+        if (!result.canceled) {
+          // Do something with the selected image
+        }
+      };
+      
     useEffect(() => {
         Animated.timing(animatedValue, {
             toValue: 1,
@@ -81,7 +100,7 @@ export default function () {
                 title={"Photos"}
                 hasBackButton={true}
                 hasAddButton={true}
-                addFunction={() => alert("Not implemented yet.")}
+                addFunction={openImagePicker}
             />
             <Animated.View style={[animatedStyle]}>
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
