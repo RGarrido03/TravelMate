@@ -2,12 +2,9 @@ import { TouchableOpacity, View, Text, useColorScheme } from "react-native";
 import { styles } from "./styles";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { useRouter } from "expo-router";
-import {
-    faCamera,
-    faNoteSticky,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCamera, faNoteSticky } from "@fortawesome/free-solid-svg-icons";
 
-export const TripsButton = ({ city, nPhotos, nNotes, date, newNavigation}: Props) => {
+export const TripsButton = ({ city, nPhotos, nNotes, date, onPress }: Props) => {
     const navigation = useRouter();
     const isLightMode: boolean = useColorScheme() === "light";
     const textColor = isLightMode ? styles.textLight : styles.textDark;
@@ -16,7 +13,7 @@ export const TripsButton = ({ city, nPhotos, nNotes, date, newNavigation}: Props
     return (
         <TouchableOpacity
             activeOpacity={0.5}
-            onPress={() => navigation.push(newNavigation)}
+            onPress={onPress}
             style={[styles.container, containerColor]}
         >
             <View style={styles.view}>
@@ -26,7 +23,7 @@ export const TripsButton = ({ city, nPhotos, nNotes, date, newNavigation}: Props
                     <Text style={[styles.subtitle, textColor]}>{date}</Text>
                 </View>
 
-                <View style={{ flexDirection: "column"  }}>
+                <View style={{ flexDirection: "column" }}>
                     <View style={styles.notes}>
                         <Text style={[styles.info, textColor]}>{nPhotos}</Text>
                         <FontAwesomeIcon icon={faCamera} style={textColor} />
@@ -46,5 +43,5 @@ interface Props {
     city: string;
     nPhotos: number;
     nNotes: number;
-    newNavigation: string;
+    onPress: any;
 }
