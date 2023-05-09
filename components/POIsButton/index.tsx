@@ -1,8 +1,9 @@
-import { Image, Text, TouchableOpacity, useColorScheme, View } from "react-native";
+import { Animated, Image, Text, TouchableOpacity, useColorScheme, View } from "react-native";
 import { styles } from "./styles";
 import { useRouter } from "expo-router";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { useState, useEffect } from "react";
 
 export const POIsButton = ({ title, icon, date, image, newNavigation }: Props) => {
     const navigation = useRouter();
@@ -11,7 +12,22 @@ export const POIsButton = ({ title, icon, date, image, newNavigation }: Props) =
     const containerColor = isLightMode ? styles.containerLight : styles.containerDark;
     const imageColor = isLightMode ? styles.imageLight : styles.imageDark;
 
+    const [animatedValue, setAnimatedValue] = useState(new Animated.Value(0));
+
+    useEffect(() => {
+        Animated.timing(animatedValue, {
+            toValue: 1,
+            duration: 200,
+            useNativeDriver: true,
+        }).start();
+    }, [icon, date, title, image]);
+
+    const animatedStyle = {
+        transform: [{ scale: animatedValue }],
+    };
+    
     return (
+        <Animated.View style={[animatedStyle]}>
         <TouchableOpacity
             activeOpacity={0.5}
             onPress={() => navigation.push(newNavigation)}
@@ -28,6 +44,7 @@ export const POIsButton = ({ title, icon, date, image, newNavigation }: Props) =
                 {image && <Image source={image} style={[styles.image, imageColor]} />}
             </View>
         </TouchableOpacity>
+        </Animated.View>
     );
 };
 

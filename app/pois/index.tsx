@@ -111,13 +111,13 @@ export default function () {
                         <Text style={{ fontWeight: "300" }}>Add one by pressing the + icon.</Text>
                     </View>
                 )}
-                <Button
+                {/* <Button
                     title={"TEST: Delete the first POI"}
                     onPress={() => {
                         setPOIsArray(getCurrentPOIs().slice(1));
                         deletePOIs(1);
                     }}
-                />
+                /> */}
             <AddPoiModal
                     visible={modalVisible}
                     onClose={() => setModalVisible(false)}

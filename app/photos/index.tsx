@@ -1,6 +1,6 @@
-import { Image, StyleSheet, View, useColorScheme, ScrollView, Text, Pressable } from "react-native";
+import { Image, StyleSheet, View, useColorScheme, ScrollView, Text, Pressable, Animated } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { loadImagesByKey, Photo } from "../../data/images";
 import { useRouter, useFocusEffect, useSearchParams } from "expo-router";
 import { Header } from "../../components/Header";
@@ -16,6 +16,20 @@ export default function () {
 
     const [containerWidth, setContainerWidth] = useState<number>(0); // Grid container dimensions hook
     const [imagesArray, setImagesArray] = useState<Photo[]>(loadImagesByKey(tripID)); // Images array
+
+    const [animatedValue, setAnimatedValue] = useState(new Animated.Value(0));
+
+    useEffect(() => {
+        Animated.timing(animatedValue, {
+            toValue: 1,
+            duration: 200,
+            useNativeDriver: true,
+        }).start();
+    }, );
+
+    const animatedStyle = {
+        transform: [{ scale: animatedValue }],
+    };
 
     // Get container width during component creation
     const onLayout = (event): void => {
@@ -69,6 +83,7 @@ export default function () {
                 hasAddButton={true}
                 addFunction={() => alert("Not implemented yet.")}
             />
+            <Animated.View style={[animatedStyle]}>
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 {imagesArray.length > 0 ? ( // If there are photos, show them
                     <View onLayout={onLayout} style={styles.view} key={"imgGrid"}>
@@ -84,6 +99,7 @@ export default function () {
                             );
                         })}
                     </View>
+                    
                 ) : (
                     // Message shown when there are no photos in the array.
                     <View style={{ alignItems: "center", justifyContent: "center" }}>
@@ -94,6 +110,7 @@ export default function () {
                     </View>
                 )}
             </ScrollView>
+            </Animated.View>
         </SafeAreaProvider>
     );
 }

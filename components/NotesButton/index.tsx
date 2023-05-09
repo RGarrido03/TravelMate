@@ -15,7 +15,7 @@ export const NotesButton = ({ newNavigation, subtitle, title, image }: Props) =>
     useEffect(() => {
         Animated.timing(animatedValue, {
             toValue: 1,
-            duration: 500,
+            duration: 200,
             useNativeDriver: true,
         }).start();
     }, [subtitle, title, image]);

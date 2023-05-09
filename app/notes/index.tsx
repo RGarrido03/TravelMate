@@ -80,13 +80,13 @@ export default function () {
                     </View>
                 )}
 
-                <Button
+                {/* <Button
                     title={"TEST: Delete the first note"}
                     onPress={() => {
                         setNotesArray(loadNotesByIdx(tripID).slice(0));
                         deleteNote(tripID,0);
                     }}
-                />
+                /> */}
             </ScrollView>
         </SafeAreaProvider>
     );

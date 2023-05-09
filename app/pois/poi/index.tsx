@@ -132,7 +132,7 @@ export default function () {
         if (poisArray[id].image) {
         return (
             <SafeAreaProvider>
-            <Header title={"Note"} hasBackButton={true} rightText={poisArray[id].date} />
+            <Header title={"POI"} hasBackButton={true} rightText={poisArray[id].date} />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 <Image source={poisArray[id].image as ImageSourcePropType} style={styles.photo} />
                 <View style={styles.marginBottom}>
@@ -170,7 +170,7 @@ export default function () {
         } else {
         return (
             <SafeAreaProvider>
-            <Header title={"Note"} hasBackButton={true} rightText={poisArray[id].date} />
+            <Header title={"POI"} hasBackButton={true} rightText={poisArray[id].date} />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 <View style={styles.marginBottom}>
                     <Text style={styles.icon}>
@@ -212,7 +212,7 @@ export default function () {
      } } else {
         return (
         <SafeAreaProvider>
-            <Header title={"Note"} hasBackButton={true} rightText="25-05-2023" />
+            <Header title={"POI"} hasBackButton={true} rightText="25-05-2023" />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 <View style={styles.marginBottom}>
                     <Text style={styles.icon}>
