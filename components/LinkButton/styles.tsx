@@ -15,11 +15,11 @@ export const styles = StyleSheet.create({
         borderColor: "#BDF4F1",
     },
     containerLight2: {
-        backgroundColor: "#f77f77",
+        backgroundColor: "#ff9999",
         borderColor: "#fa493c",
     },
     containerDark2: {
-        backgroundColor: "##f77f77",
+        backgroundColor: "#ff9999",
         borderColor: "#fa493c",
     },
     view: {
