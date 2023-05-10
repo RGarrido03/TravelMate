@@ -31,6 +31,7 @@ export default function (): JSX.Element {
             paddingHorizontal: 16,
             paddingVertical: 14,
             overflow: "hidden",
+            backgroundColor: isLightMode ? "#ffffff77" : "#00000077",
         },
         logo: {
             width: 32,
@@ -56,7 +57,12 @@ export default function (): JSX.Element {
     });
 
     return (
-        <BlurView style={styles.view} blurReductionFactor={2} tint={isLightMode ? "light" : "dark"}>
+        <BlurView
+            style={styles.view}
+            blurReductionFactor={2}
+            intensity={64}
+            tint={isLightMode ? "light" : "dark"}
+        >
             <Image source={require("../../assets/logo-512.png")} style={styles.logo} />
             <Text style={styles.title}>TravelMate</Text>
             <TouchableOpacity style={styles.roundShape} >
