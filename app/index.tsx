@@ -8,6 +8,7 @@ import {
     Button,
     Pressable,
     Image,
+    Platform,
 } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
@@ -22,9 +23,11 @@ import { loadNotesByIdx } from "../data/notes";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
     faCamera,
+    faList,
     faLocationPin,
     faMoneyBill,
     faNoteSticky,
+    faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { POIsButton } from "../components/POIsButton";
 import { LinkButton } from "../components/LinkButton";
@@ -33,6 +36,7 @@ import { BlurView } from "expo-blur";
 import BSHandle from "../components/BSHandle";
 import TravelMateBar from "../components/TravelMateBar";
 import { UserModal } from "../components/UserModal";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function App() {
     loadInitialPOIs();
@@ -115,6 +119,17 @@ export default function App() {
         bsContentContainer: {
             flex: 1,
             paddingHorizontal: 16,
+        },
+        roundShape: {
+            backgroundColor: isLightMode ? "#ffffffcc" : "#3B494977",
+            height: 47,
+            width: 47,
+            borderRadius: 25, // it will be height/2
+            justifyContent: "center",
+            alignItems: "center",
+            borderWidth: 1,
+            borderColor: isLightMode ? "#60BBB6" : "#BDF4F1",
+            marginRight: Platform.OS === "web" ? 0 : -16,
         },
     });
 
@@ -330,7 +345,9 @@ export default function App() {
                         style={{ width: "100%", height: "100%" }}
                     />
                 </Pressable>
-                <Button title={"Open list view"} onPress={handlePresentModalListView} />
+                <TouchableOpacity style={styles.roundShape} onPress={handlePresentModalListView} >
+                    <FontAwesomeIcon icon={faList} size={22}/>
+                </TouchableOpacity>
 
                 <BottomSheetModal
                     ref={bottomSheetModalRef}
@@ -362,7 +379,7 @@ export default function App() {
                         style={styles.bsContentContainer}
                         blurReductionFactor={2}
                         tint={isLightMode ? "light" : "dark"}
-                        intensity={49}
+                        intensity={64}
                     >
                         {isListView ? listView() : tripDetails()}
                     </BlurView>
