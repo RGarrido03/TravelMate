@@ -33,6 +33,8 @@ import { BlurView } from "expo-blur";
 import BSHandle from "../components/BSHandle";
 import TravelMateBar from "../components/TravelMateBar";
 
+import { UserModal } from "../components/UserModal";
+
 export default function App() {
     loadInitialPOIs();
     loadInitialExpenses();

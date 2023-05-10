@@ -30,6 +30,32 @@ export const LinkButton = ({ newNavigation, title, icon, onClick }: Props) => {
     );
 };
 
+export const LinkButton2 = ({ newNavigation, title, icon, onClick }: Props) => {
+    const navigation = useRouter();
+    const isLightMode: boolean = useColorScheme() === "light";
+    const textColor = isLightMode ? styles.textLight : styles.textDark;
+    const containerColor = isLightMode ? styles.containerLight2 : styles.containerDark2;
+    
+
+    return (
+        <TouchableOpacity
+            activeOpacity={0.5}
+            onPress={() =>
+                newNavigation && typeof newNavigation === "string"
+                    ? navigation.push(newNavigation)
+                    : onClick && onClick()
+            }
+            style={[styles.container, containerColor]}
+        >
+            <View style={styles.view}>
+                <FontAwesomeIcon icon={icon} size={22} style={textColor} />
+                <Text style={[styles.text, textColor]}>{title}</Text>
+                <FontAwesomeIcon icon={faChevronRight} size={16} style={textColor} />
+            </View>
+        </TouchableOpacity>
+    );
+};
+
 interface Props {
     icon: IconDefinition;
     newNavigation?: string;

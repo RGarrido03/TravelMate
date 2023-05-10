@@ -9,8 +9,9 @@ import {
 } from "react-native";
 import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faDisplay, faUser } from "@fortawesome/free-solid-svg-icons";
 import { BlurView } from "expo-blur";
+import React from "react";
 
 export default function (): JSX.Element {
     const isLightMode: boolean = useColorScheme() === "light";
@@ -58,7 +59,7 @@ export default function (): JSX.Element {
         <BlurView style={styles.view} blurReductionFactor={2} tint={isLightMode ? "light" : "dark"}>
             <Image source={require("../../assets/logo-512.png")} style={styles.logo} />
             <Text style={styles.title}>TravelMate</Text>
-            <TouchableOpacity style={styles.roundShape}>
+            <TouchableOpacity style={styles.roundShape} >
                 <FontAwesomeIcon icon={faUser} size={16} color={"#60BBB6"} />
             </TouchableOpacity>
         </BlurView>

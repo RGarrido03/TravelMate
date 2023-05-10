@@ -14,6 +14,14 @@ export const styles = StyleSheet.create({
         backgroundColor: "#3B494977",
         borderColor: "#BDF4F1",
     },
+    containerLight2: {
+        backgroundColor: "#f77f77",
+        borderColor: "#fa493c",
+    },
+    containerDark2: {
+        backgroundColor: "##f77f77",
+        borderColor: "#fa493c",
+    },
     view: {
         flexDirection: "row",
         alignItems: "center",
