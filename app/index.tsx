@@ -351,7 +351,7 @@ export default function App() {
                         backgroundColor: "transparent",
                     }}
                     backgroundStyle={{
-                        backgroundColor: isLightMode ? "#ffffff88" : "#00000088",
+                        backgroundColor: isLightMode ? "#ffffff77" : "#00000077",
                     }}
                     /*handleIndicatorStyle={{
                         backgroundColor: isLightMode ? "#3B4949" : "#fff",
@@ -362,6 +362,7 @@ export default function App() {
                         style={styles.bsContentContainer}
                         blurReductionFactor={2}
                         tint={isLightMode ? "light" : "dark"}
+                        intensity={64}
                     >
                         {isListView ? listView() : tripDetails()}
                     </BlurView>

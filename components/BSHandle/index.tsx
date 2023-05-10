@@ -136,6 +136,7 @@ const Handle: React.FC<HandleProps> = ({ style, animatedIndex }) => {
     return (
         <BlurView
             blurReductionFactor={2}
+            intensity={64}
             renderToHardwareTextureAndroid={true}
             tint={isLightMode ? "light" : "dark"}
             style={styles.blurView}
