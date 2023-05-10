@@ -1,133 +1,66 @@
-import { StyleSheet, View, Text, ScrollView, useColorScheme, Image } from "react-native";
-import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
-import { useState } from "react";
+import {
+    StyleSheet,
+    View,
+    Text,
+    useColorScheme,
+    Image,
+    Platform,
+    TouchableOpacity,
+} from "react-native";
+import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faPersonRifle, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { BlurView } from "expo-blur";
 
-
-export default function App() {
-
+export default function (): JSX.Element {
     const isLightMode: boolean = useColorScheme() === "light";
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
 
-    const styles= StyleSheet.create({
-        scrollView: {
-            borderRadius: 8,
-            marginHorizontal: 16,
-            marginTop: 16,
-            overflow: "hidden",
-        },
-        rowContainer: {
-            flexDirection: "column",
-            rowGap: 8,
-        },
-        summarySubtitle: {
-            color: isLightMode ? "#3B4949" : "#fff",
-            fontSize: 20,
-            fontWeight: "600",
-            marginBottom: 10,
-            marginTop: 90
-        },
-        summarySubtitle2: {
-            color: isLightMode ? "#3B4949" : "#fff",
-            fontSize: 20,
-            fontWeight: "600",
-            marginBottom: 10,
-        },
-        subtitle: {
-            color: isLightMode ? "#3B4949" : "#fff",
-            fontWeight: "600",
-            fontSize: 16,
-            lineHeight: 22,
-        },
-        marginBottom: {
-            marginBottom: 32,
-        },
-        container: {
-            flexDirection: "row",
-            justifyContent: "space-between",
-            paddingHorizontal: 8,
-            paddingVertical: 8,
-        },
+    const styles = StyleSheet.create({
         view: {
-            flexDirection: "column",
-            rowGap: 8,
-            marginBottom:48
-        },
-        modalContentLight: {
-            backgroundColor: "rgba(255, 255, 255, 0.7)",
-        },
-        modalContentDark: {
-            backgroundColor: "rgba(59, 73, 73, 0.7)",
-        },
-        modalContent: {
+            marginTop: insets.top + 16,
+            marginBottom: 16,
+            marginHorizontal: 16,
+            flexDirection: "row",
+            columnGap: 16,
+            alignItems: "center",
             borderRadius: 50,
+            borderColor: isLightMode ? "#BDF4F1" : "#60BBB6",
+            borderWidth: 1,
+            paddingHorizontal: 16,
+            paddingVertical: 14,
             overflow: "hidden",
-            width: "100%",
-            borderWidth: 1,
-            borderColor: "#60BBB6",
-            shadowRadius: 4,
         },
-        chat: {
-            width: 70,
-            height: 70,
-            alignItems: "flex-start",
-            left: -19
+        logo: {
+            width: 32,
+            height: 32,
         },
-        blur: {
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            padding: 14,
-            width: '100%',
-            height: 60,
-            position: 'absolute',
-            borderColor: '#BDF4F1',
-            borderWidth: 2,
-            borderRadius: 30,
-            overflow: 'hidden',
-            marginBottom: 20,
-          },
-        travelmate: {
-            fontFamily: 'Montserrat',
+        title: {
             fontWeight: "bold",
-            fontSize: 23,
-            lineHeight: 28,
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            color: isLightMode ? "#545c5c" : "#fff",
-            left: -19
+            fontSize: 24,
+            color: isLightMode ? "#000" : "#fff",
+            flex: 1,
         },
-        roundshape:  {
-            backgroundColor: 'white',
-            height: 38, //any of height
-            width: 38, //any of width
-            justifyContent:"center",
-            borderRadius: 22,   // it will be height/2
-            alignItems: 'center',
-            left: 125,
+        roundShape: {
+            backgroundColor: isLightMode ? "#ffffffcc" : "#3B494977",
+            height: 32,
+            width: 32,
+            borderRadius: 16, // it will be height/2
+            justifyContent: "center",
+            alignItems: "center",
             borderWidth: 1,
-            borderColor: "#60BBB6",
-        }
+            borderColor: isLightMode ? "#60BBB6" : "#BDF4F1",
+            marginRight: Platform.OS === "web" ? 0 : -16,
+        },
     });
 
-    const modalContentColor = isLightMode ? styles.modalContentLight : styles.modalContentDark;
-
     return (
-
-        <View style={styles.view}>
-            <View style={[styles.blur, modalContentColor]}>
-                <Image source={require("../../assets/adaptive-icon.png")} style={styles.chat}/>
-                <Text style={styles.travelmate}>TravelMate</Text>
-                <View style={styles.roundshape}> 
-                <Text>     
-                    <FontAwesomeIcon icon={faUser} size={20} color="#60BBB6" />
-                </Text>
-                </View>
-            </View>
-        </View>
-
+        <BlurView style={styles.view} blurReductionFactor={2} tint={isLightMode ? "light" : "dark"}>
+            <Image source={require("../../assets/logo-512.png")} style={styles.logo} />
+            <Text style={styles.title}>TravelMate</Text>
+            <TouchableOpacity style={styles.roundShape}>
+                <FontAwesomeIcon icon={faUser} size={16} color={"#60BBB6"} />
+            </TouchableOpacity>
+        </BlurView>
     );
-
 }
