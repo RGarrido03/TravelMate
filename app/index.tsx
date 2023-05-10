@@ -15,7 +15,6 @@ import { Trips, getCurrentTrips, loadInitialTrips } from "../data/trips";
 import { WishList, getCurrentWishList, loadInitialWishList } from "../data/wishList";
 import { getCurrentPOIs, loadInitialPOIs, POIs } from "../data/pois";
 import { loadInitialExpenses } from "../data/expenses";
-import { Header } from "../components/Header";
 import { WishButton } from "../components/WishButton";
 import { TripsButton } from "../components/TripButton";
 import { loadImagesByKey } from "../data/images";
@@ -141,7 +140,6 @@ export default function App() {
             marginBottom: 16,
         },
         scrollView: {
-            marginTop: 8,
             borderRadius: 8,
         },
         buttonsView: {
@@ -321,18 +319,14 @@ export default function App() {
     return (
         <SafeAreaProvider>
             <BottomSheetModalProvider>
-                <Header title={"TravelMate"} hasBackButton={false} />
+                <TravelMateBar />
                 <ScrollView style={styles.scrollView}>
                     <View style={styles.view}>
-                    <TravelMateBar></TravelMateBar>
-                    <Text style={{ marginVertical: 16, alignSelf: "center" }}>
-                        You're stuck on me like a tatoooo 🇸🇪
-                    </Text>
-                    <Button title={"Open list view"} onPress={handlePresentModalListView} />
-                <Button
-                    title={"Open trip details (Ibiza)"}
-                    onPress={handlePresentModalTripDetails.bind(this, 0)}
-                />
+                        <Button title={"Open list view"} onPress={handlePresentModalListView} />
+                        <Button
+                            title={"Open trip details (Ibiza)"}
+                            onPress={handlePresentModalTripDetails.bind(this, 0)}
+                        />
                     </View>
                 </ScrollView>
 
