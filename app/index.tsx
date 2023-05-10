@@ -32,7 +32,6 @@ import { useRouter } from "expo-router";
 import { BlurView } from "expo-blur";
 import BSHandle from "../components/BSHandle";
 import TravelMateBar from "../components/TravelMateBar";
-
 import { UserModal } from "../components/UserModal";
 
 export default function App() {
@@ -339,13 +338,13 @@ export default function App() {
                     snapPoints={snapPoints}
                     topInset={insets.top + 32 + 60}
                     style={{
-                        /*shadowColor: "#000",
+                        shadowColor: "#000",
                         shadowOffset: {
                             width: 0,
                             height: 2,
                         },
                         shadowOpacity: 0.25,
-                        shadowRadius: 3.84,*/
+                        shadowRadius: 3.84,
 
                         elevation: 5,
                         borderRadius: 16,
