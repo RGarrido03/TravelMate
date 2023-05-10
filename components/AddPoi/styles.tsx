@@ -28,7 +28,7 @@ export const styles = StyleSheet.create({
         borderColor: "#60BBB6",
     },
     containerDark: {
-        backgroundColor: "#3B4949cc",
+        backgroundColor: "#3B494977",
         borderColor: "#BDF4F1",
     },
     modalBackground: {
