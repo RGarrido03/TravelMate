@@ -1,15 +1,5 @@
 import React, { useState, useCallback, useMemo, useRef } from "react";
-import {
-    StyleSheet,
-    View,
-    Text,
-    ScrollView,
-    useColorScheme,
-    Button,
-    Pressable,
-    Image,
-    Platform,
-} from "react-native";
+import { StyleSheet, View, Text, ScrollView, useColorScheme, Pressable, Image } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { Trips, getCurrentTrips, loadInitialTrips } from "../data/trips";
@@ -27,7 +17,6 @@ import {
     faLocationPin,
     faMoneyBill,
     faNoteSticky,
-    faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { POIsButton } from "../components/POIsButton";
 import { LinkButton } from "../components/LinkButton";
@@ -35,7 +24,6 @@ import { useRouter } from "expo-router";
 import { BlurView } from "expo-blur";
 import BSHandle from "../components/BSHandle";
 import TravelMateBar from "../components/TravelMateBar";
-import { UserModal } from "../components/UserModal";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function App() {
@@ -122,14 +110,18 @@ export default function App() {
         },
         roundShape: {
             backgroundColor: isLightMode ? "#ffffffcc" : "#3B494977",
-            height: 47,
-            width: 47,
-            borderRadius: 25, // it will be height/2
+            height: 48,
+            width: 48,
+            borderRadius: 24, // it will be height/2
             justifyContent: "center",
             alignItems: "center",
             borderWidth: 1,
             borderColor: isLightMode ? "#60BBB6" : "#BDF4F1",
-            marginRight: Platform.OS === "web" ? 0 : -16,
+        },
+        listViewView: {
+            position: "absolute",
+            bottom: insets.bottom + 16,
+            right: 16,
         },
     });
 
@@ -335,6 +327,14 @@ export default function App() {
     return (
         <SafeAreaProvider>
             <BottomSheetModalProvider>
+                <View style={styles.listViewView}>
+                    <TouchableOpacity
+                        style={styles.roundShape}
+                        onPress={handlePresentModalListView}
+                    >
+                        <FontAwesomeIcon icon={faList} size={22} />
+                    </TouchableOpacity>
+                </View>
                 <TravelMateBar onPress={handlePresentModalListView} />
                 <Pressable
                     style={{ width: "100%", height: "100%", position: "absolute", zIndex: -1 }}
@@ -345,9 +345,6 @@ export default function App() {
                         style={{ width: "100%", height: "100%" }}
                     />
                 </Pressable>
-                <TouchableOpacity style={styles.roundShape} onPress={handlePresentModalListView} >
-                    <FontAwesomeIcon icon={faList} size={22}/>
-                </TouchableOpacity>
 
                 <BottomSheetModal
                     ref={bottomSheetModalRef}
@@ -370,9 +367,6 @@ export default function App() {
                     backgroundStyle={{
                         backgroundColor: isLightMode ? "#ffffff77" : "#00000077",
                     }}
-                    /*handleIndicatorStyle={{
-                        backgroundColor: isLightMode ? "#3B4949" : "#fff",
-                    }}*/
                     handleComponent={BSHandle}
                 >
                     <BlurView
