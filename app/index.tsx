@@ -321,22 +321,23 @@ export default function App() {
     return (
         <SafeAreaProvider>
             <BottomSheetModalProvider>
-                <TravelMateBar />
-                <ScrollView style={styles.scrollView}>
-                    <View style={styles.view}>
-                        <Button title={"Open list view"} onPress={handlePresentModalListView} />
-                        <Button
-                            title={"Open trip details (Ibiza)"}
-                            onPress={handlePresentModalTripDetails.bind(this, 0)}
-                        />
-                    </View>
-                </ScrollView>
+                <TravelMateBar onPress={handlePresentModalListView} />
+                <Pressable
+                    style={{ width: "100%", height: "100%", position: "absolute", zIndex: -1 }}
+                    onPress={handlePresentModalTripDetails.bind(this, 0)}
+                >
+                    <Image
+                        source={require("../assets/map.png")}
+                        style={{ width: "100%", height: "100%" }}
+                    />
+                </Pressable>
+                <Button title={"Open list view"} onPress={handlePresentModalListView} />
 
                 <BottomSheetModal
                     ref={bottomSheetModalRef}
                     index={1}
                     snapPoints={snapPoints}
-                    topInset={insets.top + 60}
+                    topInset={insets.top + 32 + 60}
                     style={{
                         /*shadowColor: "#000",
                         shadowOffset: {

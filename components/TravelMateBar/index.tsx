@@ -5,7 +5,7 @@ import { faDisplay, faUser } from "@fortawesome/free-solid-svg-icons";
 import { BlurView } from "expo-blur";
 import React from "react";
 
-export default function (): JSX.Element {
+export default function (onPress: any): JSX.Element {
     const isLightMode: boolean = useColorScheme() === "light";
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
 
@@ -57,7 +57,7 @@ export default function (): JSX.Element {
         >
             <Image source={require("../../assets/logo-512.png")} style={styles.logo} />
             <Text style={styles.title}>TravelMate</Text>
-            <TouchableOpacity style={styles.roundShape} >
+            <TouchableOpacity style={styles.roundShape}>
                 <FontAwesomeIcon icon={faUser} size={16} color={"#60BBB6"} />
             </TouchableOpacity>
         </BlurView>
