@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { StyleProp, StyleSheet, useColorScheme, View, ViewStyle } from "react-native";
+import { StyleProp, StyleSheet, useColorScheme, ViewStyle } from "react-native";
 import { BottomSheetHandleProps } from "@gorhom/bottom-sheet";
 import Animated, {
     Extrapolate,
