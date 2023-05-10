@@ -1,12 +1,4 @@
-import {
-    StyleSheet,
-    View,
-    Text,
-    useColorScheme,
-    Image,
-    Platform,
-    TouchableOpacity,
-} from "react-native";
+import { StyleSheet, Text, useColorScheme, Image, Platform, TouchableOpacity } from "react-native";
 import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faDisplay, faUser } from "@fortawesome/free-solid-svg-icons";
