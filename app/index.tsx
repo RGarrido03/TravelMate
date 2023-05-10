@@ -32,6 +32,7 @@ import { LinkButton } from "../components/LinkButton";
 import { useRouter } from "expo-router";
 import { BlurView } from "expo-blur";
 import BSHandle from "../components/BSHandle";
+import TravelMateBar from "../components/TravelMateBar";
 
 export default function App() {
     loadInitialPOIs();
@@ -321,14 +322,19 @@ export default function App() {
         <SafeAreaProvider>
             <BottomSheetModalProvider>
                 <Header title={"TravelMate"} hasBackButton={false} />
-                <Text style={{ marginVertical: 16, alignSelf: "center" }}>
-                    You're stuck on me like a tatoooo 🇸🇪
-                </Text>
-                <Button title={"Open list view"} onPress={handlePresentModalListView} />
+                <ScrollView style={styles.scrollView}>
+                    <View style={styles.view}>
+                    <TravelMateBar></TravelMateBar>
+                    <Text style={{ marginVertical: 16, alignSelf: "center" }}>
+                        You're stuck on me like a tatoooo 🇸🇪
+                    </Text>
+                    <Button title={"Open list view"} onPress={handlePresentModalListView} />
                 <Button
                     title={"Open trip details (Ibiza)"}
                     onPress={handlePresentModalTripDetails.bind(this, 0)}
                 />
+                    </View>
+                </ScrollView>
 
                 <BottomSheetModal
                     ref={bottomSheetModalRef}
