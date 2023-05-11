@@ -117,6 +117,7 @@ export default function App() {
             alignItems: "center",
             borderWidth: 1,
             borderColor: isLightMode ? "#60BBB6" : "#BDF4F1",
+            overflow: "hidden",
         },
         listViewView: {
             position: "absolute",
@@ -328,11 +329,10 @@ export default function App() {
         <SafeAreaProvider>
             <BottomSheetModalProvider>
                 <View style={styles.listViewView}>
-                    <TouchableOpacity
-                        style={styles.roundShape}
-                        onPress={handlePresentModalListView}
-                    >
-                        <FontAwesomeIcon icon={faList} size={22} />
+                    <TouchableOpacity onPress={handlePresentModalListView}>
+                        <BlurView style={styles.roundShape} blurReductionFactor={2}>
+                            <FontAwesomeIcon icon={faList} size={22} />
+                        </BlurView>
                     </TouchableOpacity>
                 </View>
                 <TravelMateBar onPress={handlePresentModalListView} />
