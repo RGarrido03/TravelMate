@@ -25,6 +25,7 @@ import { BlurView } from "expo-blur";
 import BSHandle from "../components/BSHandle";
 import TravelMateBar from "../components/TravelMateBar";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import MapView, { Marker } from "react-native-maps";
 
 export default function App() {
     loadInitialPOIs();
@@ -123,6 +124,12 @@ export default function App() {
             position: "absolute",
             bottom: insets.bottom + 16,
             right: 16,
+        },
+        map: {
+            width: "100%",
+            height: "100%",
+            position: "absolute",
+            zIndex: -1,
         },
     });
 
@@ -336,15 +343,23 @@ export default function App() {
                     </TouchableOpacity>
                 </View>
                 <TravelMateBar onPress={handlePresentModalListView} />
-                <Pressable
-                    style={{ width: "100%", height: "100%", position: "absolute", zIndex: -1 }}
-                    onPress={handlePresentModalTripDetails.bind(this, 0)}
-                >
-                    <Image
-                        source={require("../assets/map.png")}
-                        style={{ width: "100%", height: "100%" }}
-                    />
-                </Pressable>
+                <MapView style={styles.map}>
+                    {TripsArray.map((trip: Trips, index: number) => (
+                        <Marker
+                            key={index}
+                            coordinate={{ latitude: trip.lat, longitude: trip.lon }}
+                            onPress={handlePresentModalTripDetails.bind(this, index)}
+                        />
+                    ))}
+                    {WishArray.map((wish: Trips, index: number) => (
+                        <Marker
+                            key={index}
+                            coordinate={{ latitude: wish.lat, longitude: wish.lon }}
+                            title={wish.city}
+                            description={"Wish list"}
+                        />
+                    ))}
+                </MapView>
 
                 <BottomSheetModal
                     ref={bottomSheetModalRef}
