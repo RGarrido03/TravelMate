@@ -284,13 +284,13 @@ export default function App() {
                         </View>
                     </Pressable>
                     <View style={tripDetailsStyles.view}>
-                        <Text style={tripDetailsStyles.title}>Featured POI</Text>
+                        <Text style={tripDetailsStyles.title}>Last visited POI</Text>
                         <POIsButton
-                            date={POIsArray[2].date}
-                            icon={POIsArray[2].icon}
-                            title={POIsArray[2].title}
-                            image={POIsArray[2].image}
-                            newNavigation={"../pois/poi?id=" + 2}
+                            date={POIsArray[0].date}
+                            icon={POIsArray[0].icon}
+                            title={POIsArray[0].title}
+                            image={POIsArray[0].image}
+                            newNavigation={"../pois/poi?id=" + 0}
                             key={"poi2"}
                         />
                     </View>
