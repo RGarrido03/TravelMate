@@ -40,6 +40,9 @@ jobs:
       - name: ⬇️ Install dependencies
         run: npm install
 
+      - name: ⬇️ Run react-native-maps workaround script
+        run: npm run postinstall
+
       - name: 🚀 Update app in EAS
         run: eas update --auto
 
