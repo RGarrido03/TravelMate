@@ -377,6 +377,7 @@ export default function App() {
                                 key={index}
                                 coordinate={{ latitude: trip.lat, longitude: trip.lon }}
                                 onPress={handlePresentModalTripDetails.bind(this, index)}
+                                icon={require("../assets/pin.png")}
                             />
                         ))}
                         {WishArray.map((wish: Trips, index: number) => (
@@ -385,6 +386,7 @@ export default function App() {
                                 coordinate={{ latitude: wish.lat, longitude: wish.lon }}
                                 title={wish.city}
                                 description={"Wish list"}
+                                icon={require("../assets/pin_plus.png")}
                             />
                         ))}
                     </MapView>
