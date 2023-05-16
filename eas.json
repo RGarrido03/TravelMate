@@ -11,18 +11,21 @@
       },
       "env": {
         "GOOGLE_MAPS_API_KEY": "process.env.GOOGLE_MAPS_API_KEY"
-      }
+      },
+      "channel": "development"
     },
     "preview": {
       "distribution": "internal",
       "ios": {
         "resourceClass": "m-medium"
-      }
+      },
+      "channel": "preview"
     },
     "production": {
       "ios": {
         "resourceClass": "m-medium"
-      }
+      },
+      "channel": "production"
     }
   },
   "submit": {

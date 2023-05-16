@@ -34,6 +34,11 @@ export default () => ({
         web: {
             favicon: "./assets/favicon.png",
             bundler: "metro",
+            config: {
+                alias: {
+                    "react-native-maps": "@teovilla/react-native-web-maps",
+                },
+            },
         },
         extra: {
             eas: {

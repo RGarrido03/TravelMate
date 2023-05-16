@@ -1,14 +1,5 @@
 import React, { useState, useCallback, useMemo, useRef } from "react";
-import {
-    StyleSheet,
-    View,
-    Text,
-    ScrollView,
-    useColorScheme,
-    Pressable,
-    Image,
-    Platform,
-} from "react-native";
+import { StyleSheet, View, Text, ScrollView, useColorScheme, Pressable, Image } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { Trips, getCurrentTrips, loadInitialTrips } from "../data/trips";
@@ -352,46 +343,35 @@ export default function App() {
                     </TouchableOpacity>
                 </View>
                 <TravelMateBar onPress={handlePresentModalListView} />
-                {Platform.OS === "web" ? (
-                    <Pressable
-                        style={styles.map}
-                        onPress={handlePresentModalTripDetails.bind(this, 0)}
-                    >
-                        <Image
-                            source={require("../assets/map.png")}
-                            style={{ width: "100%", height: "100%" }}
+
+                <MapView
+                    style={styles.map}
+                    initialRegion={{
+                        latitude: 50,
+                        longitude: 10,
+                        latitudeDelta: 30,
+                        longitudeDelta: 30,
+                    }}
+                    provider={PROVIDER_GOOGLE}
+                >
+                    {TripsArray.map((trip: Trips, index: number) => (
+                        <Marker
+                            key={index}
+                            coordinate={{ latitude: trip.lat, longitude: trip.lon }}
+                            onPress={handlePresentModalTripDetails.bind(this, index)}
+                            icon={require("../assets/pin.png")}
                         />
-                    </Pressable>
-                ) : (
-                    <MapView
-                        style={styles.map}
-                        initialRegion={{
-                            latitude: 50,
-                            longitude: 10,
-                            latitudeDelta: 30,
-                            longitudeDelta: 30,
-                        }}
-                        provider={PROVIDER_GOOGLE}
-                    >
-                        {TripsArray.map((trip: Trips, index: number) => (
-                            <Marker
-                                key={index}
-                                coordinate={{ latitude: trip.lat, longitude: trip.lon }}
-                                onPress={handlePresentModalTripDetails.bind(this, index)}
-                                icon={require("../assets/pin.png")}
-                            />
-                        ))}
-                        {WishArray.map((wish: Trips, index: number) => (
-                            <Marker
-                                key={index}
-                                coordinate={{ latitude: wish.lat, longitude: wish.lon }}
-                                title={wish.city}
-                                description={"Wish list"}
-                                icon={require("../assets/pin_plus.png")}
-                            />
-                        ))}
-                    </MapView>
-                )}
+                    ))}
+                    {WishArray.map((wish: Trips, index: number) => (
+                        <Marker
+                            key={index}
+                            coordinate={{ latitude: wish.lat, longitude: wish.lon }}
+                            title={wish.city}
+                            description={"Wish list"}
+                            icon={require("../assets/pin_plus.png")}
+                        />
+                    ))}
+                </MapView>
 
                 <BottomSheetModal
                     ref={bottomSheetModalRef}
