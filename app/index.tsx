@@ -34,7 +34,7 @@ import { BlurView } from "expo-blur";
 import BSHandle from "../components/BSHandle";
 import TravelMateBar from "../components/TravelMateBar";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import MapView, { Marker } from "react-native-maps";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 
 export default function App() {
     loadInitialPOIs();
@@ -371,6 +371,7 @@ export default function App() {
                             latitudeDelta: 30,
                             longitudeDelta: 30,
                         }}
+                        provider={PROVIDER_GOOGLE}
                     >
                         {TripsArray.map((trip: Trips, index: number) => (
                             <Marker
