@@ -1,7 +1,7 @@
 # <img src="https://user-images.githubusercontent.com/57329376/231313179-8d375176-1077-4c1b-9bd6-cf323e9d9475.png" width="28"> TravelMate app
 [![.github/workflows/deploy.yml](https://github.com/RGarrido03/TravelMate/actions/workflows/deploy.yml/badge.svg)](https://github.com/RGarrido03/TravelMate/actions/workflows/deploy.yml)
 
-Project for "Interação Humano-Computador", 2022-2023.\
+Project for "Interação Humano-Computador", 2022-2023.
 
 ## ✍ Design
 This app tightly follows the app prototype we made in Figma, which you can check [here](https://www.figma.com/proto/G9qqNCCqaahFK07umeDm0B/Low-level-prototype?node-id=64-2&starting-point-node-id=64%3A2).
@@ -57,10 +57,13 @@ Folder containing the icon, splash and more. The `ìmages/` folder contains the 
 `app/`\
 Project source files. Check the [Expo Router](https://expo.github.io/router/docs/) documentation for more information on how the navigation works.
 
+`components/`\
+Reusable components, such as buttons, cards, etc.
+
 `data/`\
 Since our app doesn't feature a backend, the content needs to be iterated over arrays. This folder contains the initial data, as well as some helper functions for the arrays.
 
-`app.json`\
+`app.config.js`\
 App metadata.
 
 `babel.config.js`\
