@@ -1,5 +1,8 @@
 module.exports = function (api) {
+    const platform = api.caller((caller) => caller?.platform);
+    console.log(platform); // web, ios, android
     api.cache(true);
+
     return {
         presets: ["babel-preset-expo", "@babel/typescript"],
         plugins: [
@@ -9,6 +12,17 @@ module.exports = function (api) {
                 "react-native-reanimated/plugin",
                 {
                     relativeSourceLocation: true,
+                },
+            ],
+            [
+                "module-resolver",
+                {
+                    alias: {
+                        "react-native-maps":
+                            platform === "web"
+                                ? "@teovilla/react-native-web-maps"
+                                : "react-native-maps",
+                    },
                 },
             ],
         ],
