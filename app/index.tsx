@@ -12,6 +12,7 @@ import { loadImagesByKey } from "../data/images";
 import { loadNotesByIdx } from "../data/notes";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
+    faAdd,
     faCamera,
     faList,
     faLocationPin,
@@ -109,21 +110,48 @@ export default function App() {
             flex: 1,
             paddingHorizontal: 16,
         },
-        roundShape: {
+        listViewButtonShape: {
             backgroundColor: isLightMode ? "#ffffffcc" : "#3B494977",
             height: 48,
             width: 48,
             borderRadius: 24, // it will be height/2
             justifyContent: "center",
             alignItems: "center",
-            borderWidth: 1,
-            borderColor: isLightMode ? "#60BBB6" : "#BDF4F1",
             overflow: "hidden",
         },
-        listViewView: {
+        addButtonShape: {
+            backgroundColor: "#3B494977",
+            height: 48,
+            width: 48,
+            borderRadius: 12, // it will be height/4
+            justifyContent: "center",
+            alignItems: "center",
+            overflow: "hidden",
+        },
+        listButtonShadow: {
+            shadowRadius: 4,
+            shadowColor: "#000",
+            shadowOpacity: 0.25,
+            shadowOffset: { width: 0, height: 4 },
+            borderWidth: 1,
+            borderColor: "#00000033",
+            borderRadius: 50,
+        },
+        addButtonShadow: {
+            shadowRadius: 4,
+            shadowColor: "#000",
+            shadowOpacity: 0.25,
+            shadowOffset: { width: 0, height: 4 },
+            borderWidth: 1,
+            borderColor: "#00000033",
+            borderRadius: 13,
+        },
+        bottomButtonsView: {
             position: "absolute",
             bottom: insets.bottom + 16,
             right: 16,
+            flexDirection: "column",
+            rowGap: 8,
         },
         map: {
             width: "100%",
@@ -335,12 +363,24 @@ export default function App() {
     return (
         <SafeAreaProvider>
             <BottomSheetModalProvider>
-                <View style={styles.listViewView}>
-                    <TouchableOpacity onPress={handlePresentModalListView}>
-                        <BlurView style={styles.roundShape} blurReductionFactor={2}>
-                            <FontAwesomeIcon icon={faList} size={22} />
-                        </BlurView>
-                    </TouchableOpacity>
+                <View style={styles.bottomButtonsView}>
+                    {/* List view button */}
+                    <View style={styles.listButtonShadow}>
+                        <TouchableOpacity onPress={handlePresentModalListView}>
+                            <BlurView style={styles.listViewButtonShape} blurReductionFactor={2}>
+                                <FontAwesomeIcon icon={faList} size={22} />
+                            </BlurView>
+                        </TouchableOpacity>
+                    </View>
+
+                    {/* Add trip button */}
+                    <View style={styles.addButtonShadow}>
+                        <TouchableOpacity onPress={handlePresentModalListView}>
+                            <BlurView style={styles.addButtonShape} blurReductionFactor={2}>
+                                <FontAwesomeIcon icon={faAdd} size={22} color={"#fff"} />
+                            </BlurView>
+                        </TouchableOpacity>
+                    </View>
                 </View>
                 <TravelMateBar onPress={handlePresentModalListView} />
 
