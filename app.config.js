@@ -11,6 +11,7 @@ export default () => ({
             resizeMode: "contain",
             backgroundColor: "#ffffff",
         },
+        platforms: ["ios", "android"], // Block web compiling
         assetBundlePatterns: ["**/*"],
         ios: {
             supportsTablet: true,
