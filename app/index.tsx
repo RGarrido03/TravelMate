@@ -27,6 +27,7 @@ import BSHandle from "../components/BSHandle";
 import TravelMateBar from "../components/TravelMateBar";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import { ModalTrip } from "../components/ModalTrip";
 
 export default function App() {
     loadInitialPOIs();
@@ -38,9 +39,12 @@ export default function App() {
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
     const navigation = useRouter();
 
-    const [TripsArray] = useState<Trips[]>(getCurrentTrips());
+    const [TripsArray, setTripsArray] = useState<Trips[]>(getCurrentTrips());
     const [POIsArray] = useState<POIs[]>(getCurrentPOIs());
     const [WishArray] = useState<WishList[]>(getCurrentWishList());
+
+    // Modal props
+    const [modalVisible, setModalVisible] = useState<boolean>(false);
 
     // Bottom sheet
     const bottomSheetModalRef = useRef<BottomSheetModal>(null); // ref
@@ -59,16 +63,21 @@ export default function App() {
         bottomSheetModalRef.current?.present();
     }, []);
 
-    const handlePresentModalTripDetails = useCallback((index: number = 0): void => {
-        setTripID(index);
-        const trip: Trips = TripsArray[index];
-        setCity(trip.city);
-        setDate(trip.date);
-        setNPhotos(loadImagesByKey(index).length);
-        setNNotes(loadNotesByIdx(index).length);
-        setIsListView(false);
-        bottomSheetModalRef.current?.present();
-    }, []);
+    const handlePresentModalTripDetails = useCallback(
+        (index: number = 0): void => {
+            console.log("index: " + index);
+            setTripID(index);
+            const trip: Trips = TripsArray[index];
+            console.log("trip: " + trip);
+            setCity(trip.city);
+            setDate(trip.date);
+            setNPhotos(loadImagesByKey(index).length);
+            setNNotes(loadNotesByIdx(index).length);
+            setIsListView(false);
+            bottomSheetModalRef.current?.present();
+        },
+        [TripsArray]
+    );
 
     const styles = StyleSheet.create({
         scrollView: {
@@ -363,6 +372,17 @@ export default function App() {
     return (
         <SafeAreaProvider>
             <BottomSheetModalProvider>
+                {/* Add trip modal */}
+                <ModalTrip
+                    visible={modalVisible}
+                    onClose={(): void => {
+                        setModalVisible(false);
+                        setTripsArray(TripsArray.slice());
+                    }}
+                    tripsArray={TripsArray}
+                    setTripsArray={setTripsArray}
+                />
+
                 <View style={styles.bottomButtonsView}>
                     {/* List view button */}
                     <View style={styles.listButtonShadow}>
@@ -375,7 +395,7 @@ export default function App() {
 
                     {/* Add trip button */}
                     <View style={styles.addButtonShadow}>
-                        <TouchableOpacity onPress={handlePresentModalListView}>
+                        <TouchableOpacity onPress={(): void => setModalVisible(true)}>
                             <BlurView style={styles.addButtonShape} blurReductionFactor={2}>
                                 <FontAwesomeIcon icon={faAdd} size={22} color={"#fff"} />
                             </BlurView>
