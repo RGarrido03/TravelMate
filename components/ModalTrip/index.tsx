@@ -47,7 +47,7 @@ export const ModalTrip = ({ visible, onClose, tripsArray, setTripsArray }: props
 
     const handleAdd = (): void => {
         // Create a new temporary trip
-        const temp: Trips = {
+        let temp: Trips = {
             city: city,
             date: startDate + " - " + endDate,
             budget: budget,
@@ -69,7 +69,7 @@ export const ModalTrip = ({ visible, onClose, tripsArray, setTripsArray }: props
         setBudget(0);
         setStartDate("");
         setEndDate("");
-        console.log(tripsArray);
+        console.log(getCurrentTrips());
     };
 
     const [datePickerStart, setDatePickerStart] = useState<Date>(new Date());

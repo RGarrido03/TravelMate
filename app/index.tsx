@@ -65,10 +65,8 @@ export default function App() {
 
     const handlePresentModalTripDetails = useCallback(
         (index: number = 0): void => {
-            console.log("index: " + index);
             setTripID(index);
             const trip: Trips = TripsArray[index];
-            console.log("trip: " + trip);
             setCity(trip.city);
             setDate(trip.date);
             setNPhotos(loadImagesByKey(index).length);
@@ -377,7 +375,6 @@ export default function App() {
                     visible={modalVisible}
                     onClose={(): void => {
                         setModalVisible(false);
-                        setTripsArray(TripsArray.slice());
                     }}
                     tripsArray={TripsArray}
                     setTripsArray={setTripsArray}
