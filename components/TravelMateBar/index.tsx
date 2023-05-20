@@ -54,24 +54,23 @@ export default function (onPress: any): JSX.Element {
     return (
         <BlurView style={styles.view} blurReductionFactor={2} tint={isLightMode ? "light" : "dark"}>
             <UserModal
-                    visible={modalVisible}
-                    onClose={() => setModalVisible(false)}
-                    title={""}
-                    setTitle={(title: string) => {
+                visible={modalVisible}
+                onClose={() => setModalVisible(false)}
+                title={""}
+                setTitle={(title: string) => {
                     throw new Error("Function not implemented.");
-                    }}
-                    date={""}
-                    setDate={(date: string) => {
+                }}
+                date={""}
+                setDate={(date: string) => {
                     throw new Error("Function not implemented.");
-                    }}
-                ></UserModal>
+                }}
+            ></UserModal>
 
-                <Image source={require("../../assets/logo-512.png")} style={styles.logo} />
-                <Text style={styles.title}>TravelMate</Text>
-                <TouchableOpacity style={styles.roundShape} onPress={() => setModalVisible(true)} >
-                    <FontAwesomeIcon icon={faUser} size={16} color={"#60BBB6"} />
-                </TouchableOpacity>
-
+            <Image source={require("../../assets/logo-512.png")} style={styles.logo} />
+            <Text style={styles.title}>TravelMate</Text>
+            <TouchableOpacity style={styles.roundShape} onPress={() => setModalVisible(true)}>
+                <FontAwesomeIcon icon={faUser} size={16} color={"#60BBB6"} />
+            </TouchableOpacity>
         </BlurView>
     );
 }
