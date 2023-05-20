@@ -127,7 +127,7 @@ export default function App() {
             overflow: "hidden",
         },
         addButtonShape: {
-            backgroundColor: "#3B494977",
+            backgroundColor: isLightMode ? "#3B494977" : "#3B4949cc",
             height: 48,
             width: 48,
             borderRadius: 12, // it will be height/4
@@ -385,7 +385,11 @@ export default function App() {
                     <View style={styles.listButtonShadow}>
                         <TouchableOpacity onPress={handlePresentModalListView}>
                             <BlurView style={styles.listViewButtonShape} blurReductionFactor={2}>
-                                <FontAwesomeIcon icon={faList} size={22} />
+                                <FontAwesomeIcon
+                                    icon={faList}
+                                    size={22}
+                                    color={isLightMode ? "#000" : "#fff"}
+                                />
                             </BlurView>
                         </TouchableOpacity>
                     </View>

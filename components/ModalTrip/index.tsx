@@ -120,7 +120,7 @@ export const ModalTrip = ({ visible, onClose, tripsArray, setTripsArray }: props
             <KeyboardAvoidingView
                 behavior={"padding"}
                 style={styles.modalBackground}
-                keyboardVerticalOffset={insets.top}
+                keyboardVerticalOffset={-insets.top}
             >
                 <BlurView
                     style={[styles.modalContent, modalContentColor]}
@@ -165,14 +165,13 @@ export const ModalTrip = ({ visible, onClose, tripsArray, setTripsArray }: props
                                 position: "absolute",
                                 top: 44,
                                 borderRadius: 8,
-                                shadowRadius: 8,
-                                shadowOpacity: 0.3,
-                                shadowOffset: { width: 0, height: 2 },
-                                elevation: 2,
-                                shadowColor: "#000",
                             },
                             row: {
-                                backgroundColor: isLightMode ? "#fff" : "#000",
+                                backgroundColor: isLightMode ? "#fff" : "#000000",
+                            },
+                            description: [textColor, { paddingRight: 10 }],
+                            poweredContainer: {
+                                backgroundColor: isLightMode ? "#fff" : "#000000",
                             },
                         }}
                     />
