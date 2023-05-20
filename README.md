@@ -29,26 +29,36 @@ This is a React Native app created with Expo. Instead of using JavaScript (Expo'
 
 Before making any code changes after cloning the repo, be sure to have installed the Current version of Node.js. **Run `npm install` after cloning the repository, in order to install the project dependencies**.
 
-To test the app on a mobile phone, first install the Expo Go app on your [Android](https://play.google.com/store/apps/details?id=host.exp.exponent) or [iOS](https://apps.apple.com/app/apple-store/id982107779) device.
+Depending on the operating system, the initial steps to run the app are different:
+- iOS: Install the [Expo Go app](https://apps.apple.com/app/apple-store/id982107779).
+- Android: Install the [development build](https://expo.dev/accounts/rgarrido03/projects/travelmate/builds) of this app. More details on the [Why a development build on Android?](#-why-a-development-build-on-android) section.
 
-By default, `npm run start` opens an interactive Expo server, where you can open the project in Expo Go (Android & iOS) or in a web browser. However, more options are available, and can be synthesized like this:
+By default, `npm run start` opens an interactive Expo server, where you can open the project in Expo Go (Android & iOS). However, more options are available, and can be synthesized like this:
 
-| Command            | Description                                                       |
-|--------------------|-------------------------------------------------------------------|
-| `npm run start`    | Start the Expo server, to run the app on Expo Go or a web browser |
-| `npm run android`  | Run the app on an Android phone or Android Studio emulator        |
-| `npm run ios`      | Run the app on an iPhone or Xcode emulator                        |
-| `npm run web`      | Run the app on a web browser (usually at http://localhost:19006)  |
-| `npm run buildweb` | Build the app for web                                             |
+| Command                 | Description                                                                        |
+|-------------------------|------------------------------------------------------------------------------------|
+| `npm run start`         | Start the Expo server, to run the app on Expo Go                                   |
+| `npm run startclear`    | Start the Expo server, to run the app on Expo Go, with cleared cache               |
+| `npm run startdev`      | Start the Expo server, to run the app on the development build                     |
+| `npm run startdevclear` | Start the Expo server, to run the app on the development build, with cleared cache |
+| `npm run android`       | Run the app on an Android phone or Android Studio emulator                         |
+| `npm run ios`           | Run the app on an iPhone or Xcode emulator                                         |
 
 All logs will be displayed in the terminal window where you're running the server.
 
+## ⛓️ Why a development build on Android?
+At the time of writing this, the current version of the Expo SDK is 48.0.x, which features `expo-blur` 12.2.2. This version doesn't support blur on Android (instead, it renders a semi-transparent view).
+
+However, `expo-blur` v12.3.0+ supports blur on Android, but doesn't render on the Expo Go app, causing a crash. Therefore, we need to use a development build of the app, which bypasses the version checks, and bundles the packages we actually want.
+
+This development build features the app's name and icon.
+
 ## 🚀 Deployment
-**TL;DR: The app is automatically built for the web and deployed to GitHub Pages through GitHub Actions.**
+We are using EAS (Expo Application Services) to build and deploy the app.
 
-For the web, export the build files with `npm run buildweb`, where you can later find them in the newly created `web-build` folder. Use them to deploy to whatever hosting service you want (e.g. GitHub Pages).
+The build is triggered automatically when a new commit is pushed to the `main` branch, and the new app build is deployed to the EAS servers.
 
-Instructions on how to deploy to either a phone or expo.dev (using EAS) will be documented later.
+Both Expo Go and the development build can fetch updates from the EAS. However, the development build needs to be updated manually every time there is an under-the-hood change (like installing a new package).
 
 ## 📁 Project structure
 `assets/`\
