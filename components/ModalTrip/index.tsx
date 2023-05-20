@@ -17,6 +17,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
 import { Trips, addTrip, getCurrentTrips } from "../../data/trips";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 
 interface props {
     visible: boolean;
@@ -140,12 +141,40 @@ export const ModalTrip = ({ visible, onClose, tripsArray, setTripsArray }: props
 
                     {/* City */}
                     <Text style={[styles.textSecondary, textColor]}>City</Text>
-                    <TextInput
-                        value={city}
-                        onChangeText={setCity}
-                        placeholder="City"
-                        style={[styles.textInput, textInputColor, textColor]}
-                        placeholderTextColor={placeholderTextColor.color}
+                    <GooglePlacesAutocomplete
+                        placeholder="Location"
+                        GooglePlacesDetailsQuery={{ fields: "geometry" }}
+                        fetchDetails={true}
+                        onPress={(data, details) => {
+                            setCity(data.description);
+                            setLat(details.geometry.location.lat);
+                            setLon(details.geometry.location.lng);
+                        }}
+                        query={{
+                            key: "AIzaSyAWAn8uclscRp9eBNSbpDtlrwtTbIlNkzc",
+                            language: "en",
+                        }}
+                        styles={{
+                            container: {
+                                flex: 0,
+                                position: "relative",
+                                zIndex: 2,
+                            },
+                            textInput: [styles.textInput, textInputColor, textColor],
+                            listView: {
+                                position: "absolute",
+                                top: 44,
+                                borderRadius: 8,
+                                shadowRadius: 8,
+                                shadowOpacity: 0.3,
+                                shadowOffset: { width: 0, height: 2 },
+                                elevation: 2,
+                                shadowColor: "#000",
+                            },
+                            row: {
+                                backgroundColor: isLightMode ? "#fff" : "#000",
+                            },
+                        }}
                     />
 
                     {/* Lat/lon */}
