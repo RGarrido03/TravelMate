@@ -83,7 +83,7 @@ const Handle: React.FC<HandleProps> = ({ style, animatedIndex }) => {
             ...styles.indicator,
             ...styles.leftIndicator,
         }),
-        []
+        [styles.indicator, styles.leftIndicator]
     );
     const leftIndicatorAnimatedStyle = useAnimatedStyle(() => {
         const leftIndicatorRotate = interpolate(
@@ -109,7 +109,7 @@ const Handle: React.FC<HandleProps> = ({ style, animatedIndex }) => {
             ...styles.indicator,
             ...styles.rightIndicator,
         }),
-        []
+        [styles.indicator, styles.rightIndicator]
     );
     const rightIndicatorAnimatedStyle = useAnimatedStyle(() => {
         const rightIndicatorRotate = interpolate(

@@ -403,7 +403,7 @@ export default function App() {
                         </TouchableOpacity>
                     </View>
                 </View>
-                <TravelMateBar onPress={handlePresentModalListView} />
+                <TravelMateBar />
 
                 <MapView
                     style={styles.map}

@@ -1,12 +1,12 @@
 import { StyleSheet, Text, useColorScheme, Image, Platform, TouchableOpacity } from "react-native";
 import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faDisplay, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { BlurView } from "expo-blur";
 import React, { useState } from "react";
 import { UserModal } from "../UserModal";
 
-export default function (onPress: any): JSX.Element {
+export default function (): JSX.Element {
     const isLightMode: boolean = useColorScheme() === "light";
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
 
@@ -53,18 +53,7 @@ export default function (onPress: any): JSX.Element {
 
     return (
         <BlurView style={styles.view} blurReductionFactor={2} tint={isLightMode ? "light" : "dark"}>
-            <UserModal
-                visible={modalVisible}
-                onClose={() => setModalVisible(false)}
-                title={""}
-                setTitle={(title: string) => {
-                    throw new Error("Function not implemented.");
-                }}
-                date={""}
-                setDate={(date: string) => {
-                    throw new Error("Function not implemented.");
-                }}
-            ></UserModal>
+            <UserModal visible={modalVisible} onClose={() => setModalVisible(false)}></UserModal>
 
             <Image source={require("../../assets/logo-512.png")} style={styles.logo} />
             <Text style={styles.title}>TravelMate</Text>
