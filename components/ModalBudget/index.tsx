@@ -47,7 +47,11 @@ export const BudgetModal = ({ visible, onClose, onSave, budget, setBudget }: Pro
                 style={styles.modalBackground}
                 keyboardVerticalOffset={insets.top}
             >
-                <BlurView style={[styles.modalContent, modalContentColor]} blurReductionFactor={2}>
+                <BlurView
+                    style={[styles.modalContent, modalContentColor]}
+                    blurReductionFactor={2}
+                    tint={isLightMode ? "light" : "dark"}
+                >
                     <View
                         style={{
                             flexDirection: "row",

@@ -461,7 +461,6 @@ export default function App() {
                         style={styles.bsContentContainer}
                         blurReductionFactor={2}
                         tint={isLightMode ? "light" : "dark"}
-                        intensity={64}
                     >
                         {isListView ? listView() : tripDetails()}
                     </BlurView>

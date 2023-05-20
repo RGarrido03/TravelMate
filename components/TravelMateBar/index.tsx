@@ -52,13 +52,7 @@ export default function (onPress: any): JSX.Element {
     });
 
     return (
-        <BlurView
-            style={styles.view}
-            blurReductionFactor={2}
-            intensity={64}
-            tint={isLightMode ? "light" : "dark"}
-        >
-
+        <BlurView style={styles.view} blurReductionFactor={2} tint={isLightMode ? "light" : "dark"}>
             <UserModal
                     visible={modalVisible}
                     onClose={() => setModalVisible(false)}
