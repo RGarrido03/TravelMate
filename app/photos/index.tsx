@@ -1,7 +1,7 @@
 import { Image, StyleSheet, View, useColorScheme, ScrollView, Text, Pressable, Animated } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useCallback, useEffect, useState } from "react";
-import { loadImagesByKey, Photo } from "../../data/images";
+import { loadImagesByKey, Photo, addImage } from "../../data/images";
 import { useRouter, useFocusEffect, useSearchParams } from "expo-router";
 import { Header } from "../../components/Header";
 import * as ImagePicker from 'expo-image-picker';
@@ -22,8 +22,8 @@ export default function () {
 
     const openImagePicker = async () => {
         const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-        if (status !== 'granted') {
-          alert('Sorry, we need camera roll permissions to make this work!');
+        if (status !== "granted") {
+          alert("Sorry, we need camera roll permissions to make this work!");
           return;
         }
       
@@ -33,10 +33,22 @@ export default function () {
           quality: 1,
         });
       
-        if (!result.canceled) {
-          // Do something with the selected image
+        if (!result.canceled ) {
+          // Crie um objeto Photo com os atributos necessários
+          const newPhoto: Photo = {
+            image: { uri: result.assets[0].uri }, // Acesso à propriedade correta 'uri'
+            date: new Date().toISOString().slice(0, 10), // Data atual no formato YYYY-MM-DD
+            hour: new Date().toLocaleTimeString(), // Hora atual
+            isFavorite: false,
+          };
+      
+          // Adicione a imagem selecionada ao array images (com key 0, por exemplo)
+          addImage(newPhoto);
+
+          setImagesArray(loadImagesByKey(tripID).slice());
         }
       };
+      
       
     useEffect(() => {
         Animated.timing(animatedValue, {

@@ -111,8 +111,6 @@ export const loadNotesByIdx = (idx: number): Note[] => {
 export const addNote = (key : number, note: Note): void => {
     if (notesMap[key]) {
         notesMap[key].push(note);
-    } else {
-        notesMap[key] = [note];
     }
 };
 

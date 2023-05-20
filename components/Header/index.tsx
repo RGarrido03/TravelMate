@@ -2,7 +2,7 @@ import { View, Text, useColorScheme, StyleSheet, TouchableOpacity, Platform } fr
 import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import { faArrowLeft, faAdd } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faAdd, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
     hasBackButton?: boolean;
@@ -10,9 +10,11 @@ interface Props {
     hasAddButton?: boolean;
     addFunction?: () => void;
     title: string;
+    hasDeleteButton?: boolean;
+    deleteFunction?: () => void;
 }
 
-export const Header = ({ hasBackButton, rightText, hasAddButton, addFunction, title }: Props) => {
+export const Header = ({ hasBackButton, rightText, hasAddButton, addFunction, hasDeleteButton, deleteFunction, title }: Props) => {
     const navigation = useRouter();
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
     const isLightMode: boolean = useColorScheme() === "light";
@@ -53,6 +55,13 @@ export const Header = ({ hasBackButton, rightText, hasAddButton, addFunction, ti
             borderWidth: 1,
             borderColor: isLightMode ? "#60BBB6" : "#BDF4F1",
         },
+        deleteButtonContainer: {
+            backgroundColor: isLightMode ? "#ffffffcc" : "#3B4949cc",
+            padding: 6,
+            borderRadius: 16,
+            borderWidth: 1,
+            borderColor: '#EB8C6F',
+        },
     });
 
     return (
@@ -72,6 +81,11 @@ export const Header = ({ hasBackButton, rightText, hasAddButton, addFunction, ti
                 {hasAddButton && (
                     <TouchableOpacity onPress={addFunction} style={styles.addButtonContainer}>
                         <FontAwesomeIcon icon={faAdd} size={18} color={styles.iconColor.color} />
+                    </TouchableOpacity>
+                )}
+                {hasDeleteButton && (
+                    <TouchableOpacity onPress={deleteFunction} style={styles.deleteButtonContainer}>
+                        <FontAwesomeIcon icon={faTrash} size={16} color={'#EB8C6F'} />
                     </TouchableOpacity>
                 )}
             </View>

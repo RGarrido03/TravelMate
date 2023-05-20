@@ -1,7 +1,7 @@
 import { StyleSheet, View, useColorScheme, ScrollView, Button, Text } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useState } from "react";
-import { deleteNote, Note, loadNotesByIdx } from "../../data/notes";
+import { deleteNote, Note, loadNotesByIdx, addNote } from "../../data/notes";
 import { NotesButton } from "../../components/NotesButton";
 import { Header } from "../../components/Header";
 import { useSearchParams } from "expo-router";
@@ -12,6 +12,7 @@ export default function () {
 
     const searchParams: Partial<URLSearchParams> = useSearchParams();
     const tripID: number = searchParams?.["id"] ? parseInt(searchParams["id"]) : 0;
+    console.log("tripID: " + tripID);
     
 
     const [notesArray, setNotesArray] = useState<Note[]>(loadNotesByIdx(tripID)); // Images array
@@ -39,14 +40,21 @@ export default function () {
 
     const handleAddNotePress = () => {
         const newNote: Note = {
-            title: "New Note", 
-            content: "Click to edit!", 
+            title: "New note",
+            content: "This is a new note. You can edit it by pressing the pencil icon.",
             image: null,
-            date: null,
-            text: null
-        };
-        setNotesArray([...notesArray, newNote]);
-    };
+            date: new Date().toISOString().slice(0, 10),
+            text: "",
+        }
+
+        addNote(
+            tripID,newNote
+        );
+        
+        setNotesArray(loadNotesByIdx(tripID).slice());
+        
+
+    }
 
     return (
         <SafeAreaProvider>

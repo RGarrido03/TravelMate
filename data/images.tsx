@@ -163,12 +163,8 @@ export const loadImagesByKey = (key: number): Photo[] => {
     return imageMap[key] || [];
 };
 
-export const addImage = (key: number, photo: Photo): void => {
-    if (imageMap[key]) {
-        imageMap[key].push(photo);
-    } else {
-        imageMap[key] = [photo];
-    }
+export const addImage = (photo: Photo): void => {
+    images.push(photo);
 };
 
 export const deleteImage = (key: number, idx: number): void => {
