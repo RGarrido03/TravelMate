@@ -177,32 +177,6 @@ export const ModalTrip = ({ visible, onClose, tripsArray, setTripsArray }: props
                         }}
                     />
 
-                    {/* Lat/lon */}
-                    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-                        <View style={{ width: "50%", paddingRight: 4 }}>
-                            <Text style={[styles.textSecondary, textColor]}>Latitude</Text>
-                            <TextInput
-                                value={lat.toString()}
-                                onChangeText={(text: string) => setLat(parseFloat(text))}
-                                placeholder="0.00"
-                                editable={false}
-                                style={[styles.textInput, textInputColor, textColor]}
-                                placeholderTextColor={placeholderTextColor.color}
-                            />
-                        </View>
-                        <View style={{ width: "50%", paddingLeft: 4 }}>
-                            <Text style={[styles.textSecondary, textColor]}>Longitude</Text>
-                            <TextInput
-                                value={lon.toString()}
-                                onChangeText={(text: string) => setLon(parseFloat(text))}
-                                placeholder="0.00"
-                                editable={false}
-                                style={[styles.textInput, textInputColor, textColor]}
-                                placeholderTextColor={placeholderTextColor.color}
-                            />
-                        </View>
-                    </View>
-
                     {/* Start date */}
                     <Text style={[styles.textSecondary, textColor]}>Start date</Text>
                     <View style={[styles.textInputIcon, styles.textInput, textInputColor]}>
