@@ -88,7 +88,7 @@ export const styles = StyleSheet.create({
     },
     datePicker: {
         height: 120,
-        marginTop: -10,
+        flex: 1,
     },
     pickerButton: {
         paddingHorizontal: 20,
