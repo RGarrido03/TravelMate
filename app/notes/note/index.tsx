@@ -13,7 +13,7 @@ import { faCamera, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useRouter, useSearchParams } from "expo-router";
 import { TextInput } from "react-native-gesture-handler";
-import { deleteNote, loadNotesByIdx } from "../../../data/notes";
+import { deleteNote, editNote, loadNotesByIdx, Note } from "../../../data/notes";
 
 export default ({ title, image, date, texto }: Props) => {
     const isLightMode: boolean = useColorScheme() === "light";
@@ -31,9 +31,33 @@ export default ({ title, image, date, texto }: Props) => {
         deleteNote(tripID, id);
         setNotesArray(loadNotesByIdx(tripID));
         navigation.back();
-    
-    }
+    };
 
+    const handleEditNoteTitle = (text) => {
+      
+        const newNote: Note = {
+          title: text,
+          text: notesArray[id].text,
+          content: notesArray[id].content,
+          date: notesArray[id].date,
+          image: notesArray[id].image,
+        };
+      
+        editNote(tripID, id, newNote);
+      };
+      
+      const handleEditNoteText = (text) => {
+
+        const newNote: Note = {
+          title: notesArray[id].title,
+          text: text,
+          content: notesArray[id].content,
+          date: notesArray[id].date,
+          image: notesArray[id].image,
+        };
+      
+        editNote(tripID, id, newNote);
+      };
 
     const styles = StyleSheet.create({
         container: {
@@ -119,7 +143,13 @@ export default ({ title, image, date, texto }: Props) => {
     });
     return (
         <SafeAreaProvider>
-            <Header title={"Note"} hasBackButton={true} hasDeleteButton={true} deleteFunction={handleDeleteNote} rightText={notesArray[id].date} />
+            <Header
+                title={"Note"}
+                hasBackButton={true}
+                hasDeleteButton={true}
+                deleteFunction={handleDeleteNote}
+                rightText={notesArray[id].date}
+            />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
                 {image && (
                     <Image
@@ -129,13 +159,18 @@ export default ({ title, image, date, texto }: Props) => {
                 )}
 
                 <View style={styles.marginBottom}>
-                    <TextInput placeholder="New Note" style={styles.Title}>
+                    <TextInput
+                        placeholder="New Note"
+                        style={styles.Title}
+                        onChangeText={handleEditNoteTitle}
+                    >
                         {notesArray[id] && notesArray[id].title}
                     </TextInput>
                     <TextInput
                         placeholder="Click here to edit"
                         multiline={true}
                         style={styles.Subtitle}
+                        onChangeText={handleEditNoteText}
                     >
                         {notesArray[id] && notesArray[id].text}
                     </TextInput>

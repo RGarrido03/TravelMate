@@ -1,18 +1,17 @@
 import { StyleSheet, View, useColorScheme, ScrollView, Button, Text } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { deleteNote, Note, loadNotesByIdx, addNote } from "../../data/notes";
 import { NotesButton } from "../../components/NotesButton";
 import { Header } from "../../components/Header";
-import { useSearchParams } from "expo-router";
+import { useFocusEffect, useSearchParams } from "expo-router";
 
 export default function () {
     const isLightMode: boolean = useColorScheme() === "light";
     const insets: EdgeInsets = useSafeAreaInsets();
 
     const searchParams: Partial<URLSearchParams> = useSearchParams();
-    const tripID: number = searchParams?.["id"] ? parseInt(searchParams["id"]) : 0;
-    console.log("tripID: " + tripID);
+    const tripID: number = searchParams?.["tripId"] ? parseInt(searchParams["tripId"]) : 0;
     
 
     const [notesArray, setNotesArray] = useState<Note[]>(loadNotesByIdx(tripID)); // Images array
@@ -41,7 +40,7 @@ export default function () {
     const handleAddNotePress = () => {
         const newNote: Note = {
             title: "New note",
-            content: "This is a new note. You can edit it by pressing the pencil icon.",
+            content: "",
             image: null,
             date: new Date().toISOString().slice(0, 10),
             text: "",
@@ -52,9 +51,14 @@ export default function () {
         );
         
         setNotesArray(loadNotesByIdx(tripID).slice());
-        
-
+    
     }
+
+    useFocusEffect(
+        useCallback((): void => {
+            setNotesArray(loadNotesByIdx(tripID).slice());
+        }, []) // Empty callback to avoid infinite loop
+    );
 
     return (
         <SafeAreaProvider>

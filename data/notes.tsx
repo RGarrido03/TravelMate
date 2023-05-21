@@ -126,3 +126,9 @@ export const deleteNote = (key : number, idx: number): void => {
     }
 
 };
+
+export const editNote = (key : number, idx: number, note: Note): void => {
+    if (notesMap[key]) {
+        notesMap[key][idx] = note;
+    }
+};
