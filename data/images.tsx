@@ -131,7 +131,6 @@ const images3: Photo[] = [
 ];
 
 const images4: Photo[] = [
-
     {
         image: require("../assets/images/nine.png"),
         date: "2022-08-03",
@@ -163,19 +162,23 @@ export const loadImagesByKey = (key: number): Photo[] => {
     return imageMap[key] || [];
 };
 
-export const addImage = (photo: Photo): void => {
-    images.push(photo);
+export const addTripToPhotosMap = (): void => {
+    imageMap[Object.keys(imageMap).length] = [];
+};
+
+export const addImage = (key: number, photo: Photo): void => {
+    imageMap[key].push(photo);
 };
 
 export const deleteImage = (key: number, idx: number): void => {
-    const imagesForKey = imageMap[key];
+    const imagesForKey: Photo[] = imageMap[key];
     if (imagesForKey) {
         imagesForKey.splice(idx, 1);
     }
 };
 
 export const setFavorite = (key: number, idx: number, isFavorite: boolean): void => {
-    const imagesForKey = imageMap[key];
+    const imagesForKey: Photo[] = imageMap[key];
     if (imagesForKey) {
         imagesForKey[idx].isFavorite = isFavorite;
     }

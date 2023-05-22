@@ -18,6 +18,7 @@ import { EdgeInsets, useSafeAreaInsets } from "react-native-safe-area-context";
 import { BlurView } from "expo-blur";
 import { Trips, addTrip, getCurrentTrips } from "../../data/trips";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import { addTripToPhotosMap } from "../../data/images";
 
 interface props {
     visible: boolean;
@@ -59,6 +60,7 @@ export const ModalTrip = ({ visible, onClose, tripsArray, setTripsArray }: props
         // Add the trip to the trips array
         setTripsArray([...getCurrentTrips(), temp]);
         addTrip(temp);
+        addTripToPhotosMap();
 
         // Close the modal
         onClose();
