@@ -313,7 +313,9 @@ export default function App() {
                         </View>
                     </View>
                     <Pressable
-                        onPress={() => navigation.push("photos/photo?id=" + 0 + "&tripID=" + 0)}
+                        onPress={() =>
+                            navigation.push("photos/photo?id=" + 0 + "&tripID=" + tripID)
+                        }
                     >
                         <View style={tripDetailsStyles.view}>
                             <Text style={tripDetailsStyles.title}>Featured photo</Text>
@@ -345,7 +347,7 @@ export default function App() {
                             />
                             <LinkButton
                                 title={"Notes"}
-                                newNavigation={"../notes?id=" + tripID}
+                                newNavigation={"../notes?tripId=" + tripID}
                                 icon={faNoteSticky}
                             />
                             <LinkButton

@@ -108,26 +108,29 @@ export const loadNotesByIdx = (idx: number): Note[] => {
     return notesMap[idx] || [];
 };
 
-export const addNote = (key : number, note: Note): void => {
+export const addTripToNotesMap = (): void => {
+    notesMap[Object.keys(notesMap).length] = [];
+};
+
+export const addNote = (key: number, note: Note): void => {
     if (notesMap[key]) {
         notesMap[key].push(note);
     }
 };
 
-export const updateNote = (key : number, idx: number, note: Note): void => {
+export const updateNote = (key: number, idx: number, note: Note): void => {
     if (notesMap[key]) {
         notesMap[key][idx] = note;
     }
 };
 
-export const deleteNote = (key : number, idx: number): void => {
+export const deleteNote = (key: number, idx: number): void => {
     if (notesMap[key]) {
-        notesMap[key].splice(idx,1);
+        notesMap[key].splice(idx, 1);
     }
-
 };
 
-export const editNote = (key : number, idx: number, note: Note): void => {
+export const editNote = (key: number, idx: number, note: Note): void => {
     if (notesMap[key]) {
         notesMap[key][idx] = note;
     }

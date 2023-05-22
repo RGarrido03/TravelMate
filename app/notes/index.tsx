@@ -12,7 +12,7 @@ export default function () {
 
     const searchParams: Partial<URLSearchParams> = useSearchParams();
     const tripID: number = searchParams?.["tripId"] ? parseInt(searchParams["tripId"]) : 0;
-    
+    console.log(tripID);
 
     const [notesArray, setNotesArray] = useState<Note[]>(loadNotesByIdx(tripID)); // Images array
 
@@ -44,15 +44,12 @@ export default function () {
             image: null,
             date: new Date().toISOString().slice(0, 10),
             text: "",
-        }
+        };
 
-        addNote(
-            tripID,newNote
-        );
-        
+        addNote(tripID, newNote);
+
         setNotesArray(loadNotesByIdx(tripID).slice());
-    
-    }
+    };
 
     useFocusEffect(
         useCallback((): void => {
@@ -91,14 +88,6 @@ export default function () {
                         <Text style={{ fontWeight: "300" }}>Add one by pressing the + icon.</Text>
                     </View>
                 )}
-
-                {/* <Button
-                    title={"TEST: Delete the first note"}
-                    onPress={() => {
-                        setNotesArray(loadNotesByIdx(tripID).slice(0));
-                        deleteNote(tripID,0);
-                    }}
-                /> */}
             </ScrollView>
         </SafeAreaProvider>
     );
