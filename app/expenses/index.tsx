@@ -3,18 +3,23 @@ import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-sa
 import { ExpensesButton } from "../../components/ExpensesButton";
 import { LinkButton } from "../../components/LinkButton";
 import { faGear, faWallet } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
-import { getCurrentExpenses, Expenses } from "../../data/expenses";
+import { useCallback, useState } from "react";
+import { getCurrentExpenses, Expenses, loadExpensesByKey, addExpenses, deleteExpenses, editExpenses } from "../../data/expenses";
 import { CircularProgress } from "../../components/CircularProgess";
 import { BudgetModal } from "../../components/ModalBudget";
 import { AddExpenseModal } from "../../components/ModalExpenses";
 import { Header } from "../../components/Header";
+import { useFocusEffect, useSearchParams } from "expo-router";
+import { editBudget, getCurrentTrips } from "../../data/trips";
+import { add } from "react-native-reanimated";
 
 export default function () {
     const isLightMode: boolean = useColorScheme() === "light";
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
-
-    const [ExpensesArray, setExpensesArray] = useState<Expenses[]>(getCurrentExpenses());
+    
+    const searchParams: Partial<URLSearchParams> = useSearchParams();
+    const tripID: number = searchParams?.["id"] ? parseInt(searchParams["id"]) : 0;
+    const [ExpensesArray, setExpensesArray] = useState<Expenses[]>(loadExpensesByKey(tripID));
 
     const [modalVisible, setModalVisible] = useState<boolean>(false);
     const [modalBudgetVisible, setBudgetVisible] = useState<boolean>(false);
@@ -28,40 +33,48 @@ export default function () {
     const [date, setDate] = useState<string>("");
 
     const handleAddExpense = (data): void => {
-        setExpensesArray(
-            ExpensesArray.concat({
-                date: data.date,
-                cost: parseFloat(data.value),
-                title: data.title,
-                icon: faWallet,
-            })
-        );
-        setExpenses(expenses + parseFloat(data.value));
-    };
-
-    const handleEditExpense = (data): void => {
-        const updatedExpensesArray = [...ExpensesArray];
-        updatedExpensesArray[id] = {
+        const newExpense: Expenses = {
             date: data.date,
             cost: parseFloat(data.value),
             title: data.title,
             icon: faWallet,
-        };
-        setExpensesArray(updatedExpensesArray);
+        }
+    
+        addExpenses(tripID, newExpense);
+        setExpensesArray(loadExpensesByKey(tripID));
+        setExpenses(expenses + parseFloat(data.value));
+    };
+
+    const handleEditExpense = (data): void => {
+        const newExpense: Expenses = {
+            date: data.date,
+            cost: parseFloat(data.value),
+            title: data.title,
+            icon: faWallet,
+        }
         setExpenses(expenses - ExpensesArray[id].cost + parseFloat(data.value));
+        editExpenses(tripID, id, newExpense);
+        setExpensesArray(loadExpensesByKey(tripID));
+        
     };
 
     const handleDeleteExpense = (): void => {
-        const updatedExpensesArray = [...ExpensesArray];
-        updatedExpensesArray.splice(id, 1);
-        setExpensesArray(updatedExpensesArray);
+        deleteExpenses(tripID, id);
+        setExpensesArray(loadExpensesByKey(tripID));
         setExpenses(expenses - ExpensesArray[id].cost);
     };
 
-    const [budget, setBudget] = useState<string>("4500,00");
+    useFocusEffect(
+        useCallback((): void => {
+            setExpensesArray(loadExpensesByKey(tripID).slice());
+        }, []) // Empty callback to avoid infinite loop
+    );
+
+    const [budget, setBudget] = useState<string>(getCurrentTrips()[tripID]?.budget?.toString() || "0");
 
     const handleBudget = (data): void => {
-        setBudget(data.budget);
+        editBudget(tripID, parseFloat(data.budget));
+        setBudget(getCurrentTrips()[tripID]?.budget?.toString() || "0");
     };
 
     const circumference: number = 2 * Math.PI * 36;

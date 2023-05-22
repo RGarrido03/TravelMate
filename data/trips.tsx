@@ -47,3 +47,7 @@ export const getCurrentTrips = (): Trips[] => {
 export const addTrip = (trip: Trips): void => {
     Trips.push(trip);
 };
+
+export const editBudget = (key: number, budget: number): void => {
+    Trips[key].budget = budget;
+}

@@ -5,7 +5,6 @@ import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet
 import { Trips, getCurrentTrips, loadInitialTrips } from "../data/trips";
 import { WishList, getCurrentWishList, loadInitialWishList } from "../data/wishList";
 import { getCurrentPOIs, loadInitialPOIs, POIs } from "../data/pois";
-import { loadInitialExpenses } from "../data/expenses";
 import { WishButton } from "../components/WishButton";
 import { TripsButton } from "../components/TripButton";
 import { loadImagesByKey } from "../data/images";
@@ -31,7 +30,6 @@ import { ModalTrip } from "../components/ModalTrip";
 
 export default function App() {
     loadInitialPOIs();
-    loadInitialExpenses();
     loadInitialTrips();
     loadInitialWishList();
 
@@ -357,7 +355,7 @@ export default function App() {
                             />
                             <LinkButton
                                 title={"Expenses"}
-                                newNavigation={"../expenses"}
+                                newNavigation={"../expenses?id=" + tripID}
                                 icon={faMoneyBill}
                             />
                         </View>
