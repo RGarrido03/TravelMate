@@ -20,6 +20,7 @@ import { Trips, addTrip, getCurrentTrips } from "../../data/trips";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { addTripToPhotosMap } from "../../data/images";
 import { addTripToNotesMap } from "../../data/notes";
+import { addTripToExpensesMap } from "../../data/expenses";
 
 interface props {
     visible: boolean;
@@ -59,10 +60,11 @@ export const ModalTrip = ({ visible, onClose, tripsArray, setTripsArray }: props
         };
 
         // Add the trip to the trips array
-        setTripsArray([...getCurrentTrips(), temp]);
         addTrip(temp);
+        setTripsArray(getCurrentTrips());
         addTripToPhotosMap();
         addTripToNotesMap();
+        addTripToExpensesMap();
 
         // Close the modal
         onClose();

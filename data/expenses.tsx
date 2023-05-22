@@ -1,8 +1,6 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { faSun, faBed, faPlaneUp } from "@fortawesome/free-solid-svg-icons";
 
-const Expenses: Expenses[] = [];
-
 export type Expenses = {
     date: string;
     icon: IconDefinition;
@@ -31,15 +29,11 @@ const expense: Expenses[] = [
     },
 ];
 
-const expense1: Expenses[] = [
-];
+const expense1: Expenses[] = [];
 
-const expense2: Expenses[] = [
-];
+const expense2: Expenses[] = [];
 
-const expense3: Expenses[] = [
-];
-
+const expense3: Expenses[] = [];
 
 const expensesMap: { [key: number]: Expenses[] } = {
     0: expense,
@@ -52,25 +46,24 @@ export const loadExpensesByKey = (key: number): Expenses[] => {
     return expensesMap[key] || [];
 };
 
-export const getCurrentExpenses = (): Expenses[] => {
-    return Expenses;
+export const addTripToExpensesMap = (): void => {
+    expensesMap[Object.keys(expensesMap).length] = [];
 };
 
-export const addExpenses = (key : number, expense: Expenses): void => {
+export const addExpenses = (key: number, expense: Expenses): void => {
     if (expensesMap[key]) {
         expensesMap[key].push(expense);
     }
 };
 
-export const deleteExpenses = (key : number, idx: number): void => {
+export const deleteExpenses = (key: number, idx: number): void => {
     if (expensesMap[key]) {
-        expensesMap[key].splice(idx,1);
+        expensesMap[key].splice(idx, 1);
     }
 };
 
-export const editExpenses = (key : number, idx: number, expense: Expenses): void => {
+export const editExpenses = (key: number, idx: number, expense: Expenses): void => {
     if (expensesMap[key]) {
         expensesMap[key][idx] = expense;
     }
-}
-
+};

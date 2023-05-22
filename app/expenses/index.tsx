@@ -4,19 +4,24 @@ import { ExpensesButton } from "../../components/ExpensesButton";
 import { LinkButton } from "../../components/LinkButton";
 import { faGear, faWallet } from "@fortawesome/free-solid-svg-icons";
 import { useCallback, useState } from "react";
-import { getCurrentExpenses, Expenses, loadExpensesByKey, addExpenses, deleteExpenses, editExpenses } from "../../data/expenses";
+import {
+    Expenses,
+    loadExpensesByKey,
+    addExpenses,
+    deleteExpenses,
+    editExpenses,
+} from "../../data/expenses";
 import { CircularProgress } from "../../components/CircularProgess";
 import { BudgetModal } from "../../components/ModalBudget";
 import { AddExpenseModal } from "../../components/ModalExpenses";
 import { Header } from "../../components/Header";
 import { useFocusEffect, useSearchParams } from "expo-router";
 import { editBudget, getCurrentTrips } from "../../data/trips";
-import { add } from "react-native-reanimated";
 
 export default function () {
     const isLightMode: boolean = useColorScheme() === "light";
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
-    
+
     const searchParams: Partial<URLSearchParams> = useSearchParams();
     const tripID: number = searchParams?.["id"] ? parseInt(searchParams["id"]) : 0;
     const [ExpensesArray, setExpensesArray] = useState<Expenses[]>(loadExpensesByKey(tripID));
@@ -38,8 +43,8 @@ export default function () {
             cost: parseFloat(data.value),
             title: data.title,
             icon: faWallet,
-        }
-    
+        };
+
         addExpenses(tripID, newExpense);
         setExpensesArray(loadExpensesByKey(tripID));
         setExpenses(expenses + parseFloat(data.value));
@@ -51,11 +56,10 @@ export default function () {
             cost: parseFloat(data.value),
             title: data.title,
             icon: faWallet,
-        }
+        };
         setExpenses(expenses - ExpensesArray[id].cost + parseFloat(data.value));
         editExpenses(tripID, id, newExpense);
         setExpensesArray(loadExpensesByKey(tripID));
-        
     };
 
     const handleDeleteExpense = (): void => {
@@ -70,7 +74,9 @@ export default function () {
         }, []) // Empty callback to avoid infinite loop
     );
 
-    const [budget, setBudget] = useState<string>(getCurrentTrips()[tripID]?.budget?.toString() || "0");
+    const [budget, setBudget] = useState<string>(
+        getCurrentTrips()[tripID]?.budget?.toString() || "Not found"
+    );
 
     const handleBudget = (data): void => {
         editBudget(tripID, parseFloat(data.budget));

@@ -1,4 +1,4 @@
-const Trips: Trips[] = [];
+let trips: Trips[] = [];
 
 export type Trips = {
     city: string;
@@ -9,29 +9,29 @@ export type Trips = {
 };
 
 export const loadInitialTrips = (): void => {
-    Trips.length = 0;
-    Trips.push({
+    trips.length = 0;
+    trips.push({
         city: "Ibiza Island, Spain 🇪🇸",
         date: "August 8-13, 2022",
         budget: 4500,
         lat: 38.9067,
         lon: 1.4206,
     });
-    Trips.push({
+    trips.push({
         city: "Sardinia, Italy 🇮🇹",
         date: "March 13, 2022",
         budget: 2000,
         lat: 40.1209,
         lon: 9.0129,
     });
-    Trips.push({
+    trips.push({
         city: "Paris, France 🇫🇷",
         date: "January 8-13, 2022",
         budget: null,
         lat: 48.8566,
         lon: 2.3522,
     });
-    Trips.push({
+    trips.push({
         city: "Kyiv, Ukraine 🇺🇦",
         date: "January 4-25, 2021",
         budget: 1000,
@@ -41,13 +41,13 @@ export const loadInitialTrips = (): void => {
 };
 
 export const getCurrentTrips = (): Trips[] => {
-    return Trips;
+    return trips.slice();
 };
 
 export const addTrip = (trip: Trips): void => {
-    Trips.push(trip);
+    trips.push(trip);
 };
 
 export const editBudget = (key: number, budget: number): void => {
-    Trips[key].budget = budget;
-}
+    trips[key].budget = budget;
+};
