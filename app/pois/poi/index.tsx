@@ -173,7 +173,7 @@ export default function () {
                                 icon={faCamera}
                             />
                             <LinkButton
-                                title={"Related expendes"}
+                                title={"Related expenses"}
                                 newNavigation={"/expenses"}
                                 icon={faMoneyBill}
                             />
@@ -219,7 +219,7 @@ export default function () {
                                 icon={faCamera}
                             />
                             <LinkButton
-                                title={"Related expendes"}
+                                title={"Related expenses"}
                                 newNavigation={"/expenses"}
                                 icon={faMoneyBill}
                             />
