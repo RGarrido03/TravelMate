@@ -15,7 +15,7 @@ import { useRouter, useSearchParams } from "expo-router";
 import { TextInput } from "react-native-gesture-handler";
 import { deleteNote, editNote, loadNotesByIdx, Note } from "../../../data/notes";
 
-export default ({ title, image, date, texto }: Props) => {
+export default () => {
     const isLightMode: boolean = useColorScheme() === "light";
     const insets = useSafeAreaInsets();
 
@@ -34,30 +34,28 @@ export default ({ title, image, date, texto }: Props) => {
     };
 
     const handleEditNoteTitle = (text) => {
-      
         const newNote: Note = {
-          title: text,
-          text: notesArray[id].text,
-          content: notesArray[id].content,
-          date: notesArray[id].date,
-          image: notesArray[id].image,
+            title: text,
+            text: notesArray[id].text,
+            content: notesArray[id].content,
+            date: notesArray[id].date,
+            image: notesArray[id].image,
         };
-      
-        editNote(tripID, id, newNote);
-      };
-      
-      const handleEditNoteText = (text) => {
 
-        const newNote: Note = {
-          title: notesArray[id].title,
-          text: text,
-          content: notesArray[id].content,
-          date: notesArray[id].date,
-          image: notesArray[id].image,
-        };
-      
         editNote(tripID, id, newNote);
-      };
+    };
+
+    const handleEditNoteText = (text) => {
+        const newNote: Note = {
+            title: notesArray[id].title,
+            text: text,
+            content: notesArray[id].content,
+            date: notesArray[id].date,
+            image: notesArray[id].image,
+        };
+
+        editNote(tripID, id, newNote);
+    };
 
     const styles = StyleSheet.create({
         container: {
@@ -151,12 +149,7 @@ export default ({ title, image, date, texto }: Props) => {
                 rightText={notesArray[id].date}
             />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-                {image && (
-                    <Image
-                        source={notesArray[id].image as ImageSourcePropType}
-                        style={styles.photo}
-                    />
-                )}
+                <Image source={notesArray[id].image as ImageSourcePropType} style={styles.photo} />
 
                 <View style={styles.marginBottom}>
                     <TextInput
@@ -184,11 +177,3 @@ export default ({ title, image, date, texto }: Props) => {
         </SafeAreaProvider>
     );
 };
-
-interface Props {
-    title: string;
-    content: string;
-    image: string;
-    date: string;
-    texto: string;
-}

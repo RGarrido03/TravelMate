@@ -18,9 +18,9 @@ const notes: Note[] = [
             "Nestled on a rocky promontory overlooking the sparkling Mediterranean Sea," +
             "the Castle of Ibiza is a breathtaking marvel of architecture and history." +
             "But beneath its ancient stone walls lies a world of sensual secrets, waiting" +
-            "to be discovered by adventurous lovers.\n\n As night falls, the castle comes alive with the pulse of music and dance. Join" +
+            "to be discovered by adventurous lovers.\n\nAs night falls, the castle comes alive with the pulse of music and dance. Join" +
             "the pulsing throng of bodies and let the rhythm carry you away, spinning and" +
-            "twirling under the starry sky.\n\nNote Finished - delete later",
+            "twirling under the starry sky.",
     },
     {
         title: "Things of Ibiza's Day Life",
@@ -45,7 +45,7 @@ const notes: Note[] = [
             "they can pose a serious danger to those who use hallucinogens.\n\nIn certain cases, individuals who take hallucinogens" +
             "may experience a condition known as 'palinopsia' or 'visual snow'." +
             "This condition can cause a person's vision to become distorted, and palm trees may" +
-            "appear to be moving in unnatural and menacing ways.\n\nWarn the homeless people - delete later",
+            "appear to be moving in unnatural and menacing ways.\n\nWarn the homeless people",
     },
 ];
 
