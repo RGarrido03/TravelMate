@@ -149,8 +149,12 @@ export default () => {
                 rightText={notesArray[id].date}
             />
             <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-                <Image source={notesArray[id].image as ImageSourcePropType} style={styles.photo} />
-
+                {notesArray[id].image && (
+                    <Image
+                        source={notesArray[id].image as ImageSourcePropType}
+                        style={styles.photo}
+                    />
+                )}
                 <View style={styles.marginBottom}>
                     <TextInput
                         placeholder="New Note"
