@@ -9,7 +9,7 @@ export default () => ({
         splash: {
             image: "./assets/splash.png",
             resizeMode: "contain",
-            backgroundColor: "#ffffff",
+            backgroundColor: "#fff",
         },
         platforms: ["ios", "android"], // Block web compiling
         assetBundlePatterns: ["**/*"],
