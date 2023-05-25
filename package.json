@@ -2,7 +2,7 @@
   "name": "travelmate",
   "version": "1.0.0",
   "homepage": "https://rgarrido03.github.io/TravelMate/",
-  "main": "index.tsx",
+  "main": "index.js",
   "scripts": {
     "start": "expo start",
     "startclear": "expo start --clear",
