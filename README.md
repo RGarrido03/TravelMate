@@ -22,16 +22,18 @@ The color palette is used as follows:
 | #000000 | Black           | Important text, headers' text                |
 | #FFFFFF | White           | Misc                                         |
 
-This app features dark mode, with automatic theme switching. However, dark mode's design is quite questionable, so it needs to be improved.
+This app features dark mode, with automatic theme switching. However, dark mode's design is quite questionable, so it needs to be improved (~~spoiler: it will never be improved~~).
+
+You may see some differences between iOS and Android (with iOS being the pretty boy). Even though we're using the same components on both OSes, some components are rendered differently on each OS, such as blur views. It's not our fault, blame React Native.
 
 ## 💻 Development
-This is a React Native app created with Expo. Instead of using JavaScript (Expo's default programming language), this project uses [TypeScript](https://www.typescriptlang.org/) for type checking and more.
+This is a React Native app created with [Expo](https://docs.expo.dev) - a framework on top of React that renders native components. Instead of using JavaScript (Expo's default programming language), this project uses [TypeScript](https://www.typescriptlang.org/) for type checking and more.
 
 Before making any code changes after cloning the repo, be sure to have installed the Current version of Node.js. **Run `npm install` after cloning the repository, in order to install the project dependencies**.
 
 Depending on the operating system, the initial steps to run the app are different:
 - iOS: Install the [Expo Go app](https://apps.apple.com/app/apple-store/id982107779).
-- Android: Install the [development build](https://expo.dev/accounts/rgarrido03/projects/travelmate/builds) of this app. More details on the [Why a development build on Android?](#-why-a-development-build-on-android) section.
+- Android: Install the [development build](https://github.com/RGarrido03/TravelMate/blob/main/eas-builds/android-dev-build.apk) of this app. More details on the [Why a development build on Android?](#-why-a-development-build-on-android) section.
 
 By default, `npm run start` opens an interactive Expo server, where you can open the project in Expo Go (Android & iOS). However, more options are available, and can be synthesized like this:
 
@@ -44,7 +46,11 @@ By default, `npm run start` opens an interactive Expo server, where you can open
 | `npm run android`       | Run the app on an Android phone or Android Studio emulator                         |
 | `npm run ios`           | Run the app on an iPhone or Xcode emulator                                         |
 
+So, basically, you should run `npm run start` if you're working on iOS, and `npm run startdev` if you're working on Android.
+
 All logs will be displayed in the terminal window where you're running the server.
+
+No web support - we're sorry or you're welcome.
 
 ## ⛓️ Why a development build on Android?
 At the time of writing this, the current version of the Expo SDK is 48.0.x, which features `expo-blur` 12.2.2. This version doesn't support blur on Android (instead, it renders a semi-transparent view).
@@ -60,12 +66,14 @@ The build is triggered automatically when a new commit is pushed to the `main` b
 
 Both Expo Go and the development build can fetch updates from the EAS. However, the development build needs to be updated manually every time there is an under-the-hood change (like installing a new package).
 
+Android users can install the production build from [here](https://github.com/RGarrido03/TravelMate/blob/main/eas-builds/android-production-build.apk), but will face giant markers in the map.
+
 ## 📁 Project structure
 `assets/`\
-Folder containing the icon, splash and more. The `ìmages/` folder contains the initial images used in the app.
+Folder containing the icon, splash and more. The `images/` folder contains the initial images used in the app.
 
 `app/`\
-Project source files. Check the [Expo Router](https://expo.github.io/router/docs/) documentation for more information on how the navigation works.
+Project source files. Check the [Expo Router](https://expo.github.io/router/docs/) documentation for more information on how navigation works.
 
 `components/`\
 Reusable components, such as buttons, cards, etc.
@@ -82,6 +90,9 @@ Configurations for Babel - the compiler for development and build -, that refere
 `global.d.ts`\
 TypeScript image module declaration file.
 
+`index.js`\
+Entry point for the app. Since Expo Router is used, this file only imports it, so that pages in `app/` get rendered.
+
 `package.json` & `package-lock.json`\
 Configuration files containing dependencies and scripts.
 
@@ -92,3 +103,4 @@ Configurations for TypeScript's official compiler, used for type checking. Exten
 - [Expo](https://docs.expo.dev/)
 - [Expo Router](https://expo.github.io/router/docs/)
 - [React Native](https://reactnative.dev/docs/getting-started)
+- [React Native Bottom Sheet](https://gorhom.github.io/react-native-bottom-sheet/)
