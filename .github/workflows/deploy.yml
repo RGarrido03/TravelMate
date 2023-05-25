@@ -12,12 +12,6 @@ jobs:
   build:
     name: ⛓️ Build & 🚀 Deploy
     runs-on: ubuntu-latest
-    permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: ⬇️ Setup repo
         uses: actions/checkout@v3
