@@ -66,7 +66,7 @@ The build is triggered automatically when a new commit is pushed to the `main` b
 
 Both Expo Go and the development build can fetch updates from the EAS. However, the development build needs to be updated manually every time there is an under-the-hood change (like installing a new package).
 
-Android users can install the production build from [here](https://github.com/RGarrido03/TravelMate/blob/main/eas-builds/android-production-build.apk), but will face giant markers in the map.
+Android users can install the production build from [here](https://github.com/RGarrido03/TravelMate/releases), but will face giant markers in the map.
 
 ## 📁 Project structure
 `assets/`\
