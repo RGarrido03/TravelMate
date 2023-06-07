@@ -3,7 +3,7 @@
 
 Project for "Interação Humano-Computador", 2022-2023 by Rúben Garrido, Diogo Falcão and Diana Miranda.
 
-Slides (Canva): https://www.canva.com/design/DAFeS6YpUG0/Mkgjgk4K1JCFlZt_AtBC3A/edit?utm_content=DAFeS6YpUG0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton 
+[Slides (Canva)](https://www.canva.com/design/DAFeS6YpUG0/Mkgjgk4K1JCFlZt_AtBC3A/edit?utm_content=DAFeS6YpUG0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 ## ✍ Design
 This app tightly follows the app prototype we made in Figma, which you can check [here](https://www.figma.com/proto/G9qqNCCqaahFK07umeDm0B/Low-level-prototype?node-id=64-2&starting-point-node-id=64%3A2).
