@@ -1,7 +1,9 @@
 # <img src="https://user-images.githubusercontent.com/57329376/231313179-8d375176-1077-4c1b-9bd6-cf323e9d9475.png" width="28"> TravelMate app
 [![.github/workflows/deploy.yml](https://github.com/RGarrido03/TravelMate/actions/workflows/deploy.yml/badge.svg)](https://github.com/RGarrido03/TravelMate/actions/workflows/deploy.yml)
 
-Project for "Interação Humano-Computador", 2022-2023.
+Project for "Interação Humano-Computador", 2022-2023 by Rúben Garrido, Diogo Falcão and Diana Miranda.
+
+Slides (Canva): https://www.canva.com/design/DAFeS6YpUG0/Mkgjgk4K1JCFlZt_AtBC3A/edit?utm_content=DAFeS6YpUG0&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton 
 
 ## ✍ Design
 This app tightly follows the app prototype we made in Figma, which you can check [here](https://www.figma.com/proto/G9qqNCCqaahFK07umeDm0B/Low-level-prototype?node-id=64-2&starting-point-node-id=64%3A2).
