@@ -11,7 +11,7 @@ import {
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { useCallback, useEffect, useState } from "react";
 import { loadImagesByKey, Photo, addImage } from "../../data/images";
-import { useRouter, useFocusEffect, useSearchParams } from "expo-router";
+import { useRouter, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { Header } from "../../components/Header";
 import * as ImagePicker from "expo-image-picker";
 
@@ -20,7 +20,7 @@ export default function () {
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
     const navigation = useRouter();
 
-    const searchParams: Partial<URLSearchParams> = useSearchParams();
+    const searchParams: Partial<URLSearchParams> = useLocalSearchParams();
     const tripID: number = searchParams?.["id"] ? parseInt(searchParams["id"]) : 0;
 
     const [containerWidth, setContainerWidth] = useState<number>(0); // Grid container dimensions hook
