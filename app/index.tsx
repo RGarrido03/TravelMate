@@ -342,22 +342,22 @@ export default function App() {
                         <View style={tripDetailsStyles.column}>
                             <LinkButton
                                 title={"Photos"}
-                                newNavigation={"../photos?id=" + tripID}
+                                newNavigation={"photos?id=" + tripID}
                                 icon={faCamera}
                             />
                             <LinkButton
                                 title={"Notes"}
-                                newNavigation={"../notes?tripId=" + tripID}
+                                newNavigation={"notes?tripId=" + tripID}
                                 icon={faNoteSticky}
                             />
                             <LinkButton
                                 title={"POIs"}
-                                newNavigation={"../pois"}
+                                newNavigation={"pois"}
                                 icon={faLocationPin}
                             />
                             <LinkButton
                                 title={"Expenses"}
-                                newNavigation={"../expenses?id=" + tripID}
+                                newNavigation={"expenses?id=" + tripID}
                                 icon={faMoneyBill}
                             />
                         </View>
