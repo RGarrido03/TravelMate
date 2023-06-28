@@ -4,10 +4,10 @@
   "homepage": "https://rgarrido03.github.io/TravelMate/",
   "main": "index.js",
   "scripts": {
-    "start": "expo start",
-    "startclear": "expo start --clear",
-    "startdev": "expo start --dev-client",
-    "startdevclear": "expo start --dev-client --clear",
+    "start": "expo start --go",
+    "startclear": "expo start --clear --go",
+    "startdev": "expo start",
+    "startdevclear": "expo start --clear",
     "android": "expo start --android",
     "ios": "expo start --ios"
   },
