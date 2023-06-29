@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useMemo, useRef } from "react";
-import { StyleSheet, View, Text, ScrollView, useColorScheme, Pressable, Image } from "react-native";
+import { StyleSheet, View, Text, ScrollView, useColorScheme, Pressable, Image, Platform } from "react-native";
 import { EdgeInsets, SafeAreaProvider, useSafeAreaInsets } from "react-native-safe-area-context";
 import { BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { Trips, getCurrentTrips, loadInitialTrips } from "../data/trips";
@@ -25,7 +25,7 @@ import { BlurView } from "expo-blur";
 import BSHandle from "../components/BSHandle";
 import TravelMateBar from "../components/TravelMateBar";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, { Marker, PROVIDER_DEFAULT, PROVIDER_GOOGLE } from "react-native-maps";
 import { ModalTrip } from "../components/ModalTrip";
 
 export default function App() {
@@ -413,7 +413,7 @@ export default function App() {
                         latitudeDelta: 30,
                         longitudeDelta: 30,
                     }}
-                    provider={PROVIDER_GOOGLE}
+                    provider={Platform.OS === "android" ? PROVIDER_GOOGLE : PROVIDER_DEFAULT}
                 >
                     {TripsArray.map((trip: Trips, index: number) => (
                         <Marker
