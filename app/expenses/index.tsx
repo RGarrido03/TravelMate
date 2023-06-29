@@ -15,14 +15,14 @@ import { CircularProgress } from "../../components/CircularProgess";
 import { BudgetModal } from "../../components/ModalBudget";
 import { AddExpenseModal } from "../../components/ModalExpenses";
 import { Header } from "../../components/Header";
-import { useFocusEffect, useSearchParams } from "expo-router";
+import { useFocusEffect, useLocalSearchParams } from "expo-router";
 import { editBudget, getCurrentTrips } from "../../data/trips";
 
 export default function () {
     const isLightMode: boolean = useColorScheme() === "light";
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
 
-    const searchParams: Partial<URLSearchParams> = useSearchParams();
+    const searchParams: Partial<URLSearchParams> = useLocalSearchParams();
     const tripID: number = searchParams?.["id"] ? parseInt(searchParams["id"]) : 0;
     const [ExpensesArray, setExpensesArray] = useState<Expenses[]>(loadExpensesByKey(tripID));
 

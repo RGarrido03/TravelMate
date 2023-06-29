@@ -12,7 +12,7 @@ import { Header } from "../../../components/Header";
 import { LinkButton } from "../../../components/LinkButton";
 import { faCamera, faMoneyBill, faPlus, faSprayCan } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { useSearchParams } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import { getCurrentPOIs } from "../../../data/pois";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 
@@ -21,7 +21,7 @@ export default function () {
     const insets = useSafeAreaInsets();
     const [poisArray, setPoisArray] = useState(getCurrentPOIs());
 
-    const searchParams: Partial<URLSearchParams> = useSearchParams();
+    const searchParams: Partial<URLSearchParams> = useLocalSearchParams();
     const id: number = searchParams?.["id"] ? parseInt(searchParams["id"][0]) : 0;
 
     const handleAddPoi = (data): void => {

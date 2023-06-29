@@ -4,13 +4,13 @@ import { useCallback, useState } from "react";
 import { deleteNote, Note, loadNotesByIdx, addNote } from "../../data/notes";
 import { NotesButton } from "../../components/NotesButton";
 import { Header } from "../../components/Header";
-import { useFocusEffect, useSearchParams } from "expo-router";
+import { useFocusEffect, useLocalSearchParams } from "expo-router";
 
 export default function () {
     const isLightMode: boolean = useColorScheme() === "light";
     const insets: EdgeInsets = useSafeAreaInsets();
 
-    const searchParams: Partial<URLSearchParams> = useSearchParams();
+    const searchParams: Partial<URLSearchParams> = useLocalSearchParams();
     const tripID: number = searchParams?.["tripId"] ? parseInt(searchParams["tripId"]) : 0;
     console.log(tripID);
 

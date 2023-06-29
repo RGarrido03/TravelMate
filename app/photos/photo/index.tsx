@@ -12,7 +12,7 @@ import { deleteImage, setFavorite, Photo, loadImagesByKey } from "../../../data/
 import { addNote, Note, loadNotesByIdx, updateNote } from "../../../data/notes";
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faNoteSticky, faTrash, faHeart } from "@fortawesome/free-solid-svg-icons";
-import { useRouter, useSearchParams } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
 import { AddNotesModal } from "../../../components/ModalNotesInPhotos";
 import { Header } from "../../../components/Header";
 
@@ -20,7 +20,7 @@ export default function () {
     const isLightMode: boolean = useColorScheme() === "light";
     const insets: EdgeInsets = useSafeAreaInsets(); // SafeAreaView dimensions
     const router = useRouter();
-    const searchParams: Partial<URLSearchParams> = useSearchParams();
+    const searchParams: Partial<URLSearchParams> = useLocalSearchParams();
     const id: number = searchParams?.["id"] ? parseInt(searchParams["id"]) : 0;
     const tripID: number = searchParams?.["tripID"] ? parseInt(searchParams["tripID"][0]) : 0;
 

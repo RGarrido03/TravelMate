@@ -11,7 +11,7 @@ import { Header } from "../../../components/Header";
 import { LinkButton } from "../../../components/LinkButton";
 import { faCamera, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import { useRouter, useSearchParams } from "expo-router";
+import { useRouter, useLocalSearchParams } from "expo-router";
 import { TextInput } from "react-native-gesture-handler";
 import { deleteNote, editNote, loadNotesByIdx, Note } from "../../../data/notes";
 
@@ -19,7 +19,7 @@ export default () => {
     const isLightMode: boolean = useColorScheme() === "light";
     const insets = useSafeAreaInsets();
 
-    const searchParams: Partial<URLSearchParams> = useSearchParams();
+    const searchParams: Partial<URLSearchParams> = useLocalSearchParams();
     const id: number = searchParams?.["id"] ? parseInt(searchParams["id"]) : 0;
     const tripID: number = searchParams?.["tripID"] ? parseInt(searchParams["tripID"][0]) : 0;
 
