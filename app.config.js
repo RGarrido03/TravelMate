@@ -38,9 +38,7 @@ export default () => ({
             },
         },
         owner: "rgarrido03",
-        runtimeVersion: {
-            policy: "sdkVersion",
-        },
+        runtimeVersion: "1.0.0",
         updates: {
             url: "https://u.expo.dev/ed8ac1ae-e594-4880-aa5a-bede51f14e2c",
         },
